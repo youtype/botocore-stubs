@@ -4,9 +4,8 @@ set -e
 ROOT_PATH=$(dirname $(dirname $0))
 cd $ROOT_PATH
 
-npx pyright botocore-stubs
-flake8 botocore-stubs
-black botocore-stubs
-isort botocore-stubs
-mypy botocore-stubs
-python -m istub -u
+poetry run flake8 botocore-stubs
+poetry run black botocore-stubs
+poetry run isort botocore-stubs
+poetry run mypy botocore-stubs
+poetry run istub -u
