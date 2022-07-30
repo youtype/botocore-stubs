@@ -31,4 +31,4 @@ Full changelog can be found in [Releases](https://github.com/youtype/botocore-st
 ## Support and contributing
 
 Please reports any bugs or request new features in
-[mypy-boto3-builder](https://github.com/youtype/mypy_boto3_builder/issues/) repository.
+[botocore-stubs](https://github.com/youtype/botocore-stubs/issues/) repository.
