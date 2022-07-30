@@ -1,7 +1,7 @@
 from typing import Dict
 
 # FIXME: awscrt is untyped
-from awscrt.auth import AwsCredentials  # type: ignore
+from awscrt.auth import AwsCredentials
 from botocore.auth import SIGNED_HEADERS_BLACKLIST as SIGNED_HEADERS_BLACKLIST
 from botocore.auth import STREAMING_UNSIGNED_PAYLOAD_TRAILER as STREAMING_UNSIGNED_PAYLOAD_TRAILER
 from botocore.auth import UNSIGNED_PAYLOAD as UNSIGNED_PAYLOAD
@@ -17,7 +17,12 @@ from botocore.utils import percent_encode_sequence as percent_encode_sequence
 class CrtSigV4Auth(BaseSigner):
     REQUIRES_REGION: bool = ...
 
-    def __init__(self, credentials: AwsCredentials, service_name: str, region_name: str) -> None:
+    def __init__(
+        self,
+        credentials: AwsCredentials,  # type: ignore
+        service_name: str,
+        region_name: str,
+    ) -> None:
         self.credentials: AwsCredentials = ...
     def add_auth(self, request: AWSRequest) -> None: ...
 
@@ -26,7 +31,12 @@ class CrtS3SigV4Auth(CrtSigV4Auth): ...
 class CrtSigV4AsymAuth(BaseSigner):
     REQUIRES_REGION: bool = ...
 
-    def __init__(self, credentials: AwsCredentials, service_name: str, region_name: str) -> None:
+    def __init__(
+        self,
+        credentials: AwsCredentials,  # type: ignore
+        service_name: str,
+        region_name: str,
+    ) -> None:
         self.credentials: AwsCredentials = ...
     def add_auth(self, request: AWSRequest) -> None: ...
 
@@ -37,7 +47,7 @@ class CrtSigV4AsymQueryAuth(CrtSigV4AsymAuth):
 
     def __init__(
         self,
-        credentials: AwsCredentials,
+        credentials: AwsCredentials,  # type: ignore
         service_name: str,
         region_name: str,
         expires: int = ...,
@@ -49,7 +59,7 @@ class CrtSigV4QueryAuth(CrtSigV4Auth):
     DEFAULT_EXPIRES: int = ...
     def __init__(
         self,
-        credentials: AwsCredentials,
+        credentials: AwsCredentials,  # type: ignore
         service_name: str,
         region_name: str,
         expires: int = ...,
