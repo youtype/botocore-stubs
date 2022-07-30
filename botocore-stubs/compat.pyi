@@ -4,8 +4,7 @@ from email.utils import formatdate as formatdate
 from http.client import HTTPMessage
 from http.client import HTTPResponse as HTTPResponse
 from itertools import zip_longest as zip_longest
-from re import Pattern
-from typing import Any, Dict, Iterable, Mapping, Optional, Tuple, Type, TypeVar
+from typing import Any, Dict, Iterable, Mapping, Optional, Pattern, Tuple, Type, TypeVar
 from urllib.parse import parse_qs as parse_qs
 from urllib.parse import parse_qsl as parse_qsl
 from urllib.parse import quote as quote
