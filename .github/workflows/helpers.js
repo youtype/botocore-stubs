@@ -42,7 +42,7 @@ function isVersionGreater(version, other) {
     const versionStable = version.split('.').slice(0, 3).join(".")
     const otherStable = other.split('.').slice(0, 3).join(".")
     const latestStable = sortVersions([versionStable, otherStable]).pop()
-    return latestStable === versionStable
+    return latestStable !== otherStable
 }
 
 async function extractVersions({ core, context }) {
