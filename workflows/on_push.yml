@@ -1,0 +1,47 @@
+name: Code style
+concurrency:
+  group: on_push
+  cancel-in-progress: true
+
+on:
+  push: {}
+  workflow_dispatch: {}
+
+jobs:
+  unit-tests:
+    name: Code style
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python for Poetry
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install poetry
+        run: |
+          python -m pip install poetry pip
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+          cache: "poetry"
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      - name: Install dependencies
+        run: |
+          poetry install -n
+      - name: Install Node.js dependencies
+        run: |
+          npm install -g pyright
+      - name: Lint
+        run: |
+          poetry run flake8 botocore-stubs
+          poetry run npx pyright botocore-stubs
+          poetry run mypy botocore-stubs
+          poetry run black --check botocore-stubs
+          poetry run isort -c botocore-stubs
+      - name: Stubs consistency check
+        run: |
+          poetry run istub
