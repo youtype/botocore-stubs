@@ -2,7 +2,6 @@ import sys
 from typing import IO, Any, Dict, Iterable, Mapping
 
 import requests
-import urllib3
 from urllib3.exceptions import ReadTimeoutError as _ReadTimeoutError
 
 if sys.version_info >= (3, 9):
