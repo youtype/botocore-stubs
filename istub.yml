@@ -104,12 +104,6 @@ packages:
         Runtime:
         <module 'botocore.docs.waiter' from './botocore/docs/waiter.py'>
 
-        error: botocore.httpchecksum failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        <module 'botocore.httpchecksum' from './botocore/httpchecksum.py'>
-
         error: botocore.vendored failed to find stubs
         Stub:
         MISSING

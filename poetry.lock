@@ -203,7 +203,7 @@ plugins = ["setuptools"]
 
 [[package]]
 name = "istub"
-version = "0.2.0"
+version = "0.2.1"
 description = "Validator for type annotations"
 category = "dev"
 optional = false
@@ -642,8 +642,8 @@ isort = [
     {file = "isort-5.10.1.tar.gz", hash = "sha256:e8443a5e7a020e9d7f97f1d7d9cd17c88bcb3bc7e218bf9cf5095fe550be2951"},
 ]
 istub = [
-    {file = "istub-0.2.0-py3-none-any.whl", hash = "sha256:dee439993bca2f7e9aa1302758c9ed94c16533f309f4afaf505f76e62d383537"},
-    {file = "istub-0.2.0.tar.gz", hash = "sha256:bae90e2c838bf5dfee69745d35643a7c49418b29372c5a89de3708a03304a299"},
+    {file = "istub-0.2.1-py3-none-any.whl", hash = "sha256:5f39f7db2850ee087286f58866468b7a1c278b60e4ee1ff3373f3bc27efe0a84"},
+    {file = "istub-0.2.1.tar.gz", hash = "sha256:94926bce6bacddc63afd1e3e516dc7acd9870939f53ac8ca44e9930ba0105ffc"},
 ]
 jeepney = [
     {file = "jeepney-0.8.0-py3-none-any.whl", hash = "sha256:c0a454ad016ca575060802ee4d590dd912e35c122fa04e70306de3d076cce755"},
