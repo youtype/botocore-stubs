@@ -1,5 +1,6 @@
 from typing import Any, Optional
 
+from botocore.compat import IPV6_ADDRZ_RE as IPV6_ADDRZ_RE
 from botocore.compat import filter_ssl_warnings as filter_ssl_warnings
 from botocore.compat import urlparse as urlparse
 from botocore.exceptions import ConnectionClosedError as ConnectionClosedError

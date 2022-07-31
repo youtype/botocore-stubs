@@ -63,6 +63,7 @@ LABEL_RE: Pattern[str]
 RETRYABLE_HTTP_ERRORS: Tuple[Any, ...]
 S3_ACCELERATE_WHITELIST: List[str]
 EVENT_ALIASES: Dict[str, str]
+CHECKSUM_HEADER_PATTERN: Pattern[str]
 IPV4_PAT: str
 HEX_PAT: str
 LS32_PAT: str
