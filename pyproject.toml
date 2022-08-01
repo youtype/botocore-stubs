@@ -59,6 +59,7 @@ include = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
+types-awscrt = "*"
 
 [tool.poetry.dev-dependencies]
 awscrt = "*"

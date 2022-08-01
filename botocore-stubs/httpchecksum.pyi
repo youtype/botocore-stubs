@@ -1,7 +1,7 @@
 import logging
 from typing import IO, Any, Dict, Iterator, Mapping, Optional, Sequence, Type, Union
 
-from awscrt import checksums as crt_checksums  # type: ignore
+from awscrt import checksums as crt_checksums
 from botocore.awsrequest import AWSHTTPResponse
 from botocore.compat import HAS_CRT as HAS_CRT
 from botocore.exceptions import AwsChunkedWrapperError as AwsChunkedWrapperError
