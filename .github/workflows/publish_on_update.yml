@@ -63,19 +63,19 @@ jobs:
           poetry version ${VERSION}
           rm -rf *.egg-info || true
           poetry install -n
-      # - name: Commit changes
-      #   env:
-      #     VERSION: ${{ steps.version.outputs.result }}
-      #   run: |
-      #     git config --global user.email "github-actions"
-      #     git config --global user.name "github-actions@github.com"
-      #     git add pyproject.toml
-      #     git commit -m "Release ${VERSION}"
-      #     git push
-      # - name: Publish to PyPI
-      #   env:
-      #     TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-      #     TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-      #   run: |
-      #     poetry build
-      #     poetry run twine upload  --non-interactive dist/*
+      - name: Commit changes
+        env:
+          VERSION: ${{ steps.version.outputs.result }}
+        run: |
+          git config --global user.email "github-actions"
+          git config --global user.name "github-actions@github.com"
+          git add pyproject.toml
+          git commit -m "Release ${VERSION}"
+          git push
+      - name: Publish to PyPI
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: |
+          poetry build
+          poetry run twine upload  --non-interactive dist/*

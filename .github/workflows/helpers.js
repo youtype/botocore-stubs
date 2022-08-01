@@ -45,21 +45,6 @@ function isVersionGreater(version, other) {
     return latestStable !== otherStable
 }
 
-async function extractVersions({ core, context }) {
-    core.setOutput('version', '')
-
-    const botocoreVersion = await getLatestVersion('botocore')
-    core.info(`Botocore version = ${botocoreVersion}`)
-
-    const botocoreStubsVersion = await getLatestVersion('botocore-stubs')
-    core.info(`Botocore-stubs version = ${botocoreStubsVersion}`)
-
-    if (isVersionGreater(botocoreVersion, botocoreStubsVersion)) {
-        core.info(`New version found: ${botocoreVersion}`)
-        core.setOutput('version', botocoreVersion)
-    }
-}
-
 module.exports = {
     getLatestVersion,
     isVersionGreater,
