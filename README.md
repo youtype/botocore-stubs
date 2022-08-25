@@ -1,7 +1,7 @@
 # botocore-stubs
 
-[![PyPI - botocore](https://img.shields.io/pypi/v/botocore.svg?color=blue)](https://pypi.org/project/botocore)
 [![PyPI - botocore-stubs](https://img.shields.io/pypi/v/botocore-stubs.svg?color=blue)](https://pypi.org/project/botocore-stubs)
+[![PyPI - botocore](https://img.shields.io/pypi/v/botocore.svg?color=blue)](https://pypi.org/project/botocore)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/botocore-stubs.svg?color=blue)](https://pypi.org/project/botocore-stubs)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/botocore-stubs?color=blue)](https://pypistats.org/packages/botocore-stubs)
 
