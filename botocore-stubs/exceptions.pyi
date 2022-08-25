@@ -143,6 +143,15 @@ class ResponseStreamingError(HTTPClientError):
         self.kwargs: _ResponseStreamingErrorKwargs
 
 class NoCredentialsError(BotoCoreError): ...
+class NoAuthTokenError(BotoCoreError): ...
+
+class _TokenRetrievalErrorKwargs(TypedDict):
+    provider: str
+    error_msg: str
+
+class TokenRetrievalError(BotoCoreError):
+    def __init__(self, *, provider: str = ..., error_msg: str = ..., **kwargs: Any) -> None:
+        self.kwargs: _TokenRetrievalErrorKwargs
 
 class _PartialCredentialsErrorKwargs(TypedDict):
     provider: str

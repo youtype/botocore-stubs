@@ -30,10 +30,10 @@ class AWSHTTPConnection(AWSConnection, HTTPConnection): ...  # type: ignore
 class AWSHTTPSConnection(AWSConnection, VerifiedHTTPSConnection): ...  # type: ignore
 
 class AWSHTTPConnectionPool(HTTPConnectionPool):
-    ConnectionCls: Type[AWSHTTPConnection]
+    ConnectionCls: Type[AWSHTTPConnection]  # type: ignore
 
 class AWSHTTPSConnectionPool(HTTPSConnectionPool):
-    ConnectionCls: Type[AWSHTTPSConnection]
+    ConnectionCls: Type[AWSHTTPSConnection]  # type: ignore
 
 def prepare_request_dict(
     request_dict: Dict[str, Any],

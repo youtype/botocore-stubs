@@ -53,6 +53,7 @@ class ClientArgsCreator:
         scoped_config: Optional[Any],
         client_config: Optional[Config],
         endpoint_bridge: Optional[Any],
+        auth_token: Optional[str] = ...,
     ) -> _GetClientArgsTypeDef: ...
     def compute_client_args(
         self,

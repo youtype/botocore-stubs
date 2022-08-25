@@ -20,7 +20,11 @@ STREAMING_UNSIGNED_PAYLOAD_TRAILER: str
 
 class BaseSigner:
     REQUIRES_REGION: bool = ...
+    REQUIRES_TOKEN: bool = ...
     def add_auth(self, request: AWSRequest) -> Optional[AWSRequest]: ...
+
+class TokenSigner(BaseSigner):
+    def __init__(self, auth_token: str) -> None: ...
 
 class SigV2Auth(BaseSigner):
     def __init__(self, credentials: _CredentialsUnion) -> None:
@@ -105,6 +109,9 @@ class HmacV1QueryAuth(HmacV1Auth):
         self.credentials: _CredentialsUnion
 
 class HmacV1PostAuth(HmacV1Auth):
+    def add_auth(self, request: AWSRequest) -> None: ...
+
+class BearerAuth(TokenSigner):
     def add_auth(self, request: AWSRequest) -> None: ...
 
 AUTH_TYPE_MAPS: Dict[str, BaseSigner]

@@ -19,6 +19,7 @@ class RequestSigner:
         signature_version: str,
         credentials: Any,
         event_emitter: BaseEventHooks,
+        auth_token: Optional[str] = ...,
     ) -> None: ...
     @property
     def region_name(self) -> str: ...

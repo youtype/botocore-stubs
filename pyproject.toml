@@ -72,6 +72,8 @@ twine = "*"
 pyyaml = "*"
 istub = "*"
 types-requests = "*"
+types-python-dateutil = "*"
+types-dataclasses = "*"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
