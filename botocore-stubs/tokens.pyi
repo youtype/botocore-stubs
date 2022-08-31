@@ -8,6 +8,7 @@ from botocore.session import Session
 logger: logging.Logger
 
 def create_token_resolver(session: Session) -> TokenProviderChain: ...
+
 class FrozenAuthToken(NamedTuple):
     token: str
     expiration: Optional[datetime.datetime] = ...
