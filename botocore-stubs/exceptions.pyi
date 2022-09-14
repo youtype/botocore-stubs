@@ -611,3 +611,14 @@ class _InvalidEndpointConfigurationErrorKwargs(TypedDict):
 class InvalidEndpointConfigurationError(BotoCoreError):
     def __init__(self, *, msg: str = ..., **kwargs: Any) -> None:
         self.kwargs: _InvalidEndpointConfigurationErrorKwargs
+
+class _EndpointProviderErrorKwargs(TypedDict):
+    msg: str
+
+class EndpointProviderError(BotoCoreError):
+    """Base error for the EndpointProvider class"""
+
+    def __init__(self, *, msg: str = ..., **kwargs: Any) -> None:
+        self.kwargs: _EndpointProviderErrorKwargs
+
+class EndpointResolutionError(EndpointProviderError): ...
