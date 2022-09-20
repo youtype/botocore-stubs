@@ -60,16 +60,13 @@ class StringShape(Shape):
     @CachedProperty
     def enum(self) -> List[str]: ...
 
-
 class StaticContextParameter(NamedTuple):
     name: str
     value: Union[bool, str]
 
-
 class ContextParameter(NamedTuple):
     name: str
     member_name: str
-
 
 class ClientContextParameter(NamedTuple):
     name: str
