@@ -1,6 +1,8 @@
+from enum import Enum
 from typing import Any, Dict, List, Mapping, Optional
 
 from botocore.exceptions import NoRegionError as NoRegionError
+from typing_extensions import Literal
 
 DEFAULT_URI_TEMPLATE: str
 DEFAULT_SERVICE_DATA: Dict[str, Dict[str, Any]]
@@ -38,3 +40,16 @@ class EndpointResolver(BaseEndpointResolver):
         use_fips_endpoint: bool = ...,
     ) -> Optional[Dict[str, Any]]: ...
     def get_partition_for_region(self, region_name: str) -> str: ...
+
+class EndpointResolverBuiltins(Enum):
+    AWS_REGION: str
+    AWS_USE_FIPS: str
+    AWS_USE_DUALSTACK: str
+    AWS_STS_USE_GLOBAL_ENDPOINT: str
+    AWS_S3_USE_GLOBAL_ENDPOINT: str
+    AWS_S3_ACCELERATE: str
+    AWS_S3_FORCE_PATH_STYLE: str
+    AWS_S3_USE_ARN_REGION: str
+    AWS_S3CONTROL_USE_ARN_REGION: str
+    AWS_S3_DISABLE_MRAP: str
+    SDK_ENDPOINT: str

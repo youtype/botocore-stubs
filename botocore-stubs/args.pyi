@@ -1,6 +1,7 @@
 import sys
 from typing import Any, Dict, List, Optional, Union
 
+from botocore.client import ClientEndpointBridge
 from botocore.config import Config as Config
 from botocore.configprovider import ConfigValueStore
 from botocore.endpoint import Endpoint
@@ -50,19 +51,28 @@ class ClientArgsCreator:
         endpoint_url: Optional[str],
         verify: Optional[Union[str, bool]],
         credentials: Optional[Any],
-        scoped_config: Optional[Any],
+        scoped_config: Optional[Dict[str, Any]],
         client_config: Optional[Config],
-        endpoint_bridge: Optional[Any],
+        endpoint_bridge: ClientEndpointBridge,
         auth_token: Optional[str] = ...,
     ) -> _GetClientArgsTypeDef: ...
     def compute_client_args(
         self,
         service_model: ServiceModel,
         client_config: Optional[Config],
-        endpoint_bridge: Optional[Any],
+        endpoint_bridge: ClientEndpointBridge,
         region_name: str,
         endpoint_url: str,
         is_secure: bool,
-        scoped_config: Optional[Any],
+        scoped_config: Optional[Dict[str, Any]],
     ) -> Any: ...
     def compute_s3_config(self, client_config: Optional[Config]) -> Dict[str, Any]: ...
+    def compute_endpoint_resolver_builtin_defaults(
+        self,
+        region_name: str,
+        service_name: str,
+        s3_config: Dict[str, Any],
+        endpoint_bridge: ClientEndpointBridge,
+        client_endpoint_url: str,
+        legacy_endpoint_url: str,
+    ) -> Dict[str, Any]: ...

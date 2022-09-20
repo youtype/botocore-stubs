@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Tuple, Type, TypeVar
+from typing import Any, Dict, List, NamedTuple, Optional, Tuple, Type, TypeVar, Union
 
 from botocore.utils import CachedProperty
 
@@ -60,6 +60,22 @@ class StringShape(Shape):
     @CachedProperty
     def enum(self) -> List[str]: ...
 
+
+class StaticContextParameter(NamedTuple):
+    name: str
+    value: Union[bool, str]
+
+
+class ContextParameter(NamedTuple):
+    name: str
+    member_name: str
+
+
+class ClientContextParameter(NamedTuple):
+    name: str
+    type: str
+    documentation: str
+
 class ServiceModel:
     def __init__(
         self, service_description: Dict[str, Any], service_name: Optional[str] = ...
@@ -95,6 +111,8 @@ class ServiceModel:
     def endpoint_discovery_operation(self) -> "OperationModel": ...
     @CachedProperty
     def endpoint_discovery_required(self) -> bool: ...
+    @CachedProperty
+    def client_context_parameters(self) -> List[ClientContextParameter]: ...
     @property
     def signature_version(self) -> str: ...
     @signature_version.setter
@@ -129,6 +147,10 @@ class OperationModel:
     def output_shape(self) -> StructureShape: ...
     @CachedProperty
     def idempotent_members(self) -> List[str]: ...
+    @CachedProperty
+    def static_context_parameters(self) -> List[StaticContextParameter]: ...
+    @CachedProperty
+    def context_parameters(self) -> List[ContextParameter]: ...
     @CachedProperty
     def auth_type(self) -> Optional[str]: ...
     @CachedProperty
