@@ -47,7 +47,7 @@ dev = ["build (==0.8.0)", "flake8 (==4.0.1)", "hashin (==0.17.0)", "pip-tools (=
 
 [[package]]
 name = "botocore"
-version = "1.27.75"
+version = "1.27.76"
 description = "Low-level, data-driven core of boto 3."
 category = "dev"
 optional = false
@@ -249,7 +249,7 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "keyring"
-version = "23.9.1"
+version = "23.9.3"
 description = "Store and access your passwords safely."
 category = "dev"
 optional = false
@@ -685,8 +685,8 @@ bleach = [
     {file = "bleach-5.0.1.tar.gz", hash = "sha256:0d03255c47eb9bd2f26aa9bb7f2107732e7e8fe195ca2f64709fcf3b0a4a085c"},
 ]
 botocore = [
-    {file = "botocore-1.27.75-py3-none-any.whl", hash = "sha256:a6229f9b31f7fe372475c0ee60483b3ec827e4b76275d5239fbfd590cd0b217f"},
-    {file = "botocore-1.27.75.tar.gz", hash = "sha256:f8b1da2b41e88c58db51db0c6eff6ca564258948ce4a5ac7e96ac35a469b0d4f"},
+    {file = "botocore-1.27.76-py3-none-any.whl", hash = "sha256:0d4a67801e5a4be4cd84795320ad9fb8c315ed1e7a63e1191b2b3f7a7171d43c"},
+    {file = "botocore-1.27.76.tar.gz", hash = "sha256:b5c32922eba727a466f171dcc281f309d2a313e2f6dc592d43044caad96de338"},
 ]
 certifi = [
     {file = "certifi-2022.9.14-py3-none-any.whl", hash = "sha256:e232343de1ab72c2aa521b625c80f699e356830fd0e2c620b465b304b17b0516"},
@@ -771,8 +771,8 @@ jmespath = [
     {file = "jmespath-1.0.1.tar.gz", hash = "sha256:90261b206d6defd58fdd5e85f478bf633a2901798906be2ad389150c5c60edbe"},
 ]
 keyring = [
-    {file = "keyring-23.9.1-py3-none-any.whl", hash = "sha256:3565b9e4ea004c96e158d2d332a49f466733d565bb24157a60fd2e49f41a0fd1"},
-    {file = "keyring-23.9.1.tar.gz", hash = "sha256:39e4f6572238d2615a82fcaa485e608b84b503cf080dc924c43bbbacb11c1c18"},
+    {file = "keyring-23.9.3-py3-none-any.whl", hash = "sha256:69732a15cb1433bdfbc3b980a8a36a04878a6cfd7cb99f497b573f31618001c0"},
+    {file = "keyring-23.9.3.tar.gz", hash = "sha256:69b01dd83c42f590250fe7a1f503fc229b14de83857314b1933a3ddbf595c4a5"},
 ]
 mccabe = [
     {file = "mccabe-0.7.0-py2.py3-none-any.whl", hash = "sha256:6c2d30ab6be0e4a46919781807b4f0d834ebdd6c6e3dca0bda5a15f863427b6e"},
