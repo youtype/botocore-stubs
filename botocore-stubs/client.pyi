@@ -110,7 +110,7 @@ class BaseClient:
         client_config: Config,
         partition: str,
         exceptions_factory: Any,
-        endpoint_ruleset_resolver: Optional[EndpointRulesetResolver],
+        endpoint_ruleset_resolver: Optional[EndpointRulesetResolver] = ...,
     ) -> None:
         self.meta: ClientMeta
     # FIXME: it hides `has no attribute` errors on Client type checking

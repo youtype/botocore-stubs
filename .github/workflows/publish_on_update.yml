@@ -64,8 +64,6 @@ jobs:
           rm -rf *.egg-info || true
           poetry install -n
       - name: Commit changes
-        env:
-          VERSION: ${{ steps.version.outputs.result }}
         run: |
           git config --global user.email "github-actions"
           git config --global user.name "github-actions@github.com"
