@@ -12,6 +12,10 @@ from botocore.discovery import EndpointDiscoveryManager as EndpointDiscoveryMana
 from botocore.discovery import (
     block_endpoint_discovery_required_operations as block_endpoint_discovery_required_operations,
 )
+from botocore.endpoint_provider import (
+    ENDPOINT_RESOLUTION_V2_SERVICES as ENDPOINT_RESOLUTION_V2_SERVICES,
+)
+from botocore.endpoint_provider import FORCE_ENDPOINT_RESOLUTION_V2 as FORCE_ENDPOINT_RESOLUTION_V2
 from botocore.exceptions import ClientError as ClientError
 from botocore.exceptions import DataNotFoundError as DataNotFoundError
 from botocore.exceptions import (
@@ -25,7 +29,7 @@ from botocore.hooks import first_non_none_response as first_non_none_response
 from botocore.loaders import Loader
 from botocore.model import ServiceModel as ServiceModel
 from botocore.paginate import Paginator as Paginator
-from botocore.regions import BaseEndpointResolver
+from botocore.regions import BaseEndpointResolver, EndpointRulesetResolver
 from botocore.retries import adaptive as adaptive
 from botocore.retries import standard as standard
 from botocore.serialize import Serializer
@@ -91,6 +95,7 @@ class ClientEndpointBridge:
         endpoint_url: Optional[str] = ...,
         is_secure: bool = ...,
     ) -> None: ...
+    def resolver_uses_builtin_data(self) -> bool: ...
 
 class BaseClient:
     def __init__(
@@ -105,6 +110,7 @@ class BaseClient:
         client_config: Config,
         partition: str,
         exceptions_factory: Any,
+        endpoint_ruleset_resolver: Optional[EndpointRulesetResolver],
     ) -> None:
         self.meta: ClientMeta
     # FIXME: it hides `has no attribute` errors on Client type checking

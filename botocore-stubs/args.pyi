@@ -55,6 +55,8 @@ class ClientArgsCreator:
         client_config: Optional[Config],
         endpoint_bridge: ClientEndpointBridge,
         auth_token: Optional[str] = ...,
+        endpoints_ruleset_data: Optional[Dict[str, Any]] = ...,
+        partition_data: Optional[Dict[str, Any]] = ...,
     ) -> _GetClientArgsTypeDef: ...
     def compute_client_args(
         self,
