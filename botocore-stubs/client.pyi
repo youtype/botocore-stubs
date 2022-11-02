@@ -12,10 +12,6 @@ from botocore.discovery import EndpointDiscoveryManager as EndpointDiscoveryMana
 from botocore.discovery import (
     block_endpoint_discovery_required_operations as block_endpoint_discovery_required_operations,
 )
-from botocore.endpoint_provider import (
-    ENDPOINT_RESOLUTION_V2_SERVICES as ENDPOINT_RESOLUTION_V2_SERVICES,
-)
-from botocore.endpoint_provider import FORCE_ENDPOINT_RESOLUTION_V2 as FORCE_ENDPOINT_RESOLUTION_V2
 from botocore.exceptions import ClientError as ClientError
 from botocore.exceptions import DataNotFoundError as DataNotFoundError
 from botocore.exceptions import (
