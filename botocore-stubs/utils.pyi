@@ -23,6 +23,7 @@ from botocore.compat import urlparse as urlparse
 from botocore.compat import urlsplit as urlsplit
 from botocore.compat import urlunsplit as urlunsplit
 from botocore.compat import zip_longest as zip_longest
+from botocore.credentials import JSONFileCache as JSONFileCache
 from botocore.exceptions import ClientError as ClientError
 from botocore.exceptions import ConfigNotFound as ConfigNotFound
 from botocore.exceptions import ConnectionClosedError as ConnectionClosedError

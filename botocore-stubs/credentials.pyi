@@ -14,6 +14,7 @@ from botocore.exceptions import RefreshWithMFAUnsupportedError as RefreshWithMFA
 from botocore.exceptions import UnauthorizedSSOTokenError as UnauthorizedSSOTokenError
 from botocore.exceptions import UnknownCredentialError as UnknownCredentialError
 from botocore.session import Session
+from botocore.tokens import SSOTokenProvider
 from botocore.utils import ContainerMetadataFetcher as ContainerMetadataFetcher
 from botocore.utils import FileWebIdentityTokenLoader as FileWebIdentityTokenLoader
 from botocore.utils import InstanceMetadataFetcher as InstanceMetadataFetcher
@@ -289,6 +290,8 @@ class SSOCredentialFetcher(CachedCredentialFetcher):
         token_loader: Optional[Any] = ...,
         cache: Optional[Any] = ...,
         expiry_window_seconds: Optional[Any] = ...,
+        token_provider: Optional[SSOTokenProvider] = ...,
+        sso_session_name: Optional[str] = ...,
     ) -> None: ...
 
 class SSOProvider(CredentialProvider):
@@ -301,5 +304,6 @@ class SSOProvider(CredentialProvider):
         profile_name: str,
         cache: Optional[Any] = ...,
         token_cache: Optional[Any] = ...,
+        token_provider: Optional[SSOTokenProvider] = ...,
     ) -> None: ...
     def load(self) -> DeferredRefreshableCredentials: ...

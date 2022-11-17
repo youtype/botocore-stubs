@@ -1,6 +1,6 @@
 import datetime
 import logging
-from typing import Any, Callable, Iterable, NamedTuple, Optional
+from typing import Any, Callable, Iterable, NamedTuple, Optional, Type
 
 from botocore.credentials import JSONFileCache
 from botocore.session import Session
@@ -28,6 +28,7 @@ class TokenProviderChain:
 
 class SSOTokenProvider:
     METHOD: str = ...
+    DEFAULT_CACHE_CLS: Type[JSONFileCache] = ...
 
     def __init__(
         self,
