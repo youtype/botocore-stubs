@@ -47,7 +47,6 @@ packages = [
     { include = "botocore-stubs" },
 ]
 include = [
-    "LICENSE",
     "botocore-stubs/py.typed",
     "botocore-stubs/*.pyi",
     "botocore-stubs/*/*.pyi",
