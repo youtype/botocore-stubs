@@ -77,6 +77,7 @@ class ClientEndpointBridge:
         default_endpoint: Optional[str] = ...,
         service_signing_name: Optional[str] = ...,
         config_store: Any = ...,
+        service_signature_version: Optional[str] = ...,
     ) -> None:
         self.service_signing_name: str
         self.endpoint_resolver: BaseEndpointResolver

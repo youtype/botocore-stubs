@@ -1,4 +1,4 @@
-from typing import Any, Mapping
+from typing import Any, Dict, Mapping, Pattern, Tuple
 from urllib.request import Request
 
 from botocore import retryhandler as retryhandler
@@ -28,10 +28,11 @@ from botocore.utils import switch_host_with_param as switch_host_with_param
 
 REGISTER_FIRST: Any
 REGISTER_LAST: Any
-VALID_BUCKET: Any
-VALID_S3_ARN: Any
-VERSION_ID_SUFFIX: Any
-SERVICE_NAME_ALIASES: Any
+VALID_BUCKET: Pattern[str]
+VALID_S3_ARN: Pattern[str]
+S3_SIGNING_NAMES: Tuple[str, ...]
+VERSION_ID_SUFFIX: Pattern[str]
+SERVICE_NAME_ALIASES: Dict[str, str]
 
 def handle_service_name_alias(service_name: str, **kwargs: Any) -> Any: ...
 def add_recursion_detection_header(params: Mapping[str, Any], **kwargs: Any) -> None: ...
