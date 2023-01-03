@@ -16,7 +16,7 @@ src_paths = []
 
 [tool.poetry]
 name = "botocore-stubs"
-version = "1.29.41"
+version = "1.29.42"
 description = "Type annotations and code completion for botocore"
 authors = ["Vlad Emelianov <vlad.emelianov.nz@gmail.com>"]
 license = "MIT"
