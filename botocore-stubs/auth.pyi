@@ -1,7 +1,7 @@
 from http.client import HTTPMessage
+from logging import Logger
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Tuple, Union
 from urllib.parse import SplitResult
-from logging import Logger
 
 from botocore.awsrequest import AWSRequest
 from botocore.compat import HAS_CRT as HAS_CRT

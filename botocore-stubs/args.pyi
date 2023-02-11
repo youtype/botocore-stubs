@@ -1,6 +1,6 @@
 import sys
-from typing import Any, Dict, List, Optional, Union
 from logging import Logger
+from typing import Any, Dict, List, Optional, Union
 
 from botocore.client import ClientEndpointBridge
 from botocore.config import Config as Config

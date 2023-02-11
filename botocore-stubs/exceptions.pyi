@@ -1,5 +1,5 @@
 import sys
-from typing import IO, Any, Dict, Iterable, Mapping, List
+from typing import IO, Any, Dict, Iterable, List, Mapping
 
 import requests
 from urllib3.exceptions import ReadTimeoutError as _ReadTimeoutError

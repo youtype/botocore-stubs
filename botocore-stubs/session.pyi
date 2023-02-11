@@ -1,5 +1,5 @@
-from logging import Logger
 import sys
+from logging import Logger
 from typing import IO, Any, Dict, Iterator, List, Optional, Tuple, Union
 
 from botocore import UNSIGNED as UNSIGNED

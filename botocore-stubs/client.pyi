@@ -20,8 +20,8 @@ from botocore.exceptions import (
 )
 from botocore.exceptions import OperationNotPageableError as OperationNotPageableError
 from botocore.exceptions import UnknownSignatureVersionError as UnknownSignatureVersionError
-from botocore.history import get_global_history_recorder as get_global_history_recorder
 from botocore.history import HistoryRecorder
+from botocore.history import get_global_history_recorder as get_global_history_recorder
 from botocore.hooks import BaseEventHooks
 from botocore.hooks import first_non_none_response as first_non_none_response
 from botocore.loaders import Loader
