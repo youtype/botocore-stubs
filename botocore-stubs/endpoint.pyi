@@ -1,3 +1,4 @@
+from logging import Logger
 from typing import Any, Mapping, Optional, Type
 
 from botocore import parsers as parsers
@@ -11,6 +12,8 @@ from botocore.model import OperationModel, ServiceModel
 from botocore.response import StreamingBody as StreamingBody
 from botocore.utils import get_environ_proxies as get_environ_proxies
 from botocore.utils import is_valid_endpoint_url as is_valid_endpoint_url
+
+logger: Logger = ...
 
 history_recorder: Any
 DEFAULT_TIMEOUT: int

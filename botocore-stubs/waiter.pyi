@@ -1,8 +1,11 @@
+from logging import Logger
 from typing import Any, Callable, Dict, List, Mapping
 
 from botocore.client import BaseClient
 
 from . import xform_name as xform_name
+
+logger: Logger = ...
 
 def create_waiter_with_client(
     waiter_name: str, waiter_model: WaiterModel, client: BaseClient

@@ -1,4 +1,7 @@
+from logging import Logger
 from typing import Any, Optional
+
+logger: Logger = ...
 
 HISTORY_RECORDER: Optional[HistoryRecorder]
 

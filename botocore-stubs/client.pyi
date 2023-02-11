@@ -1,3 +1,4 @@
+from logging import Logger
 from typing import Any, Dict, List, Optional, Union
 
 from botocore import UNSIGNED as UNSIGNED
@@ -20,6 +21,7 @@ from botocore.exceptions import (
 from botocore.exceptions import OperationNotPageableError as OperationNotPageableError
 from botocore.exceptions import UnknownSignatureVersionError as UnknownSignatureVersionError
 from botocore.history import get_global_history_recorder as get_global_history_recorder
+from botocore.history import HistoryRecorder
 from botocore.hooks import BaseEventHooks
 from botocore.hooks import first_non_none_response as first_non_none_response
 from botocore.loaders import Loader
@@ -38,6 +40,9 @@ from botocore.utils import S3EndpointSetter as S3EndpointSetter
 from botocore.utils import S3RegionRedirector as S3RegionRedirector
 from botocore.utils import ensure_boolean as ensure_boolean
 from botocore.utils import get_service_module_name as get_service_module_name
+
+logger: Logger = ...
+history_recorder: HistoryRecorder = ...
 
 class ClientCreator:
     def __init__(

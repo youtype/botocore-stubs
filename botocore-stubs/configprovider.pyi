@@ -1,3 +1,4 @@
+from logging import Logger
 from typing import Any, Dict, List, Mapping, Optional, Tuple, TypeVar
 
 from botocore import utils as utils
@@ -6,6 +7,8 @@ from botocore.utils import IMDSRegionProvider
 BOTOCORE_DEFAUT_SESSION_VARIABLES: Dict[str, Tuple[Any, ...]]
 DEFAULT_S3_CONFIG_VARS: Dict[str, Tuple[Any, ...]]
 DEFAULT_PROXIES_CONFIG_VARS: Dict[str, Tuple[Any, ...]]
+
+logger: Logger = ...
 
 _R = TypeVar("_R")
 

@@ -1,3 +1,4 @@
+from logging import Logger
 from typing import Any, Optional
 
 from botocore.compat import IPV6_ADDRZ_RE as IPV6_ADDRZ_RE
@@ -12,6 +13,8 @@ from botocore.exceptions import ProxyConnectionError as ProxyConnectionError
 from botocore.exceptions import ReadTimeoutError as ReadTimeoutError
 from botocore.exceptions import SSLError as SSLError
 from urllib3.util.ssl_ import DEFAULT_CIPHERS as DEFAULT_CIPHERS  # type: ignore
+
+logger: Logger = ...
 
 DEFAULT_TIMEOUT: int
 MAX_POOL_CONNECTIONS: int

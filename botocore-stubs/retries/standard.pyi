@@ -1,3 +1,4 @@
+from logging import Logger
 from typing import Any, Optional
 
 from botocore.exceptions import ConnectionError as ConnectionError
@@ -8,6 +9,8 @@ from botocore.retries import quota as quota
 from botocore.retries import special as special
 from botocore.retries.base import BaseRetryableChecker as BaseRetryableChecker
 from botocore.retries.base import BaseRetryBackoff as BaseRetryBackoff
+
+logger: Logger = ...
 
 DEFAULT_MAX_ATTEMPTS: int
 

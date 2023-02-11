@@ -1,3 +1,4 @@
+from logging import Logger
 from typing import Any, Dict, Mapping, Pattern, Tuple
 from urllib.request import Request
 
@@ -25,6 +26,8 @@ from botocore.utils import conditionally_calculate_md5 as conditionally_calculat
 from botocore.utils import hyphenize_service_id as hyphenize_service_id
 from botocore.utils import percent_encode as percent_encode
 from botocore.utils import switch_host_with_param as switch_host_with_param
+
+logger: Logger = ...
 
 REGISTER_FIRST: Any
 REGISTER_LAST: Any

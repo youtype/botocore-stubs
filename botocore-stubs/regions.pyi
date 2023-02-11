@@ -1,4 +1,5 @@
 from enum import Enum
+from logging import Logger
 from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from botocore.auth import AUTH_TYPE_MAPS as AUTH_TYPE_MAPS
@@ -10,6 +11,7 @@ from botocore.exceptions import NoRegionError as NoRegionError
 from botocore.hooks import BaseEventHooks
 from botocore.model import OperationModel, ServiceModel
 
+LOG: Logger = ...
 DEFAULT_URI_TEMPLATE: str
 DEFAULT_SERVICE_DATA: Dict[str, Dict[str, Any]]
 

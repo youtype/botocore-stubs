@@ -4,6 +4,7 @@ from email.utils import formatdate as formatdate
 from http.client import HTTPMessage
 from http.client import HTTPResponse as HTTPResponse
 from itertools import zip_longest as zip_longest
+from logging import Logger
 from typing import Any, Dict, Iterable, Mapping, Optional, Pattern, Tuple, Type, TypeVar
 from urllib.parse import parse_qs as parse_qs
 from urllib.parse import parse_qsl as parse_qsl
@@ -18,6 +19,8 @@ from urllib.parse import urlunsplit as urlunsplit
 from xml.etree import ElementTree as ETree
 
 from botocore.exceptions import MD5UnavailableError as MD5UnavailableError
+
+logger: Logger = ...
 
 _R = TypeVar("_R")
 
@@ -58,6 +61,7 @@ def get_tzinfo_options() -> Any: ...
 HAS_CRT: bool
 disabled: str
 IPV4_PAT: str
+IPV4_RE: Pattern[str]
 HEX_PAT: str
 LS32_PAT: str
 UNRESERVED_PAT: str

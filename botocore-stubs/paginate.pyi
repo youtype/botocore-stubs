@@ -1,8 +1,11 @@
+from logging import Logger
 from typing import Any, Iterator
 
 from botocore.exceptions import PaginationError as PaginationError
 from botocore.utils import merge_dicts as merge_dicts
 from botocore.utils import set_value_from_jmespath as set_value_from_jmespath
+
+log: Logger = ...
 
 class TokenEncoder:
     def encode(self, token: Any) -> Any: ...

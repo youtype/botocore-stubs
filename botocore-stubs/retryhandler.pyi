@@ -1,3 +1,4 @@
+from logging import Logger
 from typing import Any, Callable, Dict, Iterable, List, Mapping, Optional, Type
 
 from botocore.config import Config
@@ -7,6 +8,8 @@ from botocore.exceptions import ConnectionClosedError as ConnectionClosedError
 from botocore.exceptions import ConnectionError as ConnectionError
 from botocore.exceptions import EndpointConnectionError as EndpointConnectionError
 from botocore.exceptions import ReadTimeoutError as ReadTimeoutError
+
+logger: Logger = ...
 
 EXCEPTION_MAP: Dict[str, List[Type[BotoCoreError]]]
 

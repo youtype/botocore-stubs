@@ -1,3 +1,4 @@
+from logging import Logger
 import sys
 from typing import IO, Any, Dict, Iterator, List, Optional, Tuple, Union
 
@@ -46,6 +47,8 @@ if sys.version_info >= (3, 9):
     from typing import Protocol
 else:
     from typing_extensions import Protocol
+
+logger: Logger = ...
 
 _EnvDict = Dict[str, Tuple[Any, Any, Any, Any]]
 

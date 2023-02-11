@@ -1,5 +1,6 @@
 import sys
 from typing import Any, Dict, List, Optional, Union
+from logging import Logger
 
 from botocore.client import ClientEndpointBridge
 from botocore.config import Config as Config
@@ -17,6 +18,8 @@ if sys.version_info >= (3, 9):
     from typing import TypedDict
 else:
     from typing_extensions import TypedDict
+
+logger: Logger = ...
 
 VALID_REGIONAL_ENDPOINTS_CONFIG: List[str]
 LEGACY_GLOBAL_STS_REGIONS: List[str]

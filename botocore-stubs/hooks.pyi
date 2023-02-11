@@ -1,7 +1,10 @@
+from logging import Logger
 from typing import Any, NamedTuple, Optional, TypeVar
 
 from botocore.compat import accepts_kwargs as accepts_kwargs
 from botocore.utils import EVENT_ALIASES as EVENT_ALIASES
+
+logger: Logger = ...
 
 _R = TypeVar("_R")
 

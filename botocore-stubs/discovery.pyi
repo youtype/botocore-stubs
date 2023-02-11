@@ -1,3 +1,4 @@
+from logging import Logger
 from typing import Any, Dict, List, Optional
 
 from botocore import xform_name as xform_name
@@ -8,6 +9,8 @@ from botocore.model import OperationModel
 from botocore.model import OperationNotFoundError as OperationNotFoundError
 from botocore.model import ServiceModel
 from botocore.utils import CachedProperty as CachedProperty
+
+logger: Logger = ...
 
 class EndpointDiscoveryException(BotoCoreError): ...
 

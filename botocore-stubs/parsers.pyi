@@ -1,3 +1,4 @@
+from logging import Logger
 from typing import Any, Callable, Dict, Mapping, Optional, Type
 
 from botocore.compat import XMLParseError as XMLParseError
@@ -9,6 +10,7 @@ from botocore.utils import lowercase_dict as lowercase_dict
 from botocore.utils import merge_dicts as merge_dicts
 from botocore.utils import parse_timestamp as parse_timestamp
 
+LOG: Logger = ...
 DEFAULT_TIMESTAMP_PARSER = parse_timestamp
 
 class ResponseParserFactory:

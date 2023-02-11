@@ -1,3 +1,4 @@
+from logging import Logger
 from typing import Any, Callable, Dict, List, NamedTuple, Optional
 
 from botocore import UNSIGNED as UNSIGNED
@@ -20,6 +21,8 @@ from botocore.utils import FileWebIdentityTokenLoader as FileWebIdentityTokenLoa
 from botocore.utils import InstanceMetadataFetcher as InstanceMetadataFetcher
 from botocore.utils import SSOTokenLoader as SSOTokenLoader
 from botocore.utils import parse_key_val_file as parse_key_val_file
+
+logger: Logger = ...
 
 class ReadOnlyCredentials(NamedTuple):
     access_key: str

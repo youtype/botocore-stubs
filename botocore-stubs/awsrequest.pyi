@@ -1,3 +1,4 @@
+from logging import Logger
 from typing import Any, Dict, Iterator, Mapping, Optional, Type, TypeVar
 
 from botocore.compat import HTTPHeaders as HTTPHeaders
@@ -15,6 +16,8 @@ except ImportError:
     from collections import MutableMapping  # type: ignore
 
 _R = TypeVar("_R")
+
+logger: Logger = ...
 
 class AWSHTTPResponse(HTTPResponse):
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...

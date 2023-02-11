@@ -1,4 +1,5 @@
 import datetime
+from logging import Logger
 from typing import (
     Any,
     Callable,
@@ -52,6 +53,8 @@ from botocore.model import ServiceModel, Shape
 from botocore.regions import BaseEndpointResolver
 from botocore.session import Session
 from requests.models import Response
+
+logger: Logger = ...
 
 _V = TypeVar("_V")
 
