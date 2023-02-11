@@ -1,5 +1,5 @@
 import sys
-from typing import IO, Any, Dict, Iterable, Mapping
+from typing import IO, Any, Dict, Iterable, Mapping, List
 
 import requests
 from urllib3.exceptions import ReadTimeoutError as _ReadTimeoutError
@@ -20,11 +20,21 @@ class _ResponseMetadataTypeDef(TypedDict):
     HTTPHeaders: Dict[str, Any]
     RetryAttempts: int
 
+class _AttributeMapTypeDef(TypedDict, total=False):
+    key: str
+    value: Any
+
+class _CancellationReasonTypeDef(TypedDict, total=False):
+    Code: str
+    Message: str
+    Item: _AttributeMapTypeDef
+
 class _ClientErrorResponseTypeDef(TypedDict, total=False):
     Status: str
     StatusReason: str
     Error: _ClientErrorResponseError
     ResponseMetadata: _ResponseMetadataTypeDef
+    CancellationReasons: List[_CancellationReasonTypeDef]
 
 class BotoCoreError(Exception):
     fmt: str
