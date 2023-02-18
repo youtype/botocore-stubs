@@ -1,17 +1,31 @@
-name: Update botocore-stubs
-concurrency: update_botocore_stubs
+name: Publish
+concurrency: publish
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
-  workflow_dispatch: {}
+    - cron: "0 * * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        required: false
+        type: string
+        description: Force build even if consistency check fails (set to true)
+      version:
+        required: false
+        type: string
+        description: Use a specific package version, latest otherwise
+
+env:
+  PACKAGE: botocore
+  STUBS: botocore-stubs
 
 jobs:
-  check-botocore-version:
-    name: Check botocore version
+  check-version:
+    name: Check version
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.vars.outputs.version }}
+      stubs-version: ${{ steps.vars.outputs.stubs-version }}
     steps:
       - uses: actions/checkout@v3
       - name: Extract versions
@@ -19,48 +33,65 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const { getLatestVersion, isVersionGreater } = require('./.github/workflows/helpers.js')
-            core.setOutput('version', '')
+            const { getLatestVersion, isStableVersionGreater, getNextVersion, getLatestStubsVersion } = require('./.github/workflows/helpers.js')
 
-            const botocoreVersion = await getLatestVersion('botocore')
-            core.info(`Botocore version = ${botocoreVersion}`)
+            core.setOutput('stubs-version', '')
+            const package = process.env.PACKAGE
+            const stubsPackage = process.env.STUBS
+            const force = context.payload.inputs?.force === 'true'
 
-            const botocoreStubsVersion = await getLatestVersion('botocore-stubs')
-            core.info(`Botocore-stubs version = ${botocoreStubsVersion}`)
-
-            if (isVersionGreater(botocoreVersion, botocoreStubsVersion)) {
-                core.info(`New version found: ${botocoreVersion}`)
-                core.setOutput('version', botocoreVersion)
+            if (force) {
+              core.notice('Force release, skipping consistency and version check')
             }
 
-  publish-botocore-stubs:
-    name: Publish botocore-stubs
+            const inputVersion = context.payload.inputs?.version
+            const version = inputVersion ? inputVersion : await getLatestVersion(package)
+            core.notice(`${package} version = ${version}`)
+
+            const stubsVersion = await getLatestStubsVersion(stubsPackage, version)
+            core.notice(`${stubsPackage} latest version = ${stubsVersion}`)
+
+            const buildStubsVersion = stubsVersion ? getNextVersion(stubsVersion) : version
+
+            if (!force && !isStableVersionGreater(version, stubsVersion)) {
+              core.notice('Stubs are up to date, skipping run')
+              return
+            }
+
+            core.notice(`New ${package} version found: ${version}`)
+            core.notice(`${stubsPackage} build version = ${buildStubsVersion}`)
+            core.setOutput('version', version)
+            core.setOutput('stubs-version', buildStubsVersion)
+
+  publish-stubs:
+    name: Publish stubs
     runs-on: ubuntu-latest
-    needs: check-botocore-version
-    if: needs.check-botocore-version.outputs.version
+    needs: check-version
+    if: needs.check-version.outputs.stubs-version
     env:
-      VERSION: ${{ needs.check-botocore-version.outputs.version }}
+      VERSION: ${{ needs.check-version.outputs.version }}
+      STUBS_VERSION: ${{ needs.check-version.outputs.stubs-version }}
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: "3.11"
       - name: Install dependencies
         run: |
-          python -m pip install poetry pip
-          poetry config virtualenvs.create false
+          python -m pip install -U poetry pip
           poetry install -n
-      - name: Install botocore
+      - name: Install package
         run: |
-          poetry run pip install botocore==${VERSION}
+          poetry run pip install ${PACKAGE}==${VERSION}
       - name: Stubs consistency check
+        if: "${{ github.event.inputs.force != 'true' }}"
         run: |
           poetry run istub
       - name: Bump version
         run: |
-          echo "Bumping version to ${VERSION}"
-          poetry version ${VERSION}
+          echo "Bumping version to ${STUBS_VERSION}"
+          poetry version ${STUBS_VERSION}
           rm -rf *.egg-info || true
           poetry install -n
       - name: Commit changes
@@ -68,7 +99,7 @@ jobs:
           git config --global user.email "github-actions"
           git config --global user.name "github-actions@github.com"
           git add pyproject.toml
-          git commit -m "Release ${VERSION}"
+          git commit -m "Release ${STUBS_VERSION}"
           git push
       - name: Publish to PyPI
         env:
@@ -77,3 +108,8 @@ jobs:
         run: |
           poetry build
           poetry run twine upload  --non-interactive dist/*
+      - name: Report status
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.notice(`Released ${process.env.STUBS} ${process.env.STUBS_VERSION}`)

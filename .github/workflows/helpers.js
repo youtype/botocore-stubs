@@ -22,13 +22,13 @@ async function getReleaseVersions(packageName) {
                 return reject(new Error(`Status Code: ${res.statusCode}`))
             }
             const data = []
-            res.on("data", chunk => data.push(chunk))
-            res.on("end", () => {
+            res.on('data', chunk => data.push(chunk))
+            res.on('end', () => {
                 const response = JSON.parse(Buffer.concat(data).toString())
                 resolve(Object.keys(response.releases))
             })
         })
-        req.on("error", reject)
+        req.on('error', reject)
         req.end()
     })
 }
@@ -39,13 +39,37 @@ async function getLatestVersion(package) {
 }
 
 function isVersionGreater(version, other) {
-    const versionStable = version.split('.').slice(0, 3).join(".")
-    const otherStable = other.split('.').slice(0, 3).join(".")
-    const latestStable = sortVersions([versionStable, otherStable]).pop()
-    return latestStable !== otherStable
+    const latest = sortVersions([version, other]).pop()
+    return latest !== other
+}
+
+function getStableVersion(version) {
+    return version.split('.').slice(0, 3).join('.')
+}
+
+function isStableVersionGreater(version, other) {
+    return isVersionGreater(getStableVersion(version), getStableVersion(other))
+}
+
+async function getLatestStubsVersion(stubsPackage, version) {
+    const versions = await getReleaseVersions(stubsPackage)
+    const stableVersion = getStableVersion(version)
+    const stubsVersions = versions.filter(x => x.startsWith(stableVersion))
+    if (!stubsVersions.length) return null
+    return sortVersions(stubsVersions).pop()
+}
+
+function getNextVersion(version) {
+    if (!version.includes('.post')) return `${version}.post1`
+    const [stableVersion, post] = version.split('.post', 2)
+    return `${stableVersion}.post${parseInt(post, 10) + 1}`
 }
 
 module.exports = {
     getLatestVersion,
     isVersionGreater,
+    getStableVersion,
+    isStableVersionGreater,
+    getLatestStubsVersion,
+    getNextVersion
 }
