@@ -64,13 +64,12 @@ types-awscrt = "*"
 [tool.poetry.dev-dependencies]
 awscrt = "*"
 botocore = "*"
-isort = "*"
-black = "*"
-mypy = "*"
-flake8 = "*"
-twine = "*"
-pyyaml = "*"
-istub = "*"
+isort = { version = "*", python = ">=3.10" }
+black = { version = "*", python = ">=3.10" }
+mypy = { version = "*", python = ">=3.10" }
+flake8 = { version = "*", python = ">=3.10" }
+twine = { version = "*", python = ">=3.10" }
+istub = { version = "*", python = ">=3.10" }
 types-requests = "*"
 types-python-dateutil = "*"
 types-dataclasses = "*"
