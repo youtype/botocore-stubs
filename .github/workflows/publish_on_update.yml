@@ -53,9 +53,12 @@ jobs:
 
             const buildStubsVersion = stubsVersion ? getNextVersion(stubsVersion) : version
 
-            if (!force && !isStableVersionGreater(version, stubsVersion)) {
-              core.notice('Stubs are up to date, skipping run')
-              return
+            if (!force) {
+              const isStubsVersionGreater = stubsVersion === null || isStableVersionGreater(buildStubsVersion, stubsVersion)
+              if (!isStubsVersionGreater) {
+                core.notice('Stubs version is not greater than the latest, skipping run')
+                return
+              }
             }
 
             core.notice(`New ${package} version found: ${version}`)
