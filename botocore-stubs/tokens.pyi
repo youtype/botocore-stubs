@@ -35,5 +35,6 @@ class SSOTokenProvider:
         session: Session,
         cache: Optional[JSONFileCache] = ...,
         time_fetcher: Callable[[], datetime.datetime] = ...,
+        profile_name: Optional[str] = ...,
     ) -> None: ...
     def load_token(self) -> DeferredRefreshableToken: ...
