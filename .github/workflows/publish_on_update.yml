@@ -10,7 +10,7 @@ on:
         required: false
         default: false
         type: boolean
-        description: Force build even if consistency check fails (set to true)
+        description: Force build even if consistency check fails
       version:
         required: false
         default: ""
