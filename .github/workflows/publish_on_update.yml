@@ -8,10 +8,12 @@ on:
     inputs:
       force:
         required: false
-        type: string
+        default: false
+        type: boolean
         description: Force build even if consistency check fails (set to true)
       version:
         required: false
+        default: ""
         type: string
         description: Use a specific package version, latest otherwise
 
@@ -38,7 +40,7 @@ jobs:
             core.setOutput('stubs-version', '')
             const package = process.env.PACKAGE
             const stubsPackage = process.env.STUBS
-            const force = context.payload.inputs?.force === 'true'
+            const force = context.payload.inputs ? context.payload.inputs.force !== 'false' : false
 
             if (force) {
               core.notice('Force release, skipping consistency and version check')
