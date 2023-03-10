@@ -10,7 +10,7 @@ on:
         required: false
         default: false
         type: boolean
-        description: Force build even if consistency check fails
+        description: Force build even if stubs are published
       version:
         required: false
         default: ""
@@ -43,7 +43,7 @@ jobs:
             const force = context.payload.inputs ? context.payload.inputs.force !== 'false' : false
 
             if (force) {
-              core.notice('Force release, skipping consistency and version check')
+              core.notice('Force release, skipping version check')
             }
 
             const inputVersion = context.payload.inputs?.version
