@@ -1,5 +1,6 @@
 import sys
-from typing import Any, Mapping, Optional, Type
+from types import TracebackType
+from typing import Any, Mapping, Optional, Type, TypeVar
 
 from botocore.awsrequest import AWSResponse as AWSResponse
 from botocore.client import BaseClient
@@ -20,12 +21,17 @@ class _ANY:
 
 ANY: _ANY
 
+_R = TypeVar("_R")
+
 class Stubber:
     def __init__(self, client: BaseClient) -> None:
         self.client: BaseClient = ...
-    def __enter__(self) -> Stubber: ...
+    def __enter__(self: _R) -> _R: ...
     def __exit__(
-        self, exception_type: Type[Exception], exception_value: Any, traceback: Any
+        self,
+        exception_type: Optional[Type[BaseException]],
+        exception_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
     ) -> None: ...
     def activate(self) -> None: ...
     def deactivate(self) -> None: ...
