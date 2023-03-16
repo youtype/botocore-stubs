@@ -101,8 +101,8 @@ jobs:
           poetry install -n
       - name: Commit changes
         run: |
-          git config --global user.email "github-actions"
-          git config --global user.name "github-actions@github.com"
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
           git add pyproject.toml
           git commit -m "Release ${STUBS_VERSION}"
           git push
