@@ -60,6 +60,7 @@ include = [
 [tool.poetry.dependencies]
 python = "^3.7"
 types-awscrt = "*"
+typing-extensions = { version = ">=4.1.0", python = "<3.9" }
 
 [tool.poetry.dev-dependencies]
 awscrt = "*"
