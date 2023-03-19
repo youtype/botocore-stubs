@@ -11,19 +11,31 @@ jobs:
   unit-tests:
     name: Code style
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version:
+          - "3.7"
+          - "3.8"
+          - "3.9"
+          - "3.10"
+          - "3.11"
+        include:
+          - version: "3.11"
+            check-formatting: "true"
+            check-consistency: "true"
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python for Poetry
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.version }}
       - name: Install poetry
         run: |
           python -m pip install -U poetry pip
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.version }}
           cache: "poetry"
       - name: Set up Node
         uses: actions/setup-node@v3
@@ -32,6 +44,9 @@ jobs:
       - name: Install dependencies
         run: |
           poetry install -n
+      - name: Install missing dependencies
+        run: |
+          poetry run pip install flake8 mypy
       - name: Install Node.js dependencies
         run: |
           npm install -g pyright
@@ -40,8 +55,12 @@ jobs:
           poetry run flake8 botocore-stubs
           poetry run npx pyright botocore-stubs
           poetry run mypy botocore-stubs
+      - name: Check formatting
+        if: ${{ matrix.check-formatting }}
+        run: |
           poetry run black --check botocore-stubs
           poetry run isort -c botocore-stubs
       - name: Stubs consistency check
+        if: ${{ matrix.check-consistency }}
         run: |
-          poetry run istub
+          poetry run istub -d
