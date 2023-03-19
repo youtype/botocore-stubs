@@ -1,3 +1,4 @@
+from collections.abc import MutableMapping
 from logging import Logger
 from typing import Any, Dict, Iterator, Mapping, Optional, Type, TypeVar
 
@@ -9,11 +10,6 @@ from botocore.compat import urlunsplit as urlunsplit
 from botocore.exceptions import UnseekableStreamError as UnseekableStreamError
 from urllib3.connection import HTTPConnection, VerifiedHTTPSConnection
 from urllib3.connectionpool import HTTPConnectionPool, HTTPSConnectionPool
-
-try:
-    from collections.abc import MutableMapping
-except ImportError:
-    from collections import MutableMapping  # type: ignore
 
 _R = TypeVar("_R")
 
