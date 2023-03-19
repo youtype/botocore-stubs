@@ -1,4 +1,5 @@
-from typing import Any, Dict, Mapping, Type
+from collections.abc import Mapping
+from typing import Any, Dict, Type
 
 from botocore import validate as validate
 from botocore.compat import formatdate as formatdate

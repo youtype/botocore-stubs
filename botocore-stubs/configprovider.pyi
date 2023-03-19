@@ -1,5 +1,6 @@
+from collections.abc import Mapping
 from logging import Logger
-from typing import Any, Dict, List, Mapping, Optional, Tuple, TypeVar
+from typing import Any, Dict, List, Optional, Tuple, TypeVar
 
 from botocore import utils as utils
 from botocore.utils import IMDSRegionProvider

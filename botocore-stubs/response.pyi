@@ -1,6 +1,7 @@
 import logging
+from collections.abc import Iterator
 from io import IOBase
-from typing import IO, Any, Iterator, List, Optional, Tuple
+from typing import IO, Any, List, Optional, Tuple
 
 import requests
 from botocore import ScalarTypes as ScalarTypes

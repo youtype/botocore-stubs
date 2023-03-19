@@ -1,6 +1,7 @@
 import sys
+from collections.abc import Mapping
 from types import TracebackType
-from typing import Any, Mapping, Optional, Type, TypeVar
+from typing import Any, Optional, Type, TypeVar
 
 from botocore.awsrequest import AWSResponse as AWSResponse
 from botocore.client import BaseClient

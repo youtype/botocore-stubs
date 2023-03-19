@@ -1,5 +1,6 @@
+from collections.abc import Callable, Iterable, Mapping
 from logging import Logger
-from typing import Any, Callable, Dict, Iterable, List, Mapping, Optional, Type
+from typing import Any, Dict, List, Optional, Type
 
 from botocore.config import Config
 from botocore.exceptions import BotoCoreError
