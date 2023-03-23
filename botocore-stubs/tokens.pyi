@@ -1,7 +1,6 @@
 import datetime
 import logging
-from collections.abc import Callable, Iterable
-from typing import Any, NamedTuple, Optional, Type
+from typing import Any, Callable, Iterable, NamedTuple, Optional, Type
 
 from botocore.credentials import JSONFileCache
 from botocore.session import Session

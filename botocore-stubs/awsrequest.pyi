@@ -1,6 +1,6 @@
-from collections.abc import Iterator, Mapping, MutableMapping
+from collections.abc import MutableMapping
 from logging import Logger
-from typing import Any, Dict, Optional, Type, TypeVar
+from typing import Any, Dict, Iterator, Mapping, Optional, Type, TypeVar
 
 from botocore.compat import HTTPHeaders as HTTPHeaders
 from botocore.compat import HTTPResponse as HTTPResponse

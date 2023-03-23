@@ -1,6 +1,5 @@
-from collections.abc import Mapping
 from logging import Logger
-from typing import Any, Dict, Pattern, Tuple
+from typing import Any, Dict, Mapping, Pattern, Tuple
 from urllib.request import Request
 
 from botocore import retryhandler as retryhandler

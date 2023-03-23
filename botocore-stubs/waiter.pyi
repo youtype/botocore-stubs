@@ -1,6 +1,5 @@
-from collections.abc import Callable, Mapping
 from logging import Logger
-from typing import Any, Dict, List
+from typing import Any, Callable, Dict, List, Mapping
 
 from botocore.client import BaseClient
 

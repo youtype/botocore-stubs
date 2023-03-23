@@ -1,6 +1,5 @@
-from collections.abc import Iterator
 from logging import Logger
-from typing import Any
+from typing import Any, Iterator
 
 from botocore.exceptions import PaginationError as PaginationError
 from botocore.utils import merge_dicts as merge_dicts

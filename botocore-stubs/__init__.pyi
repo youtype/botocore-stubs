@@ -1,6 +1,5 @@
 import logging
-from collections.abc import Callable
-from typing import Any, Dict, Tuple
+from typing import Any, Callable, Dict, Tuple
 
 from botocore.session import Session
 

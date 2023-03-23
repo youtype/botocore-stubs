@@ -1,7 +1,7 @@
 import sys
-from collections.abc import Iterator, MutableMapping
+from collections.abc import MutableMapping
 from logging import Logger
-from typing import IO, Any, Dict, List, Optional, Tuple, Union
+from typing import IO, Any, Dict, Iterator, List, Optional, Tuple, Union
 
 from botocore import UNSIGNED as UNSIGNED
 from botocore import handlers as handlers

@@ -1,6 +1,5 @@
-from collections.abc import Mapping
 from logging import Logger
-from typing import Any, Optional, Type
+from typing import Any, Mapping, Optional, Type
 
 from botocore import parsers as parsers
 from botocore.awsrequest import create_request_object as create_request_object

@@ -1,6 +1,5 @@
-from collections.abc import Callable, Iterable, Mapping
 from logging import Logger
-from typing import Any, Dict, List, Optional, Tuple, Type
+from typing import Any, Callable, Dict, Iterable, List, Mapping, Optional, Tuple, Type
 
 from botocore import BOTOCORE_ROOT as BOTOCORE_ROOT
 from botocore.compat import OrderedDict as OrderedDict

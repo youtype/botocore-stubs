@@ -1,5 +1,4 @@
-from collections.abc import Iterable
-from typing import Any, Dict
+from typing import Any, Dict, Iterable
 
 from botocore.exceptions import ParamValidationError as ParamValidationError
 from botocore.model import OperationModel, Shape

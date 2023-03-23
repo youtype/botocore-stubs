@@ -1,7 +1,18 @@
 import datetime
-from collections.abc import Callable, Iterable, Mapping
 from logging import Logger
-from typing import Any, Dict, Generic, List, Optional, Pattern, Tuple, TypeVar
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Generic,
+    Iterable,
+    List,
+    Mapping,
+    Optional,
+    Pattern,
+    Tuple,
+    TypeVar,
+)
 
 from botocore.compat import HAS_CRT as HAS_CRT
 from botocore.compat import MD5_AVAILABLE as MD5_AVAILABLE

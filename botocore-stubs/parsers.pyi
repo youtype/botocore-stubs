@@ -1,6 +1,5 @@
-from collections.abc import Callable, Mapping
 from logging import Logger
-from typing import Any, Dict, Optional, Type
+from typing import Any, Callable, Dict, Mapping, Optional, Type
 
 from botocore.compat import XMLParseError as XMLParseError
 from botocore.eventstream import EventStream as EventStream

@@ -1,6 +1,5 @@
 import logging
-from collections.abc import Iterator, Mapping, Sequence
-from typing import IO, Any, Dict, Optional, Type, Union
+from typing import IO, Any, Dict, Iterator, Mapping, Optional, Sequence, Type, Union
 
 from awscrt import checksums as crt_checksums
 from botocore.awsrequest import AWSHTTPResponse

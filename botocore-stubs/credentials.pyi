@@ -1,6 +1,5 @@
-from collections.abc import Callable
 from logging import Logger
-from typing import Any, Dict, List, NamedTuple, Optional
+from typing import Any, Callable, Dict, List, NamedTuple, Optional
 
 from botocore import UNSIGNED as UNSIGNED
 from botocore.compat import compat_shell_split as compat_shell_split

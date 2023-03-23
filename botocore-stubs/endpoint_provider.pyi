@@ -1,9 +1,8 @@
 import logging
 import re
-from collections.abc import Callable, Iterable
 from enum import Enum
 from string import Formatter
-from typing import Any, Dict, List, NamedTuple, Optional, Pattern, Type, Union
+from typing import Any, Callable, Dict, Iterable, List, NamedTuple, Optional, Pattern, Type, Union
 
 from botocore import xform_name as xform_name
 from botocore.compat import quote as quote

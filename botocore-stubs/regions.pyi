@@ -1,7 +1,6 @@
-from collections.abc import Mapping
 from enum import Enum
 from logging import Logger
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from botocore.auth import AUTH_TYPE_MAPS as AUTH_TYPE_MAPS
 from botocore.compat import HAS_CRT as HAS_CRT

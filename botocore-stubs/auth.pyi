@@ -1,7 +1,6 @@
-from collections.abc import Iterable, Mapping
 from http.client import HTTPMessage
 from logging import Logger
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Tuple, Union
 from urllib.parse import SplitResult
 
 from botocore.awsrequest import AWSRequest
