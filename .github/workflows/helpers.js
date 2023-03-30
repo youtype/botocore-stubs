@@ -3,10 +3,13 @@ let core = null;
 let context = null;
 
 function setupGlobals(globals) {
-    { fetch, core, context } = globals
-
+    fetch = globals.fetch
     if (!fetch) throw new Error('fetch is not defined')
+
+    core = globals.core
     if (!core) throw new Error('core is not defined')
+
+    context = globals.context
     if (!context) throw new Error('context is not defined')
 }
 
