@@ -128,7 +128,7 @@ class Session:
         service_name: str,
         region_name: Optional[str] = ...,
         api_version: Optional[str] = ...,
-        use_ssl: bool = ...,
+        use_ssl: Optional[bool] = ...,
         verify: Optional[Union[bool, str]] = ...,
         endpoint_url: Optional[str] = ...,
         aws_access_key_id: Optional[str] = ...,
