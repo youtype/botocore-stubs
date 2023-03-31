@@ -7,8 +7,8 @@ from botocore.exceptions import UnknownClientMethodError as UnknownClientMethodE
 from botocore.exceptions import UnknownSignatureVersionError as UnknownSignatureVersionError
 from botocore.exceptions import UnsupportedSignatureVersionError as UnsupportedSignatureVersionError
 from botocore.hooks import BaseEventHooks
-from botocore.utils import datetime2timestamp as datetime2timestamp
 from botocore.model import ServiceId
+from botocore.utils import datetime2timestamp as datetime2timestamp
 
 class RequestSigner:
     def __init__(
