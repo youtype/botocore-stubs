@@ -8,12 +8,12 @@ from botocore.exceptions import UnknownSignatureVersionError as UnknownSignature
 from botocore.exceptions import UnsupportedSignatureVersionError as UnsupportedSignatureVersionError
 from botocore.hooks import BaseEventHooks
 from botocore.utils import datetime2timestamp as datetime2timestamp
-from botocore.utils import fix_s3_host as fix_s3_host
+from botocore.model import ServiceId
 
 class RequestSigner:
     def __init__(
         self,
-        service_id: str,
+        service_id: ServiceId,
         region_name: str,
         signing_name: str,
         signature_version: str,
