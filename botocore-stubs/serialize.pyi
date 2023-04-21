@@ -1,4 +1,4 @@
-from typing import Any, Dict, Mapping, Type
+from typing import Any, Dict, Mapping, Pattern, Type
 
 from botocore import validate as validate
 from botocore.compat import formatdate as formatdate
@@ -10,6 +10,7 @@ from botocore.utils import percent_encode as percent_encode
 DEFAULT_TIMESTAMP_FORMAT: str
 ISO8601: str
 ISO8601_MICRO: str
+HOST_PREFIX_RE: Pattern[str]
 
 def create_serializer(protocol_name: str, include_validation: bool = ...) -> Any: ...
 
