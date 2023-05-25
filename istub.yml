@@ -92,6 +92,12 @@ packages:
         Runtime:
         <module 'botocore.docs.sharedexample' from './botocore/docs/sharedexample.py'>
 
+        error: botocore.docs.translator failed to find stubs
+        Stub:
+        MISSING
+        Runtime:
+        N/A
+
         error: botocore.docs.utils failed to find stubs
         Stub:
         MISSING
