@@ -96,7 +96,6 @@ class ConfiguredEndpointProvider(BaseProvider):
         full_config: Dict[str, Any],
         scoped_config: Dict[str, Any],
         client_name: str,
-        environ: Optional[Dict[str, str]]=...,
+        environ: Optional[Dict[str, str]] = ...,
     ) -> None: ...
     def provide(self) -> Any: ...
-    

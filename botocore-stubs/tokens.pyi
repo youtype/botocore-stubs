@@ -2,8 +2,8 @@ import datetime
 import logging
 from typing import Any, Callable, Iterable, NamedTuple, Optional, Type
 
-from botocore.utils import JSONFileCache
 from botocore.session import Session
+from botocore.utils import JSONFileCache
 
 logger: logging.Logger
 

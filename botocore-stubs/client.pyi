@@ -32,6 +32,7 @@ from botocore.retries import adaptive as adaptive
 from botocore.retries import standard as standard
 from botocore.serialize import Serializer
 from botocore.signers import RequestSigner
+from botocore.useragent import UserAgentString
 from botocore.utils import CachedProperty as CachedProperty
 from botocore.utils import S3ArnParamHandler as S3ArnParamHandler
 from botocore.utils import S3ControlArnParamHandler as S3ControlArnParamHandler
@@ -40,7 +41,6 @@ from botocore.utils import S3EndpointSetter as S3EndpointSetter
 from botocore.utils import S3RegionRedirector as S3RegionRedirector
 from botocore.utils import ensure_boolean as ensure_boolean
 from botocore.utils import get_service_module_name as get_service_module_name
-from botocore.useragent import UserAgentString
 
 logger: Logger = ...
 history_recorder: HistoryRecorder = ...
