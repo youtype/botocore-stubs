@@ -13,6 +13,7 @@ from botocore.model import ServiceModel
 from botocore.parsers import ResponseParser, ResponseParserFactory
 from botocore.serialize import BaseRestSerializer
 from botocore.signers import RequestSigner as RequestSigner
+from botocore.useragent import UserAgentString
 
 if sys.version_info >= (3, 9):
     from typing import TypedDict
@@ -23,6 +24,7 @@ logger: Logger = ...
 
 VALID_REGIONAL_ENDPOINTS_CONFIG: List[str]
 LEGACY_GLOBAL_STS_REGIONS: List[str]
+USERAGENT_APPID_MAXLEN: int
 
 class _GetClientArgsTypeDef(TypedDict):
     serializer: BaseRestSerializer
@@ -45,6 +47,7 @@ class ClientArgsCreator:
         loader: Loader,
         exceptions_factory: Any,
         config_store: ConfigValueStore,
+        user_agent_creator: Optional[UserAgentString] = ...,
     ) -> None: ...
     def get_client_args(
         self,

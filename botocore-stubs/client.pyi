@@ -40,6 +40,7 @@ from botocore.utils import S3EndpointSetter as S3EndpointSetter
 from botocore.utils import S3RegionRedirector as S3RegionRedirector
 from botocore.utils import ensure_boolean as ensure_boolean
 from botocore.utils import get_service_module_name as get_service_module_name
+from botocore.useragent import UserAgentString
 
 logger: Logger = ...
 history_recorder: HistoryRecorder = ...
@@ -56,6 +57,7 @@ class ClientCreator:
         response_parser_factory: Optional[Any] = ...,
         exceptions_factory: Optional[Any] = ...,
         config_store: Optional[Any] = ...,
+        user_agent_creator: Optional[UserAgentString] = ...,
     ) -> None: ...
     def create_client(
         self,
@@ -113,6 +115,7 @@ class BaseClient:
         partition: str,
         exceptions_factory: Any,
         endpoint_ruleset_resolver: Optional[EndpointRulesetResolver] = ...,
+        user_agent_creator: Optional[UserAgentString] = ...,
     ) -> None:
         self.meta: ClientMeta
     # FIXME: it hides `has no attribute` errors on Client type checking
