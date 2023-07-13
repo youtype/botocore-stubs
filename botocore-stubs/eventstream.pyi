@@ -1,8 +1,8 @@
-from typing import Any, Dict, Generic, Tuple, TypeVar, Iterator
+from typing import Any, Dict, Generic, Iterator, Tuple, TypeVar
 
 from botocore.exceptions import EventStreamError as EventStreamError
-from botocore.parsers import BaseEventStreamParser
 from botocore.model import StructureShape
+from botocore.parsers import BaseEventStreamParser
 
 _T = TypeVar("_T")
 
@@ -91,7 +91,11 @@ class EventStreamBuffer:
 
 class EventStream(Generic[_T]):
     def __init__(
-        self, raw_stream: Any, output_shape: StructureShape, parser: BaseEventStreamParser, operation_name: str
+        self,
+        raw_stream: Any,
+        output_shape: StructureShape,
+        parser: BaseEventStreamParser,
+        operation_name: str,
     ) -> None: ...
     def __iter__(self) -> Iterator[_T]: ...
     def get_initial_response(self) -> _T: ...
