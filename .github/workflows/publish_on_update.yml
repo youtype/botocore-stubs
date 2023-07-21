@@ -65,7 +65,7 @@ jobs:
       - name: Stubs consistency check
         if: "${{ github.event.inputs.force != 'true' }}"
         run: |
-          poetry run istub
+          poetry run istub -d
       - name: Bump version
         run: |
           echo "Bumping version to ${STUBS_VERSION}"

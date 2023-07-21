@@ -46,7 +46,7 @@ class CrtSigV4AsymQueryAuth(CrtSigV4AsymAuth):
 
     def __init__(
         self,
-        credentials: AwsCredentials,  # type: ignore
+        credentials: AwsCredentials,
         service_name: str,
         region_name: str,
         expires: int = ...,
@@ -58,7 +58,7 @@ class CrtSigV4QueryAuth(CrtSigV4Auth):
     DEFAULT_EXPIRES: int = ...
     def __init__(
         self,
-        credentials: AwsCredentials,  # type: ignore
+        credentials: AwsCredentials,
         service_name: str,
         region_name: str,
         expires: int = ...,

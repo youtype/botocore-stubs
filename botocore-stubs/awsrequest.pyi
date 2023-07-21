@@ -25,14 +25,14 @@ class AWSConnection:
     def send(self, str: str) -> Any: ...
 
 # FIXME: AWSConnection.send has incompatible arg names
-class AWSHTTPConnection(AWSConnection, HTTPConnection): ...  # type: ignore
-class AWSHTTPSConnection(AWSConnection, VerifiedHTTPSConnection): ...  # type: ignore
+class AWSHTTPConnection(AWSConnection, HTTPConnection): ...  # type: ignore [misc]
+class AWSHTTPSConnection(AWSConnection, VerifiedHTTPSConnection): ...  # type: ignore [misc]
 
 class AWSHTTPConnectionPool(HTTPConnectionPool):
-    ConnectionCls: Type[AWSHTTPConnection]  # type: ignore
+    ConnectionCls: Type[AWSHTTPConnection]  # type: ignore [misc]
 
 class AWSHTTPSConnectionPool(HTTPSConnectionPool):
-    ConnectionCls: Type[AWSHTTPSConnection]  # type: ignore
+    ConnectionCls: Type[AWSHTTPSConnection]  # type: ignore [misc]
 
 def prepare_request_dict(
     request_dict: Dict[str, Any],
