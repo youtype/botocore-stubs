@@ -1,7 +1,7 @@
 from logging import Logger
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from botocore.awsrequest import AWSRequest
+from botocore.awsrequest import AWSPreparedRequest, AWSRequest, AWSResponse
 from botocore.compat import IPV6_ADDRZ_RE as IPV6_ADDRZ_RE
 from botocore.compat import filter_ssl_warnings as filter_ssl_warnings
 from botocore.compat import urlparse as urlparse
@@ -55,4 +55,4 @@ class URLLib3Session:
         proxies_config: Optional[Dict[str, Any]] = ...,
     ) -> None: ...
     def close(self) -> None: ...
-    def send(self, request: AWSRequest) -> None: ...
+    def send(self, request: Union[AWSRequest, AWSPreparedRequest]) -> AWSResponse: ...
