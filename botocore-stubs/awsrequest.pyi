@@ -22,6 +22,15 @@ class AWSConnection:
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         self.response_class: Any
     def close(self) -> None: ...
+    def request(
+        self,
+        method: str,
+        url: str,
+        body: Any = ...,
+        headers: Optional[Mapping[str, Any]] = ...,
+        *args: Any,
+        **kwargs: Any,
+    ) -> HTTPConnection: ...
     def send(self, str: str) -> Any: ...
 
 # FIXME: AWSConnection.send has incompatible arg names
