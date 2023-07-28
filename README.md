@@ -10,6 +10,17 @@
 Type annotations and code completion for [botocore](https://pypi.org/project/botocore/) package.
 This package is a part of [mypy_boto3_builder](https://github.com/youtype/mypy_boto3_builder) project.
 
+[![Publish botocore-stubs](https://github.com/youtype/botocore-stubs/actions/workflows/publish_on_update.yml/badge.svg)](https://github.com/youtype/botocore-stubs/actions/workflows/publish_on_update.yml)
+[![Publish types-awscrt](https://github.com/youtype/types-awscrt/actions/workflows/publish_on_update.yml/badge.svg)](https://github.com/youtype/types-awscrt/actions/workflows/publish_on_update.yml)
+[![Publish types-s3transfer](https://github.com/youtype/types-s3transfer/actions/workflows/publish_on_update.yml/badge.svg)](https://github.com/youtype/types-s3transfer/actions/workflows/publish_on_update.yml)
+
+- [botocore-stubs](#botocore-stubs)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Latest changes](#latest-changes)
+  - [Versioning](#versioning)
+  - [Support and contributing](#support-and-contributing)
+
 ## Installation
 
 ```bash

@@ -1,4 +1,4 @@
-name: Publish
+name: Publish botocore-stubs
 concurrency: publish
 
 on:
