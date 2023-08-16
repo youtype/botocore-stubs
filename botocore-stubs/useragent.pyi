@@ -1,4 +1,4 @@
-from typing import NamedTuple, Optional, Type, TypeVar
+from typing import Any, List, NamedTuple, Optional, Type, TypeVar
 
 from botocore.config import Config
 
@@ -16,6 +16,8 @@ class UserAgentComponent(NamedTuple):
 class RawStringUserAgentComponent:
     def __init__(self, value: str) -> None: ...
     def to_string(self) -> str: ...
+
+def modify_components(components: List[Any]) -> List[Any]: ...
 
 class UserAgentString:
     def __init__(
