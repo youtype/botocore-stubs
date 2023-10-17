@@ -70,6 +70,7 @@ jobs:
         run: |
           echo "Bumping version to ${STUBS_VERSION}"
           poetry version ${STUBS_VERSION}
+          poetry add --optional botocore==${STUBS_VERSION}
           rm -rf *.egg-info || true
           poetry install -n
       - name: Commit changes
