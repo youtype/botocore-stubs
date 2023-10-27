@@ -95,13 +95,13 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "botocore"
-version = "1.31.71"
+version = "1.31.73"
 description = "Low-level, data-driven core of boto 3."
 optional = false
 python-versions = ">= 3.7"
 files = [
-    {file = "botocore-1.31.71-py3-none-any.whl", hash = "sha256:505cae827536a7400c3faaca8aeefd2e7618134a8644df6b3077fa487fe2b783"},
-    {file = "botocore-1.31.71.tar.gz", hash = "sha256:223e95e8d44ffd85d6baa5c9fc67b029ff087484d304a4478c4dfe38bd433f3f"},
+    {file = "botocore-1.31.73-py3-none-any.whl", hash = "sha256:6e9caaa7205e0c0505f4868a4053e96eaf3f4b6bce0368a46970a8efeeacb492"},
+    {file = "botocore-1.31.73.tar.gz", hash = "sha256:5334c22d5a3f4643931896137c57b2496fef005b039d87d8740e7a28eb31519d"},
 ]
 
 [package.dependencies]
@@ -544,4 +544,4 @@ botocore = ["botocore"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.7"
-content-hash = "3f74a475965bbae230993a26c2ef1ecf39763bc361e832e30f9f628f1fa2a8eb"
+content-hash = "52a92c0b837599c1c5ad51fc965a1921804bfbf1002359f096b80ed4fa740a47"
