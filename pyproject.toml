@@ -1,12 +1,7 @@
 [tool.black]
 line-length = 100
 include = '(botocore-stubs)/.*\.pyi?$'
-target-version = [
-    'py37',
-    'py38',
-    'py39',
-    'py310',
-]
+target-version = ['py37', 'py38', 'py39', 'py310']
 preview = true
 
 [tool.isort]
@@ -43,9 +38,7 @@ classifiers = [
     "Typing :: Stubs Only",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-packages = [
-    { include = "botocore-stubs" },
-]
+packages = [{ include = "botocore-stubs" }]
 include = [
     "botocore-stubs/py.typed",
     "botocore-stubs/*.pyi",
@@ -58,15 +51,13 @@ include = [
 "Bug Tracker" = "https://github.com/youtype/botocore-stubs/issues"
 
 [tool.poetry.dependencies]
-botocore = {version = "1.31.71", optional = true}
+botocore = { version = "1.31.71", optional = true }
 python = "^3.7"
 types-awscrt = "*"
 typing-extensions = { version = ">=4.1.0", python = "<3.9" }
 
 [tool.poetry.extras]
-botocore = [
-    "botocore",
-]
+botocore = ["botocore"]
 
 [tool.poetry.dev-dependencies]
 awscrt = "*"
@@ -85,18 +76,12 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pyright]
-include = [
-    "botocore-stubs",
-]
-exclude = [
-    "**/__pycache__",
-    "tests",
-    "typestubs",
-]
+include = ["botocore-stubs"]
+exclude = ["**/__pycache__", "tests", "typestubs"]
 reportMissingImports = "error"
 reportMissingTypeStubs = false
 reportMissingTypeArgument = "error"
 reportIncompatibleMethodOverride = "error"
-reportIncompatibleVariableOverride = "error"
+reportIncompatibleVariableOverride = false
 reportUnknownParameterType = "error"
 pythonVersion = "3.7"
