@@ -26,6 +26,7 @@ _R = TypeVar("_R")
 class Stubber:
     def __init__(self, client: BaseClient) -> None:
         self.client: BaseClient = ...
+
     def __enter__(self: _R) -> _R: ...
     def __exit__(
         self,

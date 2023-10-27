@@ -27,6 +27,7 @@ class Shape:
         self.name: str
         self.type_name: str
         self.documentation: str
+
     @CachedProperty
     def serialization(self) -> Dict[str, Any]: ...
     @CachedProperty
@@ -78,6 +79,7 @@ class ServiceModel:
         self, service_description: Dict[str, Any], service_name: Optional[str] = ...
     ) -> None:
         self.metadata: Dict[str, Any]
+
     def shape_for(
         self, shape_name: str, member_traits: Optional[Dict[str, Any]] = ...
     ) -> Shape: ...
@@ -124,6 +126,7 @@ class OperationModel:
     ) -> None:
         self.metadata: Dict[str, Any]
         self.http: Dict[str, Any]
+
     @CachedProperty
     def name(self) -> str: ...
     @property
@@ -193,6 +196,7 @@ class DenormalizedStructureBuilder:
     def __init__(self, name: Optional[str] = ...) -> None:
         self.name: str
         self.members: Dict[str, Any]
+
     def with_members(self: _R, members: Dict[str, Any]) -> _R: ...
     def build_model(self) -> StructureShape: ...
 

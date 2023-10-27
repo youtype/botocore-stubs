@@ -92,6 +92,7 @@ class ClientEndpointBridge:
         self.client_config: Any
         self.default_endpoint: str
         self.config_store: Any
+
     def resolve(
         self,
         service_name: str,
@@ -140,6 +141,7 @@ class ClientMeta:
         partition: str,
     ) -> None:
         self.events: BaseEventHooks
+
     @property
     def service_model(self) -> ServiceModel: ...
     @property

@@ -26,6 +26,7 @@ STRING_FORMATTER: Formatter = ...
 class RuleSetStandardLibrary:
     def __init__(self, partitions_data: Dict[str, Any]) -> None:
         self.partitions_data: Dict[str, Any]
+
     def is_func(self, argument: Any) -> bool: ...
     def is_ref(self, argument: Any) -> bool: ...
     def is_template(self, argument: Any) -> bool: ...
@@ -56,6 +57,7 @@ class BaseRule:
     ) -> None:
         self.conditions: Iterable[Callable[..., Any]]
         self.documentation: Optional[str]
+
     def evaluate(self, scope_vars: Dict[str, Any], rule_lib: RuleSetStandardLibary) -> Any: ...
     def evaluate_conditions(
         self, scope_vars: Dict[str, Any], rule_lib: RuleSetStandardLibary
@@ -69,6 +71,7 @@ class RuleSetEndpoint(NamedTuple):
 class EndpointRule(BaseRule):
     def __init__(self, endpoint: Dict[str, Any], **kwargs: Any) -> None:
         self.endpoint: Dict[str, Any]
+
     def evaluate(
         self, scope_vars: Dict[str, Any], rule_lib: RuleSetStandardLibary
     ) -> RuleSetEndpoint: ...
@@ -85,11 +88,13 @@ class EndpointRule(BaseRule):
 class ErrorRule(BaseRule):
     def __init__(self, error: Any, **kwargs: Any) -> None:
         self.error: Any
+
     def evaluate(self, scope_vars: Dict[str, Any], rule_lib: RuleSetStandardLibary) -> None: ...
 
 class TreeRule(BaseRule):
     def __init__(self, rules: Iterable[Dict[str, Any]], **kwargs: Any) -> None:
         self.rules: Iterable[Dict[str, Any]]
+
     def evaluate(
         self, scope_vars: Dict[str, Any], rule_lib: RuleSetStandardLibary
     ) -> Optional[RuleSetEndpoint]: ...
@@ -123,6 +128,7 @@ class ParameterDefinition:
         self.default: Optional[bool]
         self.required: Optional[bool]
         self.deprecated: Optional[bool]
+
     def validate_input(self, value: Any) -> None: ...
     def process_input(self, value: Any) -> Any: ...
 
@@ -140,10 +146,12 @@ class RuleSet:
         self.rules: List[BaseRule]
         self.rule_lib: RuleSetStandardLibary
         self.documentation: Optional[str]
+
     def process_input_parameters(self, input_params: Dict[str, Any]) -> None: ...
     def evaluate(self, input_parameters: Dict[str, Any]) -> Any: ...
 
 class EndpointProvider:
     def __init__(self, ruleset_data: Dict[str, Any], partition_data: Dict[str, Any]) -> None:
         self.ruleset: RuleSet
+
     def resolve_endpoint(self, **input_parameters: Any) -> RuleSetEndpoint: ...

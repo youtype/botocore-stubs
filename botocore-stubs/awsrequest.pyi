@@ -21,6 +21,7 @@ class AWSHTTPResponse(HTTPResponse):
 class AWSConnection:
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         self.response_class: Any
+
     def close(self) -> None: ...
     def request(
         self,
@@ -65,6 +66,7 @@ class AWSPreparedRequest:
         self.headers: HTTPHeaders
         self.body: str
         self.stream_output: bool
+
     def reset_stream(self) -> None: ...
 
 class AWSRequest:
@@ -86,6 +88,7 @@ class AWSRequest:
         self.auth_path: Optional[str]
         self.stream_output: bool
         self.context: Dict[str, Any]
+
     def prepare(self) -> AWSPreparedRequest: ...
     @property
     def body(self) -> str: ...
@@ -99,6 +102,7 @@ class AWSResponse:
         self.status_code: int
         self.headers: HeadersDict
         self.raw: Any
+
     @property
     def content(self) -> bytes: ...
     @property

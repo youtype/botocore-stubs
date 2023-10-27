@@ -32,6 +32,7 @@ class Endpoint:
     ) -> None:
         self.host: str
         self.http_session: URLLib3Session
+
     def close(self) -> None: ...
     def make_request(self, operation_model: Any, request_dict: Any) -> Any: ...
     def create_request(

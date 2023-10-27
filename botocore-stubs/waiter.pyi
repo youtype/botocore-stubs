@@ -21,6 +21,7 @@ class WaiterModel:
     def __init__(self, waiter_config: Mapping[str, Any]) -> None:
         self.version: str
         self.waiter_names: List[str]
+
     def get_waiter(self, waiter_name: str) -> "SingleWaiterConfig": ...
 
 class SingleWaiterConfig:
@@ -29,6 +30,7 @@ class SingleWaiterConfig:
         self.operation: str
         self.delay: int
         self.max_attempts: int
+
     @property
     def acceptors(self) -> List["AcceptorConfig"]: ...
 
@@ -39,6 +41,7 @@ class AcceptorConfig:
         self.expected: str
         self.argument: str
         self.matcher_func: Callable[..., Any]
+
     @property
     def explanation(self) -> str: ...
 
@@ -48,4 +51,5 @@ class Waiter:
     ) -> None:
         self.name: str
         self.config: Dict[str, Any]
+
     def wait(self, **kwargs: Any) -> None: ...

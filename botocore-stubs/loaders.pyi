@@ -33,6 +33,7 @@ class Loader:
         include_default_extras: bool = ...,
     ) -> None:
         self.file_loader: JSONFileLoader
+
     @property
     def search_paths(self) -> List[str]: ...
     @property
