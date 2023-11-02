@@ -68,12 +68,20 @@ jobs:
           poetry run istub -d
       - name: Bump version
         run: |
-          echo "Bumping version to ${STUBS_VERSION}"
+          echo "Bumping version to ${STUBS_VERSION}..."
           poetry version ${STUBS_VERSION}
-          poetry add --optional botocore==${STUBS_VERSION}
+          echo "Bumping botocore version to ${VERSION}..."
+          poetry add --optional botocore==${VERSION}
+          echo "Checking botocore==${VERSION} in lockfile..."
+          if [[ `grep "botocore-${VERSION}-py3-none-any.whl" poetry.lock` = "" ]]; then
+            echo "::error file=pyproject.toml::botocore==${VERSION} is missing in lockfile"
+            exit 1
+          fi
+          echo "Testing installation..."
           rm -rf *.egg-info || true
           poetry install -n
       - name: Commit changes
+        if: "${{ github.event.inputs.version == '' }}"
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
