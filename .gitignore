@@ -43,9 +43,6 @@ ENV/
 # data reports
 .csv
 
-# VSCode
-.vscode
-
 # Typing
 .mypy_cache
 .pytest_cache
