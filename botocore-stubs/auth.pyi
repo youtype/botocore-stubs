@@ -1,6 +1,6 @@
 from http.client import HTTPMessage
 from logging import Logger
-from typing import Any, Dict, Iterable, List, Mapping, Optional, Tuple, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Tuple, Type, Union
 from urllib.parse import SplitResult
 
 from botocore.awsrequest import AWSRequest
@@ -121,4 +121,4 @@ class HmacV1PostAuth(HmacV1Auth):
 class BearerAuth(TokenSigner):
     def add_auth(self, request: AWSRequest) -> None: ...
 
-AUTH_TYPE_MAPS: Dict[str, BaseSigner]
+AUTH_TYPE_MAPS: Dict[str, Type[BaseSigner]]
