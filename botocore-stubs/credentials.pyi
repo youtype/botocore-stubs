@@ -76,9 +76,18 @@ class RefreshableCredentials(Credentials):
         refresh_using: Any,
         method: str,
         time_fetcher: Any = ...,
+        advisory_timeout: Optional[int] = ...,
+        mandatory_timeout: Optional[int] = ...,
     ) -> None: ...
     @classmethod
-    def create_from_metadata(cls, metadata: Any, refresh_using: Any, method: Any) -> Any: ...
+    def create_from_metadata(
+        cls,
+        metadata: Any,
+        refresh_using: Any,
+        method: Any,
+        advisory_timeout: Optional[int] = ...,
+        mandatory_timeout: Optional[int] = ...,
+    ) -> Any: ...
     @property  # type: ignore [override]
     def access_key(self) -> str: ...  # type: ignore [override]
     @access_key.setter

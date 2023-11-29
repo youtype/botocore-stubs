@@ -8,6 +8,7 @@ from botocore.compat import HAS_CRT as HAS_CRT
 from botocore.compat import MD5_AVAILABLE as MD5_AVAILABLE
 from botocore.credentials import Credentials, ReadOnlyCredentials
 from botocore.crt.auth import CRT_AUTH_TYPE_MAPS as CRT_AUTH_TYPE_MAPS
+from botocore.utils import IdentityCache
 
 logger: Logger = ...
 
@@ -60,6 +61,33 @@ class SigV4Auth(BaseSigner):
     def add_auth(self, request: AWSRequest) -> None: ...
 
 class S3SigV4Auth(SigV4Auth): ...
+
+class S3ExpressAuth(S3SigV4Auth):
+    REQUIRES_IDENTITY_CACHE: bool = ...
+
+    def __init__(
+        self,
+        credentials: _CredentialsUnion,
+        service_name: str,
+        region_name: str,
+        *,
+        identity_cache: IdentityCache,
+    ) -> None: ...
+
+class S3ExpressPostAuth(S3ExpressAuth): ...
+
+class S3ExpressQueryAuth(S3ExpressAuth):
+    DEFAULT_EXPIRES: int = ...
+
+    def __init__(
+        self,
+        credentials: _CredentialsUnion,
+        service_name: str,
+        region_name: str,
+        *,
+        identity_cache: IdentityCache,
+        expires: int = ...,
+    ) -> None: ...
 
 class SigV4QueryAuth(SigV4Auth):
     DEFAULT_EXPIRES: int = ...
