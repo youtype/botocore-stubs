@@ -26,19 +26,57 @@ jobs:
     name: Check version
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.vars.outputs.version }}
-      stubs-version: ${{ steps.vars.outputs.stubs-version }}
+      version: ${{ steps.version.outputs.result }}
+      stubs-version: ${{ steps.stubs-version.outputs.result }}
     steps:
       - uses: actions/checkout@v4
-      - name: Extract versions
-        id: vars
+      - name: Extract version
+        id: version
         uses: actions/github-script@v7
         with:
+          result-encoding: string
           script: |
-            const { setupGlobals, extractVersions } = require('./.github/workflows/helpers.js')
+            const { setupGlobals, extractVersions, getLatestVersion } = require('./.github/workflows/helpers.js')
 
             setupGlobals({ fetch, core, context })
-            await extractVersions()
+
+            const package = process.env.PACKAGE
+
+            const inputVersion = context.payload.inputs?.version
+            const version = inputVersion ? inputVersion : await getLatestVersion(package)
+            core.notice(`${package} version = ${version}`)
+            return version
+      - name: Extract stubs version
+        id: stubs-version
+        uses: actions/github-script@v7
+        with:
+          result-encoding: string
+          script: |
+            const { setupGlobals, isStableVersionGreater, getLatestStubsVersion, getLatestVersion, getNextVersion } = require('./.github/workflows/helpers.js')
+
+            setupGlobals({ fetch, core, context })
+
+            const stubsPackage = process.env.STUBS
+            const force = context.payload.inputs ? context.payload.inputs.force !== 'false' : false
+            const version = "${{ steps.version.outputs.result }}"
+
+            if (force) {
+              core.notice('Force release, skipping version check')
+            }
+
+            const stubsVersion = await getLatestStubsVersion(stubsPackage, version)
+            core.notice(`${stubsPackage} latest version = ${stubsVersion}`)
+
+            const buildStubsVersion = stubsVersion ? getNextVersion(stubsVersion) : version
+            const isStubsVersionGreater = stubsVersion === null || isStableVersionGreater(buildStubsVersion, stubsVersion)
+
+            if (!isStubsVersionGreater && !force) {
+                core.notice('Stubs version is not greater than the latest, skipping run')
+                return ''
+            }
+
+            core.notice(`${stubsPackage} build version = ${buildStubsVersion}`)
+            return buildStubsVersion
 
   publish-stubs:
     name: Publish stubs
