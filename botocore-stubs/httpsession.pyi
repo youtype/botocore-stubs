@@ -1,5 +1,5 @@
 from logging import Logger
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
 from botocore.awsrequest import AWSPreparedRequest, AWSRequest, AWSResponse
 from botocore.compat import IPV6_ADDRZ_RE as IPV6_ADDRZ_RE
@@ -35,8 +35,8 @@ def mask_proxy_url(proxy_url: str) -> str: ...
 class ProxyConfiguration:
     def __init__(
         self,
-        proxies: Optional[Dict[str, Any]] = ...,
-        proxies_settings: Optional[Dict[str, Any]] = ...,
+        proxies: Optional[Mapping[str, Any]] = ...,
+        proxies_settings: Optional[Mapping[str, Any]] = ...,
     ) -> None: ...
     def proxy_url_for(self, url: str) -> str: ...
     def proxy_headers_for(self, proxy_url: str) -> Dict[str, Any]: ...
@@ -47,12 +47,12 @@ class URLLib3Session:
     def __init__(
         self,
         verify: bool = ...,
-        proxies: Optional[Dict[str, Any]] = ...,
+        proxies: Optional[Mapping[str, Any]] = ...,
         timeout: Optional[int] = ...,
         max_pool_connections: int = ...,
         socket_options: Optional[List[str]] = ...,
         client_cert: Optional[Union[str, Tuple[str, str]]] = ...,
-        proxies_config: Optional[Dict[str, Any]] = ...,
+        proxies_config: Optional[Mapping[str, Any]] = ...,
     ) -> None: ...
     def close(self) -> None: ...
     def send(self, request: Union[AWSRequest, AWSPreparedRequest]) -> AWSResponse: ...

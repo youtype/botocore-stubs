@@ -45,12 +45,12 @@ class AWSHTTPSConnectionPool(HTTPSConnectionPool):
     ConnectionCls: Type[AWSHTTPSConnection]  # type: ignore [misc,assignment]
 
 def prepare_request_dict(
-    request_dict: Dict[str, Any],
+    request_dict: Mapping[str, Any],
     endpoint_url: str,
     context: Optional[Any] = ...,
     user_agent: Optional[Any] = ...,
 ) -> None: ...
-def create_request_object(request_dict: Dict[str, Any]) -> Any: ...
+def create_request_object(request_dict: Mapping[str, Any]) -> Any: ...
 
 class AWSPreparedRequest:
     def __init__(
@@ -76,7 +76,7 @@ class AWSRequest:
         url: Optional[str] = ...,
         headers: Optional[Mapping[str, Any]] = ...,
         data: Optional[Any] = ...,
-        params: Optional[Dict[str, Any]] = ...,
+        params: Optional[Mapping[str, Any]] = ...,
         auth_path: Optional[str] = ...,
         stream_output: bool = ...,
     ) -> None:

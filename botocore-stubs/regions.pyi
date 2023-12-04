@@ -65,8 +65,8 @@ class EndpointResolverBuiltins(Enum):
 class EndpointRulesetResolver:
     def __init__(
         self,
-        endpoint_ruleset_data: Dict[str, Any],
-        partition_data: Dict[str, Any],
+        endpoint_ruleset_data: Mapping[str, Any],
+        partition_data: Mapping[str, Any],
         service_model: ServiceModel,
         builtins: EndpointResolverBuiltins,
         client_context: Any,

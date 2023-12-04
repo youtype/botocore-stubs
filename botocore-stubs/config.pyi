@@ -1,5 +1,5 @@
 import sys
-from typing import Dict, Optional, Tuple, TypeVar, Union
+from typing import Dict, Mapping, Optional, Tuple, TypeVar, Union
 
 from botocore.compat import OrderedDict as OrderedDict
 from botocore.endpoint import DEFAULT_TIMEOUT as DEFAULT_TIMEOUT
@@ -45,7 +45,7 @@ class Config:
         read_timeout: Optional[Union[float, int]] = 60,
         parameter_validation: Optional[bool] = True,
         max_pool_connections: Optional[int] = 10,
-        proxies: Optional[Dict[str, str]] = None,
+        proxies: Optional[Mapping[str, str]] = None,
         proxies_config: Optional[_ProxiesConfigDict] = None,
         s3: Optional[_S3Dict] = None,
         retries: Optional[_RetryDict] = None,

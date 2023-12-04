@@ -2,7 +2,19 @@ import logging
 import re
 from enum import Enum
 from string import Formatter
-from typing import Any, Callable, Dict, Iterable, List, NamedTuple, Optional, Pattern, Type, Union
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Iterable,
+    List,
+    Mapping,
+    NamedTuple,
+    Optional,
+    Pattern,
+    Type,
+    Union,
+)
 
 from botocore import xform_name as xform_name
 from botocore.compat import quote as quote
@@ -24,20 +36,22 @@ ARN_PARSER: ArnParser = ...
 STRING_FORMATTER: Formatter = ...
 
 class RuleSetStandardLibrary:
-    def __init__(self, partitions_data: Dict[str, Any]) -> None:
+    def __init__(self, partitions_data: Mapping[str, Any]) -> None:
         self.partitions_data: Dict[str, Any]
 
     def is_func(self, argument: Any) -> bool: ...
     def is_ref(self, argument: Any) -> bool: ...
     def is_template(self, argument: Any) -> bool: ...
-    def resolve_template_string(self, value: str, scope_vars: Dict[str, Any]) -> str: ...
-    def resolve_value(self, value: str, scope_vars: Dict[str, Any]) -> Any: ...
+    def resolve_template_string(self, value: str, scope_vars: Mapping[str, Any]) -> str: ...
+    def resolve_value(self, value: str, scope_vars: Mapping[str, Any]) -> Any: ...
     def convert_func_name(self, value: str) -> str: ...
-    def call_function(self, func_signature: Dict[str, Any], scope_vars: Dict[str, Any]) -> Any: ...
+    def call_function(
+        self, func_signature: Mapping[str, Any], scope_vars: Mapping[str, Any]
+    ) -> Any: ...
     def is_set(self, value: Any) -> bool: ...
-    def get_attr(self, value: Dict[str, Any], path: str) -> Any: ...
-    def format_partition_output(self, partition: Dict[str, Any]) -> Dict[str, Any]: ...
-    def is_partition_match(self, region: str, partition: Dict[str, Any]) -> bool: ...
+    def get_attr(self, value: Mapping[str, Any], path: str) -> Any: ...
+    def format_partition_output(self, partition: Mapping[str, Any]) -> Dict[str, Any]: ...
+    def is_partition_match(self, region: str, partition: Mapping[str, Any]) -> bool: ...
     def aws_partition(self, value: str) -> Dict[str, Any]: ...
     def aws_parse_arn(self, value: str) -> Dict[str, Any]: ...
     def is_valid_host_label(self, value: str, allow_subdomains: bool) -> bool: ...
@@ -58,9 +72,9 @@ class BaseRule:
         self.conditions: Iterable[Callable[..., Any]]
         self.documentation: Optional[str]
 
-    def evaluate(self, scope_vars: Dict[str, Any], rule_lib: RuleSetStandardLibary) -> Any: ...
+    def evaluate(self, scope_vars: Mapping[str, Any], rule_lib: RuleSetStandardLibary) -> Any: ...
     def evaluate_conditions(
-        self, scope_vars: Dict[str, Any], rule_lib: RuleSetStandardLibary
+        self, scope_vars: Mapping[str, Any], rule_lib: RuleSetStandardLibary
     ) -> bool: ...
 
 class RuleSetEndpoint(NamedTuple):
@@ -69,34 +83,34 @@ class RuleSetEndpoint(NamedTuple):
     headers: Dict[str, Any]
 
 class EndpointRule(BaseRule):
-    def __init__(self, endpoint: Dict[str, Any], **kwargs: Any) -> None:
+    def __init__(self, endpoint: Mapping[str, Any], **kwargs: Any) -> None:
         self.endpoint: Dict[str, Any]
 
     def evaluate(
-        self, scope_vars: Dict[str, Any], rule_lib: RuleSetStandardLibary
+        self, scope_vars: Mapping[str, Any], rule_lib: RuleSetStandardLibary
     ) -> RuleSetEndpoint: ...
     def resolve_properties(
         self,
-        properties: Union[Dict[str, Any], List[Any], str],
-        scope_vars: Dict[str, Any],
+        properties: Union[Mapping[str, Any], List[Any], str],
+        scope_vars: Mapping[str, Any],
         rule_lib: RuleSetStandardLibary,
     ) -> Dict[str, Any]: ...
     def resolve_headers(
-        self, scope_vars: Dict[str, Any], rule_lib: RuleSetStandardLibary
+        self, scope_vars: Mapping[str, Any], rule_lib: RuleSetStandardLibary
     ) -> Dict[str, Any]: ...
 
 class ErrorRule(BaseRule):
     def __init__(self, error: Any, **kwargs: Any) -> None:
         self.error: Any
 
-    def evaluate(self, scope_vars: Dict[str, Any], rule_lib: RuleSetStandardLibary) -> None: ...
+    def evaluate(self, scope_vars: Mapping[str, Any], rule_lib: RuleSetStandardLibary) -> None: ...
 
 class TreeRule(BaseRule):
-    def __init__(self, rules: Iterable[Dict[str, Any]], **kwargs: Any) -> None:
+    def __init__(self, rules: Iterable[Mapping[str, Any]], **kwargs: Any) -> None:
         self.rules: Iterable[Dict[str, Any]]
 
     def evaluate(
-        self, scope_vars: Dict[str, Any], rule_lib: RuleSetStandardLibary
+        self, scope_vars: Mapping[str, Any], rule_lib: RuleSetStandardLibary
     ) -> Optional[RuleSetEndpoint]: ...
 
 class RuleCreator:
@@ -136,8 +150,8 @@ class RuleSet:
     def __init__(
         self,
         version: str,
-        parameters: Dict[str, Any],
-        rules: Iterable[Dict[str, Any]],
+        parameters: Mapping[str, Any],
+        rules: Iterable[Mapping[str, Any]],
         partitions: Any,
         documentation: Optional[str] = ...,
     ) -> None:
@@ -147,11 +161,11 @@ class RuleSet:
         self.rule_lib: RuleSetStandardLibary
         self.documentation: Optional[str]
 
-    def process_input_parameters(self, input_params: Dict[str, Any]) -> None: ...
-    def evaluate(self, input_parameters: Dict[str, Any]) -> Any: ...
+    def process_input_parameters(self, input_params: Mapping[str, Any]) -> None: ...
+    def evaluate(self, input_parameters: Mapping[str, Any]) -> Any: ...
 
 class EndpointProvider:
-    def __init__(self, ruleset_data: Dict[str, Any], partition_data: Dict[str, Any]) -> None:
+    def __init__(self, ruleset_data: Mapping[str, Any], partition_data: Mapping[str, Any]) -> None:
         self.ruleset: RuleSet
 
     def resolve_endpoint(self, **input_parameters: Any) -> RuleSetEndpoint: ...

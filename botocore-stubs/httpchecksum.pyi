@@ -53,24 +53,24 @@ class StreamingChecksumBody(StreamingBody):
     def read(self, amt: Optional[int] = ...) -> bytes: ...
 
 def resolve_checksum_context(
-    request: Dict[str, Any], operation_model: OperationModel, params: Mapping[str, Any]
+    request: Mapping[str, Any], operation_model: OperationModel, params: Mapping[str, Any]
 ) -> None: ...
 def resolve_request_checksum_algorithm(
-    request: Dict[str, Any],
+    request: Mapping[str, Any],
     operation_model: OperationModel,
     params: Mapping[str, Any],
     supported_algorithms: Optional[Sequence[str]] = ...,
 ) -> None: ...
-def apply_request_checksum(request: Dict[str, Any]) -> None: ...
+def apply_request_checksum(request: Mapping[str, Any]) -> None: ...
 def resolve_response_checksum_algorithms(
-    request: Dict[str, Any],
+    request: Mapping[str, Any],
     operation_model: OperationModel,
     params: Mapping[str, Any],
     supported_algorithms: Optional[Sequence[str]] = ...,
 ) -> None: ...
 def handle_checksum_body(
     http_response: AWSHTTPResponse,
-    response: Dict[str, Any],
+    response: Mapping[str, Any],
     context: Mapping[str, Any],
     operation_model: OperationModel,
 ) -> None: ...

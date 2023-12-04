@@ -5,7 +5,7 @@ from http.client import HTTPMessage
 from http.client import HTTPResponse as HTTPResponse
 from itertools import zip_longest as zip_longest
 from logging import Logger
-from typing import Any, Dict, Iterable, Mapping, Optional, Pattern, Tuple, Type, TypeVar
+from typing import Any, Iterable, Mapping, Optional, Pattern, Tuple, Type, TypeVar
 from urllib.parse import parse_qs as parse_qs
 from urllib.parse import parse_qsl as parse_qsl
 from urllib.parse import quote as quote
@@ -41,11 +41,11 @@ def ensure_bytes(s: Any, encoding: str = ..., errors: str = ...) -> Any: ...
 XMLParseError = ETree.ParseError
 
 def filter_ssl_warnings() -> None: ...
-def _from_dict(cls: Type[_R], d: Dict[str, Any]) -> _R: ...
+def _from_dict(cls: Type[_R], d: Mapping[str, Any]) -> _R: ...
 
 from_dict: Any
 
-def _from_pairs(cls: Type[_R], d: Dict[str, Any]) -> _R: ...
+def _from_pairs(cls: Type[_R], d: Mapping[str, Any]) -> _R: ...
 
 from_pairs: Any
 

@@ -93,9 +93,9 @@ class ConstantProvider(BaseProvider):
 class ConfiguredEndpointProvider(BaseProvider):
     def __init__(
         self,
-        full_config: Dict[str, Any],
-        scoped_config: Dict[str, Any],
+        full_config: Mapping[str, Any],
+        scoped_config: Mapping[str, Any],
         client_name: str,
-        environ: Optional[Dict[str, str]] = ...,
+        environ: Optional[Mapping[str, str]] = ...,
     ) -> None: ...
     def provide(self) -> Any: ...

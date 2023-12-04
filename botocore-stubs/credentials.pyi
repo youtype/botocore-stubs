@@ -1,5 +1,5 @@
 from logging import Logger
-from typing import Any, Callable, Dict, List, NamedTuple, Optional
+from typing import Any, Callable, Dict, List, Mapping, NamedTuple, Optional
 
 from botocore import UNSIGNED as UNSIGNED
 from botocore.compat import compat_shell_split as compat_shell_split
@@ -234,7 +234,7 @@ class AssumeRoleProvider(CredentialProvider):
     cache: Any = ...
     def __init__(
         self,
-        load_config: Callable[[], Dict[str, Any]],
+        load_config: Callable[[], Mapping[str, Any]],
         client_creator: Callable[..., Any],
         cache: Dict[str, Any],
         profile_name: str,
@@ -272,7 +272,7 @@ class ContainerProvider(CredentialProvider):
     ENV_VAR_AUTH_TOKEN: str = ...
     ENV_VAR_AUTH_TOKEN_FILE: str = ...
     def __init__(
-        self, environ: Optional[Dict[str, str]] = ..., fetcher: Optional[Any] = ...
+        self, environ: Optional[Mapping[str, str]] = ..., fetcher: Optional[Any] = ...
     ) -> None: ...
     def load(self) -> RefreshableCredentials: ...
 
