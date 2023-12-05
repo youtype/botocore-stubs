@@ -1,6 +1,7 @@
+import io
 from collections.abc import MutableMapping
 from logging import Logger
-from typing import Any, Dict, Iterator, Mapping, Optional, Type, TypeVar
+from typing import Any, Dict, Iterator, Mapping, Optional, Type, TypeVar, Union
 
 from botocore.compat import HTTPHeaders as HTTPHeaders
 from botocore.compat import HTTPResponse as HTTPResponse
@@ -58,7 +59,7 @@ class AWSPreparedRequest:
         method: str,
         url: str,
         headers: HTTPHeaders,
-        body: str,
+        body: Union[str, bytes, bytearray, io.IOBase, None],
         stream_output: bool,
     ) -> None:
         self.method: str
