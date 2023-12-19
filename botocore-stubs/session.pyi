@@ -3,14 +3,6 @@ from collections.abc import MutableMapping
 from logging import Logger
 from typing import IO, Any, Dict, Iterator, List, Mapping, Optional, Tuple, Union
 
-from botocore import UNSIGNED as UNSIGNED
-from botocore import handlers as handlers
-from botocore import monitoring as monitoring
-from botocore import paginate as paginate
-from botocore import retryhandler as retryhandler
-from botocore import translate as translate
-from botocore import utils as utils
-from botocore import waiter as waiter
 from botocore.client import BaseClient, Config
 from botocore.compat import HAS_CRT as HAS_CRT
 from botocore.configprovider import (
@@ -33,11 +25,13 @@ from botocore.hooks import HierarchicalEmitter as HierarchicalEmitter
 from botocore.hooks import first_non_none_response as first_non_none_response
 from botocore.loaders import create_loader as create_loader
 from botocore.model import ServiceModel as ServiceModel
+from botocore.paginate import PaginatorModel
 from botocore.parsers import ResponseParserFactory as ResponseParserFactory
 from botocore.regions import EndpointResolver as EndpointResolver
 from botocore.tokens import FrozenAuthToken
 from botocore.utils import EVENT_ALIASES as EVENT_ALIASES
 from botocore.utils import validate_region_name as validate_region_name
+from botocore.waiter import WaiterModel
 
 if sys.version_info >= (3, 9):
     from typing import Protocol
@@ -89,10 +83,10 @@ class Session:
     ) -> ServiceModel: ...
     def get_waiter_model(
         self, service_name: str, api_version: Optional[str] = ...
-    ) -> waiter.WaiterModel: ...
+    ) -> WaiterModel: ...
     def get_paginator_model(
         self, service_name: str, api_version: Optional[str] = ...
-    ) -> paginate.PaginatorModel: ...
+    ) -> PaginatorModel: ...
     def get_service_data(self, service_name: str, api_version: Optional[str] = ...) -> Any: ...
     def get_available_services(self) -> Any: ...
     def set_debug_logger(self, logger_name: str = ...) -> None: ...

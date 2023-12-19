@@ -1,7 +1,6 @@
 from logging import Logger
 from typing import Any, Mapping, Optional, Type
 
-from botocore import parsers as parsers
 from botocore.awsrequest import create_request_object as create_request_object
 from botocore.exceptions import HTTPClientError as HTTPClientError
 from botocore.history import get_global_history_recorder as get_global_history_recorder
@@ -34,7 +33,7 @@ class Endpoint:
         self.http_session: URLLib3Session
 
     def close(self) -> None: ...
-    def make_request(self, operation_model: Any, request_dict: Any) -> Any: ...
+    def make_request(self, operation_model: OperationModel, request_dict: Any) -> Any: ...
     def create_request(
         self, params: Mapping[str, Any], operation_model: Optional[OperationModel] = ...
     ) -> Any: ...

@@ -8,107 +8,13 @@ packages:
       stubtest: true
     snapshots:
       stubtest: |-
-        error: botocore.docs failed to find stubs
-        Stub:
-        MISSING
+        error: botocore.docs.translator failed to import. Maybe install the runtime package or alter PYTHONPATH? ModuleNotFoundError: No module named 'sphinx'
+        Stub: in file ./botocore-stubs/docs/translator.pyi:1
+        MypyFile:1(
+          ./botocore-stubs/docs/translator.pyi
+          IgnoredLines(3))
         Runtime:
-        <module 'botocore.docs' from './botocore/docs/__init__.py'>
-
-        error: botocore.docs.bcdoc failed to find stubs
-        Stub:
         MISSING
-        Runtime:
-        <module 'botocore.docs.bcdoc' from './botocore/docs/bcdoc/__init__.py'>
-
-        error: botocore.docs.bcdoc.docstringparser failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        <module 'botocore.docs.bcdoc.docstringparser' from './botocore/docs/bcdoc/docstringparser.py'>
-
-        error: botocore.docs.bcdoc.restdoc failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        <module 'botocore.docs.bcdoc.restdoc' from './botocore/docs/bcdoc/restdoc.py'>
-
-        error: botocore.docs.bcdoc.style failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        <module 'botocore.docs.bcdoc.style' from './botocore/docs/bcdoc/style.py'>
-
-        error: botocore.docs.client failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        <module 'botocore.docs.client' from './botocore/docs/client.py'>
-
-        error: botocore.docs.docstring failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        <module 'botocore.docs.docstring' from './botocore/docs/docstring.py'>
-
-        error: botocore.docs.example failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        <module 'botocore.docs.example' from './botocore/docs/example.py'>
-
-        error: botocore.docs.method failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        <module 'botocore.docs.method' from './botocore/docs/method.py'>
-
-        error: botocore.docs.paginator failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        <module 'botocore.docs.paginator' from './botocore/docs/paginator.py'>
-
-        error: botocore.docs.params failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        <module 'botocore.docs.params' from './botocore/docs/params.py'>
-
-        error: botocore.docs.service failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        <module 'botocore.docs.service' from './botocore/docs/service.py'>
-
-        error: botocore.docs.shape failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        <module 'botocore.docs.shape' from './botocore/docs/shape.py'>
-
-        error: botocore.docs.sharedexample failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        <module 'botocore.docs.sharedexample' from './botocore/docs/sharedexample.py'>
-
-        error: botocore.docs.translator failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        N/A
-
-        error: botocore.docs.utils failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        <module 'botocore.docs.utils' from './botocore/docs/utils.py'>
-
-        error: botocore.docs.waiter failed to find stubs
-        Stub:
-        MISSING
-        Runtime:
-        <module 'botocore.docs.waiter' from './botocore/docs/waiter.py'>
 
         error: botocore.vendored failed to find stubs
         Stub:

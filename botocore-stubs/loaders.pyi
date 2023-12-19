@@ -1,7 +1,6 @@
 from logging import Logger
 from typing import Any, Callable, Dict, Iterable, List, Mapping, Optional, Tuple, Type
 
-from botocore import BOTOCORE_ROOT as BOTOCORE_ROOT
 from botocore.compat import OrderedDict as OrderedDict
 from botocore.exceptions import DataNotFoundError as DataNotFoundError
 from botocore.exceptions import UnknownServiceError as UnknownServiceError

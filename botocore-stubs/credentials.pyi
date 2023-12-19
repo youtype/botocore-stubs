@@ -1,7 +1,6 @@
 from logging import Logger
 from typing import Any, Callable, Dict, List, Mapping, NamedTuple, Optional
 
-from botocore import UNSIGNED as UNSIGNED
 from botocore.compat import compat_shell_split as compat_shell_split
 from botocore.compat import total_seconds as total_seconds
 from botocore.config import Config as Config

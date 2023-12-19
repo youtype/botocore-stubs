@@ -1,9 +1,6 @@
 from logging import Logger
 from typing import Any, Dict, List, Optional, Union
 
-from botocore import UNSIGNED as UNSIGNED
-from botocore import waiter as waiter
-from botocore import xform_name as xform_name
 from botocore.args import ClientArgsCreator as ClientArgsCreator
 from botocore.auth import AUTH_TYPE_MAPS as AUTH_TYPE_MAPS
 from botocore.awsrequest import prepare_request_dict as prepare_request_dict
@@ -41,6 +38,7 @@ from botocore.utils import S3EndpointSetter as S3EndpointSetter
 from botocore.utils import S3RegionRedirector as S3RegionRedirector
 from botocore.utils import ensure_boolean as ensure_boolean
 from botocore.utils import get_service_module_name as get_service_module_name
+from botocore.waiter import Waiter
 
 logger: Logger = ...
 history_recorder: HistoryRecorder = ...
@@ -124,7 +122,7 @@ class BaseClient:
     def close(self) -> None: ...
     def get_paginator(self, operation_name: Any) -> Paginator: ...
     def can_paginate(self, operation_name: str) -> bool: ...
-    def get_waiter(self, waiter_name: Any) -> waiter.Waiter: ...
+    def get_waiter(self, waiter_name: Any) -> Waiter: ...
     @CachedProperty
     def waiter_names(self) -> List[str]: ...
     @property

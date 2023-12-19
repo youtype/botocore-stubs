@@ -1,7 +1,6 @@
 from logging import Logger
 from typing import Any, Dict, List, Optional
 
-from botocore import xform_name as xform_name
 from botocore.exceptions import BotoCoreError as BotoCoreError
 from botocore.exceptions import ConnectionError as ConnectionError
 from botocore.exceptions import HTTPClientError as HTTPClientError

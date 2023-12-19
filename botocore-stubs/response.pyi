@@ -3,7 +3,6 @@ from io import IOBase
 from typing import IO, Any, Iterator, List, Optional, Tuple
 
 import requests
-from botocore import ScalarTypes as ScalarTypes
 from botocore.model import OperationModel
 
 logger: logging.Logger

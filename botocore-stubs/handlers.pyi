@@ -2,9 +2,6 @@ from logging import Logger
 from typing import Any, Dict, Mapping, Pattern, Tuple
 from urllib.request import Request
 
-from botocore import retryhandler as retryhandler
-from botocore import translate as translate
-from botocore import utils as utils
 from botocore.compat import MD5_AVAILABLE as MD5_AVAILABLE
 from botocore.compat import OrderedDict as OrderedDict
 from botocore.compat import XMLParseError as XMLParseError

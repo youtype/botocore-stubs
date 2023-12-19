@@ -16,7 +16,6 @@ from typing import (
     Union,
 )
 
-from botocore import xform_name as xform_name
 from botocore.compat import quote as quote
 from botocore.compat import urlparse as urlparse
 from botocore.exceptions import EndpointResolutionError as EndpointResolutionError

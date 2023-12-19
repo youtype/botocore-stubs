@@ -1,7 +1,6 @@
 from logging import Logger
 from typing import Any, Dict, List, Mapping, Optional, Tuple, TypeVar
 
-from botocore import utils as utils
 from botocore.utils import IMDSRegionProvider
 
 BOTOCORE_DEFAUT_SESSION_VARIABLES: Dict[str, Tuple[Any, ...]]
