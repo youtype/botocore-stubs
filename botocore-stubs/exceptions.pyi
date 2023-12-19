@@ -626,8 +626,6 @@ class _EndpointProviderErrorKwargs(TypedDict):
     msg: str
 
 class EndpointProviderError(BotoCoreError):
-    """Base error for the EndpointProvider class"""
-
     def __init__(self, *, msg: str = ..., **kwargs: Any) -> None:
         self.kwargs: _EndpointProviderErrorKwargs
 
