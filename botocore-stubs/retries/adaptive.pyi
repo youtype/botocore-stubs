@@ -1,13 +1,14 @@
 from logging import Logger
 from typing import Any
 
+from botocore.client import BaseClient
 from botocore.retries import bucket as bucket
 from botocore.retries import standard as standard
 from botocore.retries import throttling as throttling
 
 logger: Logger = ...
 
-def register_retry_handler(client: Any) -> Any: ...
+def register_retry_handler(client: BaseClient) -> "ClientRateLimiter": ...
 
 class ClientRateLimiter:
     def __init__(
