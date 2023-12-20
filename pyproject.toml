@@ -71,6 +71,7 @@ istub = { version = "*", python = ">=3.10" }
 types-requests = "*"
 types-python-dateutil = "*"
 types-dataclasses = "*"
+docutils = "*"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

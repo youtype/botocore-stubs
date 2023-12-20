@@ -8,7 +8,7 @@ packages:
       stubtest: true
     snapshots:
       stubtest: |-
-        error: botocore.docs.translator failed to import. Maybe install the runtime package or alter PYTHONPATH? ModuleNotFoundError: No module named 'docutils'
+        error: botocore.docs.translator failed to import. Maybe install the runtime package or alter PYTHONPATH? ModuleNotFoundError: No module named 'sphinx'
         Stub: in file ./botocore-stubs/docs/translator.pyi:1
         MypyFile:1(
           ./botocore-stubs/docs/translator.pyi
