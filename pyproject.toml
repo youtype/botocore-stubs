@@ -52,15 +52,15 @@ include = [
 "Bug Tracker" = "https://github.com/youtype/botocore-stubs/issues"
 
 [tool.poetry.dependencies]
-botocore = { version = "*", optional = true }
-python = "^3.7"
+python = "^3.8"
 types-awscrt = "*"
 typing-extensions = { version = ">=4.1.0", python = "<3.9" }
+botocore = { version = "*", optional = true }
 
 [tool.poetry.extras]
 botocore = ["botocore"]
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 awscrt = "*"
 botocore = "*"
 isort = { version = "*", python = ">=3.10" }
