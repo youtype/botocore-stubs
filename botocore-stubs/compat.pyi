@@ -31,6 +31,7 @@ class HTTPHeaders(HTTPMessage):
     def from_pairs(cls: Type[_R], pairs: Iterable[Tuple[str, Any]]) -> _R: ...
 
 file_type: Any
+zip: Any
 unquote_str = unquote_plus
 
 def set_socket_timeout(http_response: Any, timeout: Any) -> None: ...

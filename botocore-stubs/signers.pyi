@@ -1,14 +1,17 @@
-from typing import Any, Mapping, Optional
+from typing import Any, Mapping, Optional, Union
 
 from botocore.awsrequest import create_request_object as create_request_object
 from botocore.awsrequest import prepare_request_dict as prepare_request_dict
 from botocore.compat import OrderedDict as OrderedDict
+from botocore.credentials import Credentials, ReadOnlyCredentials
 from botocore.exceptions import UnknownClientMethodError as UnknownClientMethodError
 from botocore.exceptions import UnknownSignatureVersionError as UnknownSignatureVersionError
 from botocore.exceptions import UnsupportedSignatureVersionError as UnsupportedSignatureVersionError
 from botocore.hooks import BaseEventHooks
 from botocore.model import ServiceId
 from botocore.utils import datetime2timestamp as datetime2timestamp
+
+_CredentialsUnion = Union[Credentials, ReadOnlyCredentials]
 
 class RequestSigner:
     def __init__(
@@ -17,7 +20,7 @@ class RequestSigner:
         region_name: str,
         signing_name: str,
         signature_version: str,
-        credentials: Any,
+        credentials: _CredentialsUnion,
         event_emitter: BaseEventHooks,
         auth_token: Optional[str] = ...,
     ) -> None: ...
@@ -44,6 +47,7 @@ class RequestSigner:
         signing_name: str,
         region_name: str,
         signature_version: Optional[str] = ...,
+        request_credentials: Optional[_CredentialsUnion] = ...,
         **kwargs: Any,
     ) -> Any: ...
     get_auth: Any = ...
