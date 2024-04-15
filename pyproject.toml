@@ -1,7 +1,7 @@
 [tool.black]
 line-length = 100
 include = '(botocore-stubs)/.*\.pyi?$'
-target-version = ['py37', 'py38', 'py39', 'py310']
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
 preview = true
 
 [tool.isort]
@@ -27,7 +27,6 @@ classifiers = [
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
@@ -86,4 +85,4 @@ reportMissingTypeArgument = "error"
 reportIncompatibleMethodOverride = "error"
 reportIncompatibleVariableOverride = false
 reportUnknownParameterType = "error"
-pythonVersion = "3.7"
+pythonVersion = "3.8"
