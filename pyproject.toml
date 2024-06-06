@@ -62,10 +62,9 @@ botocore = ["botocore"]
 [tool.poetry.group.dev.dependencies]
 awscrt = "*"
 botocore = "*"
-isort = { version = "*", python = ">=3.10" }
-black = { version = "*", python = ">=3.10" }
 mypy = { version = "*", python = ">=3.10" }
-flake8 = { version = "*", python = ">=3.10" }
+ruff = "*"
+pyright = "*"
 istub = { version = "*", python = ">=3.10" }
 types-requests = "*"
 types-python-dateutil = "*"
@@ -86,3 +85,57 @@ reportIncompatibleMethodOverride = "error"
 reportIncompatibleVariableOverride = false
 reportUnknownParameterType = "error"
 pythonVersion = "3.8"
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = false
+warn_unused_ignores = false
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+ignore_errors = false
+
+[tool.ruff]
+exclude = [
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".venv",
+    ".vscode",
+    "build",
+    "dist",
+]
+
+line-length = 100
+indent-width = 4
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "B", "I", "N", "D", "C4", "C90", "RUF"]
+ignore = [
+    "E203",
+    "D107",
+    "D200",
+    "D203",
+    "D212",
+    "D401",
+    "D406",
+    "D407",
+    "D413",
+    "D417",
+]
+fixable = ["ALL"]
+unfixable = ["B"]
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+exclude = ["test_*.py", "*.pyi"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = false
+docstring-code-line-length = "dynamic"

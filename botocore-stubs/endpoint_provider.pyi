@@ -1,5 +1,4 @@
 import logging
-import re
 from enum import Enum
 from string import Formatter
 from typing import (

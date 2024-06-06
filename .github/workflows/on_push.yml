@@ -37,29 +37,21 @@ jobs:
         with:
           python-version: ${{ matrix.version }}
           cache: "poetry"
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
       - name: Install dependencies
         run: |
           poetry install -n
       - name: Install missing dependencies
         run: |
-          poetry run pip install flake8 mypy
-      - name: Install Node.js dependencies
-        run: |
-          npm install -g pyright
+          poetry run pip install mypy
       - name: Lint
         run: |
-          poetry run flake8 botocore-stubs
-          poetry run npx pyright botocore-stubs
+          poetry run pyright
+          poetry run ruff check
           poetry run mypy botocore-stubs
       - name: Check formatting
         if: ${{ matrix.check-formatting }}
         run: |
-          poetry run black --check botocore-stubs
-          poetry run isort -c botocore-stubs
+          poetry run ruff format --check
       - name: Stubs consistency check
         if: ${{ matrix.check-consistency }}
         run: |
