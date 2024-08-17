@@ -149,4 +149,7 @@ class HmacV1PostAuth(HmacV1Auth):
 class BearerAuth(TokenSigner):
     def add_auth(self, request: AWSRequest) -> None: ...
 
+def resolve_auth_type(auth_trait: Iterable[str]) -> str: ...
+
 AUTH_TYPE_MAPS: Dict[str, Type[BaseSigner]]
+AUTH_TYPE_TO_SIGNATURE_VERSION: Dict[str, str]
