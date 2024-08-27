@@ -60,9 +60,6 @@ Issues = "https://github.com/youtype/botocore-stubs/issues"
 requires = ['setuptools']
 build-backend = 'setuptools.build_meta'
 
-[tool.setuptools]
-packages = ["botocore-stubs"]
-
 [tool.pyright]
 include = ["botocore-stubs"]
 exclude = ["**/__pycache__", "tests", "typestubs"]
