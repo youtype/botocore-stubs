@@ -34,6 +34,7 @@ dependencies = [
 botocore = ["botocore"]
 
 [tool.uv]
+config-settings = { editable-mode = "strict" }
 dev-dependencies = [
     "setuptools",
     "pre-commit",
