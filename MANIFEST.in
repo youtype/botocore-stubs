@@ -1,0 +1,4 @@
+include botocore-stubs/py.typed
+include botocore-stubs/*.pyi
+include botocore-stubs/*/*.pyi
+include botocore-stubs/*/*/*.pyi

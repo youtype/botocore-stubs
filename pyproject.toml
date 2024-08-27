@@ -1,24 +1,11 @@
-[tool.black]
-line-length = 100
-include = '(botocore-stubs)/.*\.pyi?$'
-target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
-preview = true
-
-[tool.isort]
-profile = "black"
-line_length = 100
-src_paths = []
-
-[tool.poetry]
+[project]
 name = "botocore-stubs"
 version = "1.35.6"
+requires-python = ">=3.8"
 description = "Type annotations and code completion for botocore"
-authors = ["Vlad Emelianov <vlad.emelianov.nz@gmail.com>"]
-license = "MIT"
+authors = [{ name = "Vlad Emelianov", email = "vlad.emelianov.nz@gmail.com" }]
+license = { file = "LICENSE" }
 readme = "README.md"
-homepage = "https://youtype.github.io/mypy_boto3_builder/"
-repository = "https://github.com/youtype/botocore-stubs"
-documentation = "https://youtype.github.io/mypy_boto3_builder/"
 keywords = ["botocore", "type-annotations", "pyright", "mypy", "boto3"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -38,42 +25,44 @@ classifiers = [
     "Typing :: Stubs Only",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-packages = [{ include = "botocore-stubs" }]
-include = [
-    "botocore-stubs/py.typed",
-    "botocore-stubs/*.pyi",
-    "botocore-stubs/*/*.pyi",
+dependencies = [
+    "types-awscrt",
+    "typing-extensions>=4.1.0; python_version<'3.9'",
 ]
 
-[tool.poetry.urls]
-"Documentation" = "https://youtype.github.io/mypy_boto3_builder/"
-"Source" = "https://github.com/youtype/botocore-stubs"
-"Bug Tracker" = "https://github.com/youtype/botocore-stubs/issues"
-
-[tool.poetry.dependencies]
-python = "^3.8"
-types-awscrt = "*"
-typing-extensions = { version = ">=4.1.0", python = "<3.9" }
-botocore = { version = "*", optional = true }
-
-[tool.poetry.extras]
+[project.optional-dependencies]
 botocore = ["botocore"]
 
-[tool.poetry.group.dev.dependencies]
-awscrt = "*"
-botocore = "*"
-mypy = { version = "*", python = ">=3.10" }
-ruff = "*"
-pyright = "*"
-istub = { version = "*", python = ">=3.10" }
-types-requests = "*"
-types-python-dateutil = "*"
-types-dataclasses = "*"
-docutils = "*"
+[tool.uv]
+config-settings = { editable-mode = "strict" }
+dev-dependencies = [
+    "setuptools",
+    "pre-commit",
+    "awscrt",
+    "botocore",
+    "mypy",
+    "ruff",
+    "pyright",
+    "istub",
+    "types-requests",
+    "types-python-dateutil",
+    "types-dataclasses",
+    "docutils",
+]
+
+[project.urls]
+Homepage = "https://github.com/youtype/botocore-stubs"
+Documentation = "https://youtype.github.io/mypy_boto3_builder/"
+Repository = "https://github.com/youtype/botocore-stubs"
+Changelog = "https://github.com/youtype/botocore-stubs/releases"
+Issues = "https://github.com/youtype/botocore-stubs/issues"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ['setuptools']
+build-backend = 'setuptools.build_meta'
+
+[tool.setuptools]
+packages = ["botocore-stubs"]
 
 [tool.pyright]
 include = ["botocore-stubs"]
@@ -114,7 +103,7 @@ indent-width = 4
 target-version = "py38"
 
 [tool.ruff.lint]
-select = ["E4", "E7", "E9", "F", "B", "I", "N", "D", "C4", "C90", "RUF"]
+select = ["E4", "E7", "E9", "F", "B", "I", "N", "D", "C4", "C90", "RUF", "PYI"]
 ignore = [
     "E203",
     "D107",
