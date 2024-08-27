@@ -40,4 +40,5 @@ jobs:
       - name: Stubs consistency check
         if: ${{ matrix.check-consistency }}
         run: |
+          uv pip install -e . --config-settings editable_mode=compat
           uv run istub -d
