@@ -59,10 +59,40 @@ function getNextVersion(version) {
     return `${stableVersion}.post${parseInt(post, 10) + 1}`
 }
 
+async function extractVersions() {
+    core.setOutput('stubs-version', '')
+    const package = process.env.PACKAGE
+    const stubsPackage = process.env.STUBS
+    const force = context.payload.inputs ? context.payload.inputs.force !== 'false' : false
+
+    if (force) {
+        core.notice('Force release, skipping version check')
+    }
+
+    const inputVersion = context.payload.inputs?.version
+    const version = inputVersion ? inputVersion : await getLatestVersion(package)
+    core.notice(`${package} version = ${version}`)
+
+    const stubsVersion = await getLatestStubsVersion(stubsPackage, version)
+    core.notice(`${stubsPackage} latest version = ${stubsVersion}`)
+
+    const buildStubsVersion = stubsVersion ? getNextVersion(stubsVersion) : version
+
+    if (!force) {
+        const isStubsVersionGreater = stubsVersion === null || isStableVersionGreater(buildStubsVersion, stubsVersion)
+        if (!isStubsVersionGreater) {
+            core.notice('Stubs version is not greater than the latest, skipping run')
+            return
+        }
+    }
+
+    core.notice(`New ${package} version found: ${version}`)
+    core.notice(`${stubsPackage} build version = ${buildStubsVersion}`)
+    core.setOutput('version', version)
+    core.setOutput('stubs-version', buildStubsVersion)
+}
+
 module.exports = {
     setupGlobals,
-    getLatestVersion,
-    getLatestStubsVersion,
-    isStableVersionGreater,
-    getNextVersion
+    extractVersions
 }
