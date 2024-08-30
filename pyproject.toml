@@ -64,10 +64,6 @@ build-backend = 'setuptools.build_meta'
 [tool.setuptools]
 packages = [
     "botocore-stubs",
-    "botocore-stubs.crt",
-    "botocore-stubs.docs",
-    "botocore-stubs.docs.bcdoc",
-    "botocore-stubs.retries",
 ]
 
 [tool.pyright]
