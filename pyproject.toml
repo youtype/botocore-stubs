@@ -1,6 +1,6 @@
 [project]
 name = "botocore-stubs"
-version = "1.35.12"
+version = "1.35.13"
 requires-python = ">=3.8"
 description = "Type annotations and code completion for botocore"
 authors = [{ name = "Vlad Emelianov", email = "vlad.emelianov.nz@gmail.com" }]
