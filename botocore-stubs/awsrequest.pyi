@@ -48,7 +48,7 @@ def prepare_request_dict(
     request_dict: Mapping[str, Any],
     endpoint_url: str,
     context: Optional[Any] = ...,
-    user_agent: Optional[Any] = ...,
+    user_agent: Optional[str] = ...,
 ) -> None: ...
 def create_request_object(request_dict: Mapping[str, Any]) -> Any: ...
 

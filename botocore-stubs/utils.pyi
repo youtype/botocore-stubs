@@ -107,7 +107,7 @@ class IMDSFetcher:
         num_attempts: int = ...,
         base_url: str = ...,
         env: Optional[Any] = ...,
-        user_agent: Optional[Any] = ...,
+        user_agent: Optional[str] = ...,
         config: Optional[Any] = ...,
     ) -> None: ...
     def get_base_url(self) -> str: ...

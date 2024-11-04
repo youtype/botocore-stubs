@@ -14,6 +14,7 @@ from botocore.parsers import ResponseParser, ResponseParserFactory
 from botocore.serialize import BaseRestSerializer
 from botocore.signers import RequestSigner as RequestSigner
 from botocore.useragent import UserAgentString
+from botocore.errorfactory import ClientExceptionsFactory
 
 if sys.version_info >= (3, 9):
     from typing import TypedDict
@@ -36,16 +37,16 @@ class _GetClientArgsTypeDef(TypedDict):
     loader: Loader
     client_config: Config
     partition: Optional[str]
-    exceptions_factory: Any
+    exceptions_factory: ClientExceptionsFactory
 
 class ClientArgsCreator:
     def __init__(
         self,
         event_emitter: BaseEventHooks,
-        user_agent: Any,
+        user_agent: str,
         response_parser_factory: ResponseParserFactory,
         loader: Loader,
-        exceptions_factory: Any,
+        exceptions_factory: ClientExceptionsFactory,
         config_store: ConfigValueStore,
         user_agent_creator: Optional[UserAgentString] = ...,
     ) -> None: ...

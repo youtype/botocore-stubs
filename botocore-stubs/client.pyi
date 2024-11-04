@@ -5,6 +5,7 @@ from botocore.args import ClientArgsCreator as ClientArgsCreator
 from botocore.auth import AUTH_TYPE_MAPS as AUTH_TYPE_MAPS
 from botocore.awsrequest import prepare_request_dict as prepare_request_dict
 from botocore.config import Config as Config
+from botocore.configprovider import ConfigValueStore
 from botocore.discovery import EndpointDiscoveryHandler as EndpointDiscoveryHandler
 from botocore.discovery import EndpointDiscoveryManager as EndpointDiscoveryManager
 from botocore.discovery import (
@@ -39,6 +40,7 @@ from botocore.utils import S3RegionRedirector as S3RegionRedirector
 from botocore.utils import ensure_boolean as ensure_boolean
 from botocore.utils import get_service_module_name as get_service_module_name
 from botocore.waiter import Waiter
+from botocore.errorfactory import ClientExceptionsFactory
 
 logger: Logger = ...
 history_recorder: HistoryRecorder = ...
@@ -53,8 +55,8 @@ class ClientCreator:
         retry_handler_factory: Any,
         retry_config_translator: Any,
         response_parser_factory: Optional[Any] = ...,
-        exceptions_factory: Optional[Any] = ...,
-        config_store: Optional[Any] = ...,
+        exceptions_factory: Optional[ClientExceptionsFactory] = ...,
+        config_store: Optional[ConfigValueStore] = ...,
         user_agent_creator: Optional[UserAgentString] = ...,
     ) -> None: ...
     def create_client(
@@ -81,7 +83,7 @@ class ClientEndpointBridge:
         client_config: Optional[Any] = ...,
         default_endpoint: Optional[str] = ...,
         service_signing_name: Optional[str] = ...,
-        config_store: Any = ...,
+        config_store: Optional[ConfigValueStore] = ...,
         service_signature_version: Optional[str] = ...,
     ) -> None:
         self.service_signing_name: str
@@ -89,7 +91,7 @@ class ClientEndpointBridge:
         self.scoped_config: Any
         self.client_config: Any
         self.default_endpoint: str
-        self.config_store: Any
+        self.config_store: ConfigValueStore
 
     def resolve(
         self,
@@ -112,7 +114,7 @@ class BaseClient:
         loader: Loader,
         client_config: Config,
         partition: str,
-        exceptions_factory: Any,
+        exceptions_factory: ClientExceptionsFactory,
         endpoint_ruleset_resolver: Optional[EndpointRulesetResolver] = ...,
         user_agent_creator: Optional[UserAgentString] = ...,
     ) -> None:
