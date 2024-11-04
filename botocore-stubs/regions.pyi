@@ -61,6 +61,8 @@ class EndpointResolverBuiltins(Enum):
     AWS_S3CONTROL_USE_ARN_REGION: str
     AWS_S3_DISABLE_MRAP: str
     SDK_ENDPOINT: str
+    ACCOUNT_ID: str
+    ACCOUNT_ID_ENDPOINT_MODE: str
 
 class EndpointRulesetResolver:
     def __init__(

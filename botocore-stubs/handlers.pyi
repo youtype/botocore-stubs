@@ -12,6 +12,7 @@ from botocore.compat import unquote as unquote
 from botocore.compat import unquote_str as unquote_str
 from botocore.compat import urlsplit as urlsplit
 from botocore.compat import urlunsplit as urlunsplit
+from botocore.docs.bcdoc.restdoc import DocumentStructure
 from botocore.exceptions import AliasConflictParameterError as AliasConflictParameterError
 from botocore.exceptions import MissingServiceIdError as MissingServiceIdError
 from botocore.exceptions import ParamValidationError as ParamValidationError
@@ -136,5 +137,12 @@ def customize_endpoint_resolver_builtins(
     **kwargs: Any,
 ) -> None: ...
 def remove_content_type_header_for_presigning(request: Request, **kwargs: Any) -> None: ...
+def handle_expires_header(
+    operation_model: OperationModel,
+    response_dict: Mapping[str, Any],
+    customized_response_dict: Dict[str, Any],
+    **kwargs: Any,
+) -> None: ...
+def document_expires_shape(section: DocumentStructure, event_name: str, **kwargs: Any) -> None: ...
 
 BUILTIN_HANDLERS: Any
