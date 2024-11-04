@@ -21,7 +21,7 @@ jobs:
           - "3.12"
           - "3.13"
         include:
-          - version: "3.11"
+          - version: "3.12"
             check-formatting: "true"
             check-consistency: "true"
     steps:

@@ -63,7 +63,7 @@ jobs:
       - name: Stubs consistency check
         if: "${{ github.event.inputs.force != 'true' }}"
         run: |
-          uv run istub -d
+          uv run --no-sync istub -d
       - name: Bump version
         run: |
           echo "Bumping version to ${STUBS_VERSION}"
@@ -74,6 +74,7 @@ jobs:
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
+          git add uv.lock
           git add pyproject.toml
           git commit -m "Release ${STUBS_VERSION}"
           git push
