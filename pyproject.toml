@@ -20,6 +20,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: Implementation :: CPython",
     "Typing :: Stubs Only",
@@ -62,9 +63,7 @@ requires = ['setuptools']
 build-backend = 'setuptools.build_meta'
 
 [tool.setuptools]
-packages = [
-    "botocore-stubs",
-]
+packages = ["botocore-stubs"]
 
 [tool.pyright]
 include = ["botocore-stubs"]
@@ -105,19 +104,7 @@ indent-width = 4
 target-version = "py38"
 
 [tool.ruff.lint]
-select = ["E4", "E7", "E9", "F", "B", "I", "N", "D", "C4", "C90", "RUF", "PYI"]
-ignore = [
-    "E203",
-    "D107",
-    "D200",
-    "D203",
-    "D212",
-    "D401",
-    "D406",
-    "D407",
-    "D413",
-    "D417",
-]
+select = ["E4", "E7", "E9", "F", "B", "I", "N", "C4", "C90", "RUF", "PYI"]
 fixable = ["ALL"]
 unfixable = ["B"]
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
