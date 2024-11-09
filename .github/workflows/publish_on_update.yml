@@ -67,7 +67,7 @@ jobs:
       - name: Bump version
         run: |
           echo "Bumping version to ${STUBS_VERSION}"
-          uvx newversion -psi ${STUBS_VERSION}
+          uvx newversion -i ${STUBS_VERSION} --save
           uv pip install .
       - name: Commit changes
         if: "${{ github.event.inputs.version == '' }}"
