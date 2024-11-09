@@ -1,5 +1,5 @@
 from logging import Logger
-from typing import Any, Dict, Mapping, Pattern, Tuple
+from typing import Any, Dict, List, Mapping, Pattern, Tuple
 from urllib.request import Request
 
 from botocore.client import BaseClient
@@ -144,5 +144,8 @@ def handle_expires_header(
     **kwargs: Any,
 ) -> None: ...
 def document_expires_shape(section: DocumentStructure, event_name: str, **kwargs: Any) -> None: ...
+def add_query_compatibility_header(
+    model: OperationModel, params: Dict[str, Any], **kwargs: Any
+) -> None: ...
 
-BUILTIN_HANDLERS: Any
+BUILTIN_HANDLERS: List[Tuple[Any, ...]] = ...

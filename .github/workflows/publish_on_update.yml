@@ -53,7 +53,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
       - name: Set up uv
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Install the project
@@ -67,7 +67,7 @@ jobs:
       - name: Bump version
         run: |
           echo "Bumping version to ${STUBS_VERSION}"
-          sed -i 's/^version = ".*"$/version = "'$STUBS_VERSION'"/' pyproject.toml
+          uvx newversion -psi ${STUBS_VERSION}
           uv pip install .
       - name: Commit changes
         if: "${{ github.event.inputs.version == '' }}"
