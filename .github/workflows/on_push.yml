@@ -22,7 +22,7 @@ jobs:
           - "3.13"
           - "3.14"
         include:
-          - version: "3.12"
+          - version: "3.13"
             check-consistency: "true"
     steps:
       - uses: actions/checkout@v4
