@@ -1,3 +1,7 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from logging import Logger
 from typing import Any
 
@@ -8,7 +12,7 @@ from botocore.retries import throttling as throttling
 
 logger: Logger = ...
 
-def register_retry_handler(client: BaseClient) -> "ClientRateLimiter": ...
+def register_retry_handler(client: BaseClient) -> ClientRateLimiter: ...
 
 class ClientRateLimiter:
     def __init__(

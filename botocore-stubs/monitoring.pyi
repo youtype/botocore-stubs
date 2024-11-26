@@ -1,13 +1,16 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 import socket
 from logging import Logger
-from typing import Any, Callable, Dict, Optional, Sequence
+from typing import Any, Callable, Sequence
 
 from botocore.compat import ensure_bytes as ensure_bytes
 from botocore.compat import ensure_unicode as ensure_unicode
 from botocore.compat import urlparse as urlparse
 from botocore.hooks import BaseEventHooks
 from botocore.model import OperationModel
-from botocore.retryhandler import EXCEPTION_MAP as RETRYABLE_EXCEPTIONS
 
 logger: Logger = ...
 
@@ -19,7 +22,7 @@ class Monitor:
 class MonitorEventAdapter:
     def __init__(self, time: Callable[[], float] = ...) -> None: ...
     def feed(
-        self, emitter_event_name: str, emitter_payload: Dict[str, Any]
+        self, emitter_event_name: str, emitter_payload: dict[str, Any]
     ) -> BaseMonitorEvent: ...
 
 class BaseMonitorEvent:
@@ -28,7 +31,7 @@ class BaseMonitorEvent:
         self.operation: str = ...
         self.timestamp: int = ...
 
-    def __eq__(self, other: Any) -> bool: ...
+    def __eq__(self, other: object) -> bool: ...
 
 class APICallEvent(BaseMonitorEvent):
     def __init__(
@@ -36,8 +39,8 @@ class APICallEvent(BaseMonitorEvent):
         service: str,
         operation: OperationModel,
         timestamp: int,
-        latency: Optional[int] = ...,
-        attempts: Optional[Sequence[APICallAttemptEvent]] = ...,
+        latency: int | None = ...,
+        attempts: Sequence[APICallAttemptEvent] | None = ...,
         retries_exceeded: bool = ...,
     ) -> None:
         self.latency: int = ...
@@ -52,21 +55,21 @@ class APICallAttemptEvent(BaseMonitorEvent):
         service: str,
         operation: OperationModel,
         timestamp: int,
-        latency: Optional[int] = ...,
-        url: Optional[str] = ...,
-        http_status_code: Optional[int] = ...,
-        request_headers: Optional[Dict[str, Any]] = ...,
-        response_headers: Optional[Dict[str, Any]] = ...,
-        parsed_error: Optional[Dict[str, Any]] = ...,
-        wire_exception: Optional[Exception] = ...,
+        latency: int | None = ...,
+        url: str | None = ...,
+        http_status_code: int | None = ...,
+        request_headers: dict[str, Any] | None = ...,
+        response_headers: dict[str, Any] | None = ...,
+        parsed_error: dict[str, Any] | None = ...,
+        wire_exception: Exception | None = ...,
     ) -> None:
-        self.latency: Optional[int] = ...
-        self.url: Optional[str] = ...
-        self.http_status_code: Optional[int] = ...
-        self.request_headers: Optional[Dict[str, Any]] = ...
-        self.response_headers: Optional[Dict[str, Any]] = ...
-        self.parsed_error: Optional[Dict[str, Any]] = ...
-        self.wire_exception: Optional[Exception] = ...
+        self.latency: int | None = ...
+        self.url: str | None = ...
+        self.http_status_code: int | None = ...
+        self.request_headers: dict[str, Any] | None = ...
+        self.response_headers: dict[str, Any] | None = ...
+        self.parsed_error: dict[str, Any] | None = ...
+        self.wire_exception: Exception | None = ...
 
 class CSMSerializer:
     def __init__(self, csm_client_id: str) -> None:

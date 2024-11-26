@@ -1,6 +1,10 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from collections.abc import MutableMapping
 from logging import Logger
-from typing import IO, Any, Dict, Iterator, Mapping, Optional, Type, TypeVar, Union
+from typing import IO, Any, Iterator, Mapping, TypeVar
 
 from botocore.compat import HTTPHeaders as HTTPHeaders
 from botocore.compat import HTTPResponse as HTTPResponse
@@ -28,7 +32,7 @@ class AWSConnection:
         method: str,
         url: str,
         body: Any = ...,
-        headers: Optional[Mapping[str, Any]] = ...,
+        headers: Mapping[str, Any] | None = ...,
         *args: Any,
         **kwargs: Any,
     ) -> HTTPConnection: ...
@@ -39,16 +43,16 @@ class AWSHTTPConnection(AWSConnection, HTTPConnection): ...  # type: ignore [mis
 class AWSHTTPSConnection(AWSConnection, VerifiedHTTPSConnection): ...  # type: ignore [misc]
 
 class AWSHTTPConnectionPool(HTTPConnectionPool):
-    ConnectionCls: Type[AWSHTTPConnection]  # type: ignore [misc,assignment]
+    ConnectionCls: type[AWSHTTPConnection]  # type: ignore [misc,assignment]
 
 class AWSHTTPSConnectionPool(HTTPSConnectionPool):
-    ConnectionCls: Type[AWSHTTPSConnection]  # type: ignore [misc,assignment]
+    ConnectionCls: type[AWSHTTPSConnection]  # type: ignore [misc,assignment]
 
 def prepare_request_dict(
     request_dict: Mapping[str, Any],
     endpoint_url: str,
-    context: Optional[Any] = ...,
-    user_agent: Optional[str] = ...,
+    context: Any | None = ...,
+    user_agent: str | None = ...,
 ) -> None: ...
 def create_request_object(request_dict: Mapping[str, Any]) -> Any: ...
 
@@ -58,13 +62,13 @@ class AWSPreparedRequest:
         method: str,
         url: str,
         headers: HTTPHeaders,
-        body: Union[str, bytes, bytearray, IO[bytes], IO[str], None],
+        body: str | bytes | bytearray | IO[bytes] | IO[str] | None,
         stream_output: bool,
     ) -> None:
         self.method: str
         self.url: str
         self.headers: HTTPHeaders
-        self.body: Union[str, bytes, bytearray, IO[bytes], IO[str], None]
+        self.body: str | bytes | bytearray | IO[bytes] | IO[str] | None
         self.stream_output: bool
 
     def reset_stream(self) -> None: ...
@@ -72,22 +76,22 @@ class AWSPreparedRequest:
 class AWSRequest:
     def __init__(
         self,
-        method: Optional[str] = ...,
-        url: Optional[str] = ...,
-        headers: Optional[Mapping[str, Any]] = ...,
-        data: Optional[Any] = ...,
-        params: Optional[Mapping[str, Any]] = ...,
-        auth_path: Optional[str] = ...,
+        method: str | None = ...,
+        url: str | None = ...,
+        headers: Mapping[str, Any] | None = ...,
+        data: Any | None = ...,
+        params: Mapping[str, Any] | None = ...,
+        auth_path: str | None = ...,
         stream_output: bool = ...,
     ) -> None:
-        self.method: Optional[str]
-        self.url: Optional[str]
+        self.method: str | None
+        self.url: str | None
         self.headers: HTTPHeaders
-        self.data: Optional[Any]
-        self.params: Dict[str, Any]
-        self.auth_path: Optional[str]
+        self.data: Any | None
+        self.params: dict[str, Any]
+        self.auth_path: str | None
         self.stream_output: bool
-        self.context: Dict[str, Any]
+        self.context: dict[str, Any]
 
     def prepare(self) -> AWSPreparedRequest: ...
     @property
@@ -111,7 +115,7 @@ class AWSResponse:
 class _HeaderKey:
     def __init__(self, key: str) -> None: ...
     def __hash__(self) -> int: ...
-    def __eq__(self, other: Any) -> bool: ...
+    def __eq__(self, other: object) -> bool: ...
 
 class HeadersDict(MutableMapping[str, str]):
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...

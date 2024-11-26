@@ -1,13 +1,11 @@
-import sys
-from typing import IO, Any, Dict, Iterable, List, Mapping
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
+from typing import IO, Any, Iterable, Mapping, TypedDict
 
 import requests
 from urllib3.exceptions import ReadTimeoutError as _ReadTimeoutError
-
-if sys.version_info >= (3, 9):
-    from typing import TypedDict
-else:
-    from typing_extensions import TypedDict
 
 class _ClientErrorResponseError(TypedDict, total=False):
     Code: str
@@ -17,7 +15,7 @@ class _ResponseMetadataTypeDef(TypedDict):
     RequestId: str
     HostId: str
     HTTPStatusCode: int
-    HTTPHeaders: Dict[str, Any]
+    HTTPHeaders: dict[str, Any]
     RetryAttempts: int
 
 class _AttributeMapTypeDef(TypedDict, total=False):
@@ -34,7 +32,7 @@ class _ClientErrorResponseTypeDef(TypedDict, total=False):
     StatusReason: str
     Error: _ClientErrorResponseError
     ResponseMetadata: _ResponseMetadataTypeDef
-    CancellationReasons: List[_CancellationReasonTypeDef]
+    CancellationReasons: list[_CancellationReasonTypeDef]
 
 class BotoCoreError(Exception):
     fmt: str
@@ -64,7 +62,7 @@ class _UnknownRegionErrorKwargs(TypedDict):
 
 class UnknownRegionError(BotoCoreError):
     def __init__(self, *, region_name: str = ..., error_msg: str = ..., **kwargs: Any) -> None:
-        self.kwargs: _UnknownServiceErrorKwargs
+        self.kwargs: _UnknownRegionErrorKwargs
 
 class _ApiVersionNotFoundErrorKwargs(TypedDict):
     service_name: str

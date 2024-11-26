@@ -1,6 +1,10 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from enum import Enum
 from logging import Logger
-from typing import Any, Dict, List, Mapping, Optional, Tuple
+from typing import Any, Mapping
 
 from botocore.auth import AUTH_TYPE_MAPS as AUTH_TYPE_MAPS
 from botocore.compat import HAS_CRT as HAS_CRT
@@ -13,40 +17,40 @@ from botocore.model import OperationModel, ServiceModel
 
 LOG: Logger = ...
 DEFAULT_URI_TEMPLATE: str
-DEFAULT_SERVICE_DATA: Dict[str, Dict[str, Any]]
+DEFAULT_SERVICE_DATA: dict[str, dict[str, Any]]
 
 class BaseEndpointResolver:
-    def construct_endpoint(self, service_name: str, region_name: Optional[str] = ...) -> None: ...
-    def get_available_partitions(self) -> List[str]: ...
+    def construct_endpoint(self, service_name: str, region_name: str | None = ...) -> None: ...
+    def get_available_partitions(self) -> list[str]: ...
     def get_available_endpoints(
         self,
         service_name: str,
         partition_name: str = ...,
         allow_non_regional: bool = ...,
-    ) -> List[str]: ...
+    ) -> list[str]: ...
 
 class EndpointResolver(BaseEndpointResolver):
     def __init__(self, endpoint_data: Mapping[str, Any], uses_builtin_data: bool = ...) -> None: ...
     def get_service_endpoints_data(self, service_name: str, partition_name: str = ...) -> Any: ...
-    def get_available_partitions(self) -> List[str]: ...
+    def get_available_partitions(self) -> list[str]: ...
     def get_available_endpoints(
         self,
         service_name: str,
         partition_name: str = ...,
         allow_non_regional: bool = ...,
         endpoint_variant_tags: Any = ...,
-    ) -> List[str]: ...
+    ) -> list[str]: ...
     def get_partition_dns_suffix(
         self, partition_name: str, endpoint_variant_tags: Any = ...
     ) -> str: ...
     def construct_endpoint(  # type: ignore [override]
         self,
         service_name: str,
-        region_name: Optional[str] = ...,
-        partition_name: Optional[str] = ...,
+        region_name: str | None = ...,
+        partition_name: str | None = ...,
         use_dualstack_endpoint: bool = ...,
         use_fips_endpoint: bool = ...,
-    ) -> Optional[Dict[str, Any]]: ...
+    ) -> dict[str, Any] | None: ...
     def get_partition_for_region(self, region_name: str) -> str: ...
 
 class EndpointResolverBuiltins(Enum):
@@ -74,17 +78,17 @@ class EndpointRulesetResolver:
         client_context: Any,
         event_emitter: BaseEventHooks,
         use_ssl: bool = ...,
-        requested_auth_scheme: Optional[str] = ...,
+        requested_auth_scheme: str | None = ...,
     ) -> None: ...
     def construct_endpoint(
         self,
         operation_model: OperationModel,
-        call_args: Optional[Mapping[str, Any]],
+        call_args: Mapping[str, Any] | None,
         request_context: Any,
     ) -> RuleSetEndpoint: ...
     def auth_schemes_to_signing_ctx(
-        self, auth_schemes: List[Mapping[str, Any]]
-    ) -> Tuple[str, Dict[str, Any]]: ...
+        self, auth_schemes: list[Mapping[str, Any]]
+    ) -> tuple[str, dict[str, Any]]: ...
     def ruleset_error_to_botocore_exception(
         self, ruleset_exception: Exception, params: Mapping[str, Any]
     ) -> BotoCoreError: ...

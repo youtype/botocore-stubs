@@ -1,5 +1,9 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from logging import Logger
-from typing import Any, Mapping, Optional, Type
+from typing import Any, Mapping
 
 from botocore.awsrequest import create_request_object as create_request_object
 from botocore.exceptions import HTTPClientError as HTTPClientError
@@ -26,8 +30,8 @@ class Endpoint:
         host: str,
         endpoint_prefix: str,
         event_emitter: BaseEventHooks,
-        response_parser_factory: Optional[Any] = ...,
-        http_session: Optional[URLLib3Session] = ...,
+        response_parser_factory: Any | None = ...,
+        http_session: URLLib3Session | None = ...,
     ) -> None:
         self.host: str
         self.http_session: URLLib3Session
@@ -35,7 +39,7 @@ class Endpoint:
     def close(self) -> None: ...
     def make_request(self, operation_model: OperationModel, request_dict: Any) -> Any: ...
     def create_request(
-        self, params: Mapping[str, Any], operation_model: Optional[OperationModel] = ...
+        self, params: Mapping[str, Any], operation_model: OperationModel | None = ...
     ) -> Any: ...
     def prepare_request(self, request: Any) -> Any: ...
 
@@ -46,13 +50,13 @@ class EndpointCreator:
         service_model: ServiceModel,
         region_name: str,
         endpoint_url: str,
-        verify: Optional[Any] = ...,
-        response_parser_factory: Optional[Any] = ...,
+        verify: Any | None = ...,
+        response_parser_factory: Any | None = ...,
         timeout: float = ...,
         max_pool_connections: Any = ...,
-        http_session_cls: Type[URLLib3Session] = ...,
-        proxies: Optional[Any] = ...,
-        socket_options: Optional[Any] = ...,
-        client_cert: Optional[Any] = ...,
-        proxies_config: Optional[Any] = ...,
+        http_session_cls: type[URLLib3Session] = ...,
+        proxies: Any | None = ...,
+        socket_options: Any | None = ...,
+        client_cert: Any | None = ...,
+        proxies_config: Any | None = ...,
     ) -> Any: ...

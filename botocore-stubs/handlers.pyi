@@ -1,5 +1,9 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from logging import Logger
-from typing import Any, Dict, List, Mapping, Pattern, Tuple
+from typing import Any, Mapping, Pattern
 from urllib.request import Request
 
 from botocore.client import BaseClient
@@ -33,9 +37,9 @@ REGISTER_FIRST: Any
 REGISTER_LAST: Any
 VALID_BUCKET: Pattern[str]
 VALID_S3_ARN: Pattern[str]
-S3_SIGNING_NAMES: Tuple[str, ...]
+S3_SIGNING_NAMES: tuple[str, ...]
 VERSION_ID_SUFFIX: Pattern[str]
-SERVICE_NAME_ALIASES: Dict[str, str]
+SERVICE_NAME_ALIASES: dict[str, str]
 
 def handle_service_name_alias(service_name: str, **kwargs: Any) -> Any: ...
 def add_recursion_detection_header(params: Mapping[str, Any], **kwargs: Any) -> None: ...
@@ -140,12 +144,12 @@ def remove_content_type_header_for_presigning(request: Request, **kwargs: Any) -
 def handle_expires_header(
     operation_model: OperationModel,
     response_dict: Mapping[str, Any],
-    customized_response_dict: Dict[str, Any],
+    customized_response_dict: dict[str, Any],
     **kwargs: Any,
 ) -> None: ...
 def document_expires_shape(section: DocumentStructure, event_name: str, **kwargs: Any) -> None: ...
 def add_query_compatibility_header(
-    model: OperationModel, params: Dict[str, Any], **kwargs: Any
+    model: OperationModel, params: dict[str, Any], **kwargs: Any
 ) -> None: ...
 
-BUILTIN_HANDLERS: List[Tuple[Any, ...]] = ...
+BUILTIN_HANDLERS: list[tuple[Any, ...]] = ...

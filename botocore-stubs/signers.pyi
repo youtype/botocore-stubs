@@ -1,4 +1,8 @@
-from typing import Any, Mapping, Optional, Union
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
+from typing import Any, Mapping
 
 from botocore.awsrequest import create_request_object as create_request_object
 from botocore.awsrequest import prepare_request_dict as prepare_request_dict
@@ -11,8 +15,6 @@ from botocore.hooks import BaseEventHooks
 from botocore.model import ServiceId
 from botocore.utils import datetime2timestamp as datetime2timestamp
 
-_CredentialsUnion = Union[Credentials, ReadOnlyCredentials]
-
 class RequestSigner:
     def __init__(
         self,
@@ -20,9 +22,9 @@ class RequestSigner:
         region_name: str,
         signing_name: str,
         signature_version: str,
-        credentials: _CredentialsUnion,
+        credentials: Credentials | ReadOnlyCredentials,
         event_emitter: BaseEventHooks,
-        auth_token: Optional[str] = ...,
+        auth_token: str | None = ...,
     ) -> None: ...
     @property
     def region_name(self) -> str: ...
@@ -31,23 +33,23 @@ class RequestSigner:
     @property
     def signing_name(self) -> str: ...
     def handler(
-        self, operation_name: Optional[str] = ..., request: Optional[Any] = ..., **kwargs: Any
+        self, operation_name: str | None = ..., request: Any | None = ..., **kwargs: Any
     ) -> Any: ...
     def sign(
         self,
         operation_name: str,
         request: Any,
-        region_name: Optional[str] = ...,
+        region_name: str | None = ...,
         signing_type: str = ...,
-        expires_in: Optional[Any] = ...,
-        signing_name: Optional[str] = ...,
+        expires_in: Any | None = ...,
+        signing_name: str | None = ...,
     ) -> None: ...
     def get_auth_instance(
         self,
         signing_name: str,
         region_name: str,
-        signature_version: Optional[str] = ...,
-        request_credentials: Optional[_CredentialsUnion] = ...,
+        signature_version: str | None = ...,
+        request_credentials: Credentials | ReadOnlyCredentials | None = ...,
         **kwargs: Any,
     ) -> Any: ...
     get_auth: Any = ...
@@ -56,8 +58,8 @@ class RequestSigner:
         request_dict: Mapping[str, Any],
         operation_name: str,
         expires_in: int = ...,
-        region_name: Optional[str] = ...,
-        signing_name: Optional[str] = ...,
+        region_name: str | None = ...,
+        signing_name: str | None = ...,
     ) -> Any: ...
 
 class CloudFrontSigner:
@@ -65,19 +67,19 @@ class CloudFrontSigner:
     rsa_signer: Any = ...
     def __init__(self, key_id: str, rsa_signer: Any) -> None: ...
     def generate_presigned_url(
-        self, url: str, date_less_than: Optional[Any] = ..., policy: Optional[Any] = ...
+        self, url: str, date_less_than: Any | None = ..., policy: Any | None = ...
     ) -> str: ...
     def build_policy(
         self,
         resource: Any,
         date_less_than: Any,
-        date_greater_than: Optional[Any] = ...,
-        ip_address: Optional[Any] = ...,
+        date_greater_than: Any | None = ...,
+        ip_address: Any | None = ...,
     ) -> str: ...
 
 def add_generate_db_auth_token(class_attributes: Any, **kwargs: Any) -> None: ...
 def generate_db_auth_token(
-    self: Any, DBHostname: Any, Port: Any, DBUsername: Any, Region: Optional[Any] = ...
+    self: Any, DBHostname: Any, Port: Any, DBUsername: Any, Region: Any | None = ...
 ) -> Any: ...
 
 class S3PostPresigner:
@@ -85,26 +87,26 @@ class S3PostPresigner:
     def generate_presigned_post(
         self,
         request_dict: Mapping[str, Any],
-        fields: Optional[Any] = ...,
-        conditions: Optional[Any] = ...,
+        fields: Any | None = ...,
+        conditions: Any | None = ...,
         expires_in: int = ...,
-        region_name: Optional[str] = ...,
+        region_name: str | None = ...,
     ) -> Any: ...
 
 def add_generate_presigned_url(class_attributes: Any, **kwargs: Any) -> None: ...
 def generate_presigned_url(
     self: Any,
     ClientMethod: Any,
-    Params: Optional[Any] = ...,
+    Params: Any | None = ...,
     ExpiresIn: int = ...,
-    HttpMethod: Optional[Any] = ...,
+    HttpMethod: Any | None = ...,
 ) -> Any: ...
 def add_generate_presigned_post(class_attributes: Any, **kwargs: Any) -> None: ...
 def generate_presigned_post(
     self: Any,
     Bucket: Any,
     Key: Any,
-    Fields: Optional[Any] = ...,
-    Conditions: Optional[Any] = ...,
+    Fields: Any | None = ...,
+    Conditions: Any | None = ...,
     ExpiresIn: int = ...,
 ) -> Any: ...

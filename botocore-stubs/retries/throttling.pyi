@@ -1,3 +1,7 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from typing import Any, NamedTuple
 
 class CubicParams(NamedTuple):

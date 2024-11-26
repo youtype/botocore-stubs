@@ -1,6 +1,10 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 import datetime
 import logging
-from typing import Any, Callable, Iterable, NamedTuple, Optional, Type
+from typing import Any, Callable, Iterable, NamedTuple
 
 from botocore.session import Session
 from botocore.utils import JSONFileCache
@@ -11,7 +15,7 @@ def create_token_resolver(session: Session) -> TokenProviderChain: ...
 
 class FrozenAuthToken(NamedTuple):
     token: str
-    expiration: Optional[datetime.datetime] = ...
+    expiration: datetime.datetime | None = ...
 
 class DeferredRefreshableToken:
     def __init__(
@@ -23,18 +27,18 @@ class DeferredRefreshableToken:
     def get_frozen_token(self) -> FrozenAuthToken: ...
 
 class TokenProviderChain:
-    def __init__(self, providers: Optional[Iterable[Any]] = ...) -> None: ...
+    def __init__(self, providers: Iterable[Any] | None = ...) -> None: ...
     def load_token(self) -> DeferredRefreshableToken: ...
 
 class SSOTokenProvider:
     METHOD: str = ...
-    DEFAULT_CACHE_CLS: Type[JSONFileCache] = ...
+    DEFAULT_CACHE_CLS: type[JSONFileCache] = ...
 
     def __init__(
         self,
         session: Session,
-        cache: Optional[JSONFileCache] = ...,
+        cache: JSONFileCache | None = ...,
         time_fetcher: Callable[[], datetime.datetime] = ...,
-        profile_name: Optional[str] = ...,
+        profile_name: str | None = ...,
     ) -> None: ...
     def load_token(self) -> DeferredRefreshableToken: ...

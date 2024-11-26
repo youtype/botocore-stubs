@@ -1,3 +1,7 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from typing import Any
 
 from botocore.exceptions import CapacityNotAvailableError as CapacityNotAvailableError

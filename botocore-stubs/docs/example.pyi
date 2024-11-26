@@ -1,4 +1,8 @@
-from typing import Any, List, Optional
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
+from typing import Any
 
 from botocore.docs.shape import ShapeDocumenter
 from botocore.model import Shape
@@ -8,9 +12,9 @@ class BaseExampleDocumenter(ShapeDocumenter):
         self,
         section: Any,
         shape: Shape,
-        prefix: Optional[str] = ...,
-        include: Optional[List[str]] = ...,
-        exclude: Optional[List[str]] = ...,
+        prefix: str | None = ...,
+        include: list[str] | None = ...,
+        exclude: list[str] | None = ...,
     ) -> None: ...
     def document_recursive_shape(self, section: Any, shape: Shape, **kwargs: Any) -> None: ...
     def document_shape_default(
@@ -18,8 +22,8 @@ class BaseExampleDocumenter(ShapeDocumenter):
         section: Any,
         shape: Shape,
         history: Any,
-        include: Optional[List[str]] = ...,
-        exclude: Optional[List[str]] = ...,
+        include: list[str] | None = ...,
+        exclude: list[str] | None = ...,
         **kwargs: Any,
     ) -> None: ...
     def document_shape_type_string(
@@ -27,8 +31,8 @@ class BaseExampleDocumenter(ShapeDocumenter):
         section: Any,
         shape: Shape,
         history: Any,
-        include: Optional[List[str]] = ...,
-        exclude: Optional[List[str]] = ...,
+        include: list[str] | None = ...,
+        exclude: list[str] | None = ...,
         **kwargs: Any,
     ) -> None: ...
     def document_shape_type_list(
@@ -36,8 +40,8 @@ class BaseExampleDocumenter(ShapeDocumenter):
         section: Any,
         shape: Shape,
         history: Any,
-        include: Optional[List[str]] = ...,
-        exclude: Optional[List[str]] = ...,
+        include: list[str] | None = ...,
+        exclude: list[str] | None = ...,
         **kwargs: Any,
     ) -> None: ...
     def document_shape_type_structure(
@@ -45,8 +49,8 @@ class BaseExampleDocumenter(ShapeDocumenter):
         section: Any,
         shape: Shape,
         history: Any,
-        include: Optional[List[str]] = ...,
-        exclude: Optional[List[str]] = ...,
+        include: list[str] | None = ...,
+        exclude: list[str] | None = ...,
         **kwargs: Any,
     ) -> None: ...
     def document_shape_type_map(
@@ -54,8 +58,8 @@ class BaseExampleDocumenter(ShapeDocumenter):
         section: Any,
         shape: Shape,
         history: Any,
-        include: Optional[List[str]] = ...,
-        exclude: Optional[List[str]] = ...,
+        include: list[str] | None = ...,
+        exclude: list[str] | None = ...,
         **kwargs: Any,
     ) -> None: ...
 
@@ -76,7 +80,7 @@ class RequestExampleDocumenter(BaseExampleDocumenter):
         section: Any,
         shape: Shape,
         history: Any,
-        include: Optional[List[str]] = ...,
-        exclude: Optional[List[str]] = ...,
+        include: list[str] | None = ...,
+        exclude: list[str] | None = ...,
         **kwargs: Any,
     ) -> None: ...

@@ -1,5 +1,9 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from logging import Logger
-from typing import Any, Callable, Dict, List, Mapping
+from typing import Any, Callable, Mapping
 
 from botocore.client import BaseClient
 
@@ -20,9 +24,9 @@ class WaiterModel:
     SUPPORTED_VERSION: int = ...
     def __init__(self, waiter_config: Mapping[str, Any]) -> None:
         self.version: str
-        self.waiter_names: List[str]
+        self.waiter_names: list[str]
 
-    def get_waiter(self, waiter_name: str) -> "SingleWaiterConfig": ...
+    def get_waiter(self, waiter_name: str) -> SingleWaiterConfig: ...
 
 class SingleWaiterConfig:
     def __init__(self, single_waiter_config: Mapping[str, Any]) -> None:
@@ -32,7 +36,7 @@ class SingleWaiterConfig:
         self.max_attempts: int
 
     @property
-    def acceptors(self) -> List["AcceptorConfig"]: ...
+    def acceptors(self) -> list[AcceptorConfig]: ...
 
 class AcceptorConfig:
     def __init__(self, config: Mapping[str, Any]) -> None:
@@ -50,6 +54,6 @@ class Waiter:
         self, name: str, config: Mapping[str, Any], operation_method: Callable[..., Any]
     ) -> None:
         self.name: str
-        self.config: Dict[str, Any]
+        self.config: dict[str, Any]
 
     def wait(self, **kwargs: Any) -> None: ...

@@ -26,10 +26,7 @@ classifiers = [
     "Typing :: Stubs Only",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-dependencies = [
-    "types-awscrt",
-    "typing-extensions>=4.1.0; python_version<'3.9'",
-]
+dependencies = ["types-awscrt"]
 
 [project.optional-dependencies]
 botocore = ["botocore"]
@@ -49,6 +46,7 @@ dev-dependencies = [
     "types-python-dateutil",
     "types-dataclasses",
     "docutils",
+    "sphinx",
 ]
 
 [project.urls]
@@ -68,6 +66,7 @@ packages = ["botocore-stubs"]
 [tool.pyright]
 include = ["botocore-stubs"]
 exclude = ["**/__pycache__", "tests", "typestubs"]
+ignore = ["test.py"]
 reportMissingImports = "error"
 reportMissingTypeStubs = false
 reportMissingTypeArgument = "error"
@@ -104,11 +103,32 @@ indent-width = 4
 target-version = "py38"
 
 [tool.ruff.lint]
-select = ["E4", "E7", "E9", "F", "B", "I", "N", "C4", "C90", "RUF", "PYI", "UP"]
+preview = true
+select = [
+    "E",   # pycodestyle
+    "F",   # pyflakes
+    "B",   # flake8-bugbear
+    "I",   # isort
+    "N",   # pep8-naming
+    "C4",  # flake8-comprehensions
+    "C90", # mccabe
+    "RUF", # ruff
+    "PYI", # flake8-pyi
+    "UP",  # pyupgrade
+    "CPY", # flake8-copyright
+]
 fixable = ["ALL"]
 unfixable = ["B"]
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
-exclude = ["test_*.py", "*.pyi"]
+exclude = ["test_*.py"]
+ignore = [
+    "N803",   # invalid-argument-name
+    "N818",   # error-suffix-on-exception-name
+    "PYI010", # non-empty-stub-body
+    "PYI019", # custom-type-var-return-type
+    "PYI021", # docstring-in-stub
+    "PYI048", # stub-body-multiple-statements
+]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -117,3 +137,8 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 docstring-code-format = false
 docstring-code-line-length = "dynamic"
+
+[tool.ruff.lint.flake8-copyright]
+# author = "Vlad Emelianov"
+min-file-size = 200
+notice-rgx = "(?i)Copyright [0-9]{4}"

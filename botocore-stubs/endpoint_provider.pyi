@@ -1,18 +1,17 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 import logging
 from enum import Enum
 from string import Formatter
 from typing import (
     Any,
     Callable,
-    Dict,
     Iterable,
-    List,
     Mapping,
     NamedTuple,
-    Optional,
     Pattern,
-    Type,
-    Union,
 )
 
 from botocore.compat import quote as quote
@@ -35,7 +34,7 @@ STRING_FORMATTER: Formatter = ...
 
 class RuleSetStandardLibrary:
     def __init__(self, partitions_data: Mapping[str, Any]) -> None:
-        self.partitions_data: Dict[str, Any]
+        self.partitions_data: dict[str, Any]
 
     def is_func(self, argument: Any) -> bool: ...
     def is_ref(self, argument: Any) -> bool: ...
@@ -48,14 +47,14 @@ class RuleSetStandardLibrary:
     ) -> Any: ...
     def is_set(self, value: Any) -> bool: ...
     def get_attr(self, value: Mapping[str, Any], path: str) -> Any: ...
-    def format_partition_output(self, partition: Mapping[str, Any]) -> Dict[str, Any]: ...
+    def format_partition_output(self, partition: Mapping[str, Any]) -> dict[str, Any]: ...
     def is_partition_match(self, region: str, partition: Mapping[str, Any]) -> bool: ...
-    def aws_partition(self, value: str) -> Dict[str, Any]: ...
-    def aws_parse_arn(self, value: str) -> Dict[str, Any]: ...
+    def aws_partition(self, value: str) -> dict[str, Any]: ...
+    def aws_parse_arn(self, value: str) -> dict[str, Any]: ...
     def is_valid_host_label(self, value: str, allow_subdomains: bool) -> bool: ...
     def string_equals(self, value1: str, value2: str) -> bool: ...
     def uri_encode(self, value: str) -> str: ...
-    def parse_url(self, value: str) -> Dict[str, Any]: ...
+    def parse_url(self, value: str) -> dict[str, Any]: ...
     def boolean_equals(self, value1: bool, value2: bool) -> bool: ...
     def is_ascii(self, value: str) -> bool: ...
     def substring(self, value: str, start: int, stop: int, reverse: bool) -> str: ...
@@ -65,10 +64,10 @@ RuleSetStandardLibary = RuleSetStandardLibrary
 
 class BaseRule:
     def __init__(
-        self, conditions: Iterable[Callable[..., Any]], documentation: Optional[str] = ...
+        self, conditions: Iterable[Callable[..., Any]], documentation: str | None = ...
     ) -> None:
         self.conditions: Iterable[Callable[..., Any]]
-        self.documentation: Optional[str]
+        self.documentation: str | None
 
     def evaluate(self, scope_vars: Mapping[str, Any], rule_lib: RuleSetStandardLibary) -> Any: ...
     def evaluate_conditions(
@@ -77,25 +76,25 @@ class BaseRule:
 
 class RuleSetEndpoint(NamedTuple):
     url: str
-    properties: Dict[str, Any]
-    headers: Dict[str, Any]
+    properties: dict[str, Any]
+    headers: dict[str, Any]
 
 class EndpointRule(BaseRule):
     def __init__(self, endpoint: Mapping[str, Any], **kwargs: Any) -> None:
-        self.endpoint: Dict[str, Any]
+        self.endpoint: dict[str, Any]
 
     def evaluate(
         self, scope_vars: Mapping[str, Any], rule_lib: RuleSetStandardLibary
     ) -> RuleSetEndpoint: ...
     def resolve_properties(
         self,
-        properties: Union[Mapping[str, Any], List[Any], str],
+        properties: Mapping[str, Any] | list[Any] | str,
         scope_vars: Mapping[str, Any],
         rule_lib: RuleSetStandardLibary,
-    ) -> Dict[str, Any]: ...
+    ) -> dict[str, Any]: ...
     def resolve_headers(
         self, scope_vars: Mapping[str, Any], rule_lib: RuleSetStandardLibary
-    ) -> Dict[str, Any]: ...
+    ) -> dict[str, Any]: ...
 
 class ErrorRule(BaseRule):
     def __init__(self, error: Any, **kwargs: Any) -> None:
@@ -105,41 +104,41 @@ class ErrorRule(BaseRule):
 
 class TreeRule(BaseRule):
     def __init__(self, rules: Iterable[Mapping[str, Any]], **kwargs: Any) -> None:
-        self.rules: Iterable[Dict[str, Any]]
+        self.rules: Iterable[dict[str, Any]]
 
     def evaluate(
         self, scope_vars: Mapping[str, Any], rule_lib: RuleSetStandardLibary
-    ) -> Optional[RuleSetEndpoint]: ...
+    ) -> RuleSetEndpoint | None: ...
 
 class RuleCreator:
-    endpoint: Type[EndpointRule]
-    error: Type[ErrorRule]
-    tree: Type[TreeRule]
+    endpoint: type[EndpointRule]
+    error: type[ErrorRule]
+    tree: type[TreeRule]
     @classmethod
     def create(cls, **kwargs: Any) -> BaseRule: ...
 
 class ParameterType(Enum):
-    string: Type[str]
-    boolean: Type[bool]
+    string: type[str]
+    boolean: type[bool]
 
 class ParameterDefinition:
     def __init__(
         self,
         name: str,
         parameter_type: ParameterType,
-        documentation: Optional[str] = ...,
-        builtIn: Optional[bool] = ...,
-        default: Optional[bool] = ...,
-        required: Optional[bool] = ...,
-        deprecated: Optional[bool] = ...,
+        documentation: str | None = ...,
+        builtIn: bool | None = ...,
+        default: bool | None = ...,
+        required: bool | None = ...,
+        deprecated: bool | None = ...,
     ) -> None:
         self.name: str
         self.parameter_type: ParameterType
-        self.documentation: Optional[str]
-        self.built_in: Optional[bool]
-        self.default: Optional[bool]
-        self.required: Optional[bool]
-        self.deprecated: Optional[bool]
+        self.documentation: str | None
+        self.built_in: bool | None
+        self.default: bool | None
+        self.required: bool | None
+        self.deprecated: bool | None
 
     def validate_input(self, value: Any) -> None: ...
     def process_input(self, value: Any) -> Any: ...
@@ -151,13 +150,13 @@ class RuleSet:
         parameters: Mapping[str, Any],
         rules: Iterable[Mapping[str, Any]],
         partitions: Any,
-        documentation: Optional[str] = ...,
+        documentation: str | None = ...,
     ) -> None:
         self.version: str
-        self.parameters: Dict[str, Any]
-        self.rules: List[BaseRule]
+        self.parameters: dict[str, Any]
+        self.rules: list[BaseRule]
         self.rule_lib: RuleSetStandardLibary
-        self.documentation: Optional[str]
+        self.documentation: str | None
 
     def process_input_parameters(self, input_params: Mapping[str, Any]) -> None: ...
     def evaluate(self, input_parameters: Mapping[str, Any]) -> Any: ...

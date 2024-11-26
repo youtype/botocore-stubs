@@ -1,16 +1,20 @@
-from typing import Any, Callable, Dict, List, Optional, Tuple
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
+from typing import Any, Callable
 
 from botocore.client import BaseClient
 from botocore.docs.bcdoc.restdoc import DocumentStructure
 from botocore.docs.utils import DocumentedShape
 
 class ClientDocumenter:
-    _CLIENT_METHODS_FILTERS: List[Callable[..., bool]] = ...
+    _CLIENT_METHODS_FILTERS: list[Callable[..., bool]] = ...
     def __init__(
         self,
         client: BaseClient,
         root_docs_path: str,
-        shared_examples: Optional[Dict[str, Any]] = ...,
+        shared_examples: dict[str, Any] | None = ...,
     ) -> None: ...
     def document_client(self, section: DocumentStructure) -> None: ...
 
@@ -22,6 +26,6 @@ class ClientExceptionsDocumenter:
 
 class ClientContextParamsDocumenter:
     _CONFIG_GUIDE_LINK: str = ...
-    OMITTED_CONTEXT_PARAMS: Dict[str, Tuple[str, ...]] = ...
+    OMITTED_CONTEXT_PARAMS: dict[str, tuple[str, ...]] = ...
     def __init__(self, service_name: str, context_params: Any) -> None: ...
     def document_context_params(self, section: DocumentStructure) -> None: ...

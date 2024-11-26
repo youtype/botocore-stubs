@@ -1,4 +1,8 @@
-from typing import Any, Optional
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
+from typing import Any
 
 from botocore.hooks import BaseEventHooks
 from botocore.model import Shape
@@ -19,6 +23,6 @@ class ShapeDocumenter:
         history: Any,
         include: Any = ...,
         exclude: Any = ...,
-        name: Optional[str] = ...,
+        name: str | None = ...,
         is_required: bool = ...,
     ) -> None: ...
