@@ -1,5 +1,9 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from logging import Logger
-from typing import Any, Callable, Dict, Mapping, Optional, Type
+from typing import Any, Callable, Mapping
 
 from botocore.compat import XMLParseError as XMLParseError
 from botocore.eventstream import EventStream as EventStream
@@ -24,19 +28,19 @@ class ResponseParserError(Exception): ...
 
 class ResponseParser:
     DEFAULT_ENCODING: str = ...
-    EVENT_STREAM_PARSER_CLS: Optional[Type[ResponseParser]] = ...
+    EVENT_STREAM_PARSER_CLS: type[ResponseParser] | None = ...
     def __init__(
         self,
-        timestamp_parser: Optional[Callable[[str], Any]] = ...,
-        blob_parser: Optional[Callable[[str], Any]] = ...,
+        timestamp_parser: Callable[[str], Any] | None = ...,
+        blob_parser: Callable[[str], Any] | None = ...,
     ) -> None: ...
     def parse(self, response: Mapping[str, Any], shape: Shape) -> Any: ...
 
 class BaseXMLResponseParser(ResponseParser):
     def __init__(
         self,
-        timestamp_parser: Optional[Callable[[str], Any]] = ...,
-        blob_parser: Optional[Callable[[str], Any]] = ...,
+        timestamp_parser: Callable[[str], Any] | None = ...,
+        blob_parser: Callable[[str], Any] | None = ...,
     ) -> None: ...
 
 class QueryParser(BaseXMLResponseParser): ...
@@ -50,4 +54,4 @@ class BaseRestParser(ResponseParser): ...
 class RestJSONParser(BaseRestParser, BaseJSONParser): ...
 class RestXMLParser(BaseRestParser, BaseXMLResponseParser): ...
 
-PROTOCOL_PARSERS: Dict[str, ResponseParser]
+PROTOCOL_PARSERS: dict[str, ResponseParser]

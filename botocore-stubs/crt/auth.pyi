@@ -1,4 +1,6 @@
-from typing import Dict, Type
+"""
+Copyright 2024 Vlad Emelianov
+"""
 
 from awscrt.auth import AwsCredentials
 from botocore.auth import SIGNED_HEADERS_BLACKLIST as SIGNED_HEADERS_BLACKLIST
@@ -68,4 +70,4 @@ class CrtSigV4QueryAuth(CrtSigV4Auth):
 
 class CrtS3SigV4QueryAuth(CrtSigV4QueryAuth): ...
 
-CRT_AUTH_TYPE_MAPS: Dict[str, Type[BaseSigner]] = ...
+CRT_AUTH_TYPE_MAPS: dict[str, type[BaseSigner]] = ...

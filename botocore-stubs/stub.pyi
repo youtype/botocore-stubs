@@ -1,6 +1,9 @@
-import sys
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from types import TracebackType
-from typing import Any, Mapping, Optional, Type, TypeVar
+from typing import Any, Literal, Mapping, TypeVar
 
 from botocore.awsrequest import AWSResponse as AWSResponse
 from botocore.client import BaseClient
@@ -9,11 +12,6 @@ from botocore.exceptions import StubAssertionError as StubAssertionError
 from botocore.exceptions import StubResponseError as StubResponseError
 from botocore.exceptions import UnStubbedResponseError as UnStubbedResponseError
 from botocore.validate import validate_parameters as validate_parameters
-
-if sys.version_info >= (3, 9):
-    from typing import Literal
-else:
-    from typing_extensions import Literal
 
 class _ANY:
     def __eq__(self, other: object) -> Literal[True]: ...
@@ -30,9 +28,9 @@ class Stubber:
     def __enter__(self: _R) -> _R: ...
     def __exit__(
         self,
-        exception_type: Optional[Type[BaseException]],
-        exception_value: Optional[BaseException],
-        traceback: Optional[TracebackType],
+        exception_type: type[BaseException] | None,
+        exception_value: BaseException | None,
+        traceback: TracebackType | None,
     ) -> None: ...
     def activate(self) -> None: ...
     def deactivate(self) -> None: ...
@@ -40,7 +38,7 @@ class Stubber:
         self,
         method: str,
         service_response: Mapping[str, Any],
-        expected_params: Optional[Mapping[str, Any]] = ...,
+        expected_params: Mapping[str, Any] | None = ...,
     ) -> None: ...
     def add_client_error(
         self,
@@ -48,9 +46,9 @@ class Stubber:
         service_error_code: str = ...,
         service_message: str = ...,
         http_status_code: int = ...,
-        service_error_meta: Optional[Mapping[str, Any]] = ...,
-        expected_params: Optional[Mapping[str, Any]] = ...,
-        response_meta: Optional[Mapping[str, Any]] = ...,
-        modeled_fields: Optional[Mapping[str, Any]] = ...,
+        service_error_meta: Mapping[str, Any] | None = ...,
+        expected_params: Mapping[str, Any] | None = ...,
+        response_meta: Mapping[str, Any] | None = ...,
+        modeled_fields: Mapping[str, Any] | None = ...,
     ) -> None: ...
     def assert_no_pending_responses(self) -> None: ...

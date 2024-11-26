@@ -1,3 +1,7 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from typing import Any, Iterable, Mapping
 
 from botocore.exceptions import ParamValidationError as ParamValidationError
@@ -9,7 +13,7 @@ from botocore.utils import parse_to_aware_datetime as parse_to_aware_datetime
 def validate_parameters(params: Mapping[str, Any], shape: Shape) -> None: ...
 def type_check(valid_types: Iterable[Any]) -> Any: ...
 def range_check(
-    name: str, value: Any, shape: Shape, error_type: Any, errors: "ValidationErrors"
+    name: str, value: Any, shape: Shape, error_type: Any, errors: ValidationErrors
 ) -> None: ...
 
 class ValidationErrors:

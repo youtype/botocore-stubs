@@ -1,5 +1,9 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from logging import Logger
-from typing import Any, Callable, Dict, Iterable, List, Mapping, Optional, Type
+from typing import Any, Callable, Iterable, Mapping
 
 from botocore.config import Config
 from botocore.exceptions import BotoCoreError
@@ -11,18 +15,18 @@ from botocore.exceptions import ReadTimeoutError as ReadTimeoutError
 
 logger: Logger = ...
 
-EXCEPTION_MAP: Dict[str, List[Type[BotoCoreError]]]
+EXCEPTION_MAP: dict[str, list[type[BotoCoreError]]]
 
 def delay_exponential(base: float, growth_factor: float, attempts: int) -> float: ...
 def create_exponential_delay_function(
     base: float, growth_factor: float
 ) -> Callable[[int], float]: ...
-def create_retry_handler(config: Config, operation_name: Optional[str] = ...) -> RetryHandler: ...
+def create_retry_handler(config: Config, operation_name: str | None = ...) -> RetryHandler: ...
 def create_retry_action_from_config(
-    config: Config, operation_name: Optional[str] = ...
+    config: Config, operation_name: str | None = ...
 ) -> Callable[[int], float]: ...
 def create_checker_from_retry_config(
-    config: Config, operation_name: Optional[str] = ...
+    config: Config, operation_name: str | None = ...
 ) -> MaxAttemptsDecorator: ...
 
 class RetryHandler:
@@ -41,7 +45,7 @@ class MaxAttemptsDecorator(BaseChecker):
         self,
         checker: BaseChecker,
         max_attempts: int,
-        retryable_exceptions: Optional[Iterable[Type[Exception]]] = ...,
+        retryable_exceptions: Iterable[type[Exception]] | None = ...,
     ) -> None: ...
     # FIXME: Signature of "__call__" incompatible with supertype "BaseChecker"
     def __call__(  # type: ignore [override]

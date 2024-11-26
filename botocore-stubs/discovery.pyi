@@ -1,13 +1,16 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from logging import Logger
-from typing import Any, Callable, Dict, List, Optional
+from typing import Any, Callable
 
 from botocore.client import BaseClient
 from botocore.exceptions import BotoCoreError as BotoCoreError
 from botocore.exceptions import ConnectionError as ConnectionError
 from botocore.exceptions import HTTPClientError as HTTPClientError
-from botocore.model import OperationModel
+from botocore.model import OperationModel, ServiceModel
 from botocore.model import OperationNotFoundError as OperationNotFoundError
-from botocore.model import ServiceModel
 from botocore.utils import CachedProperty as CachedProperty
 
 logger: Logger = ...
@@ -27,17 +30,17 @@ class EndpointDiscoveryModel:
     @CachedProperty
     def discovery_operation_name(self) -> str: ...
     @CachedProperty
-    def discovery_operation_keys(self) -> List[str]: ...
+    def discovery_operation_keys(self) -> list[str]: ...
     def discovery_required_for(self, operation_name: str) -> bool: ...
-    def discovery_operation_kwargs(self, **kwargs: Any) -> Dict[str, Any]: ...
-    def gather_identifiers(self, operation: OperationModel, params: Any) -> Dict[str, Any]: ...
+    def discovery_operation_kwargs(self, **kwargs: Any) -> dict[str, Any]: ...
+    def gather_identifiers(self, operation: OperationModel, params: Any) -> dict[str, Any]: ...
 
 class EndpointDiscoveryManager:
     def __init__(
         self,
         client: BaseClient,
-        cache: Optional[Any] = ...,
-        current_time: Optional[Callable[[], float]] = ...,
+        cache: Any | None = ...,
+        current_time: Callable[[], float] | None = ...,
         always_discover: bool = ...,
     ) -> None: ...
     def gather_identifiers(self, operation: OperationModel, params: Any) -> Any: ...

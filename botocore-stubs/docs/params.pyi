@@ -1,4 +1,8 @@
-from typing import Any, Optional, Sequence
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
+from typing import Any, Sequence
 
 from botocore.docs.shape import ShapeDocumenter
 from botocore.model import Shape
@@ -8,8 +12,8 @@ class BaseParamsDocumenter(ShapeDocumenter):
         self,
         section: Any,
         shape: Shape,
-        include: Optional[Sequence[str]] = ...,
-        exclude: Optional[Sequence[str]] = ...,
+        include: Sequence[str] | None = ...,
+        exclude: Sequence[str] | None = ...,
     ) -> None: ...
     def document_recursive_shape(self, section: Any, shape: Shape, **kwargs: Any) -> None: ...
     def document_shape_default(
@@ -17,8 +21,8 @@ class BaseParamsDocumenter(ShapeDocumenter):
         section: Any,
         shape: Shape,
         history: Any,
-        include: Optional[Sequence[str]] = ...,
-        exclude: Optional[Sequence[str]] = ...,
+        include: Sequence[str] | None = ...,
+        exclude: Sequence[str] | None = ...,
         **kwargs: Any,
     ) -> None: ...
     def document_shape_type_list(
@@ -26,8 +30,8 @@ class BaseParamsDocumenter(ShapeDocumenter):
         section: Any,
         shape: Shape,
         history: Any,
-        include: Optional[Sequence[str]] = ...,
-        exclude: Optional[Sequence[str]] = ...,
+        include: Sequence[str] | None = ...,
+        exclude: Sequence[str] | None = ...,
         **kwargs: Any,
     ) -> None: ...
     def document_shape_type_map(
@@ -35,8 +39,8 @@ class BaseParamsDocumenter(ShapeDocumenter):
         section: Any,
         shape: Shape,
         history: Any,
-        include: Optional[Sequence[str]] = ...,
-        exclude: Optional[Sequence[str]] = ...,
+        include: Sequence[str] | None = ...,
+        exclude: Sequence[str] | None = ...,
         **kwargs: Any,
     ) -> None: ...
     def document_shape_type_structure(
@@ -44,9 +48,9 @@ class BaseParamsDocumenter(ShapeDocumenter):
         section: Any,
         shape: Shape,
         history: Any,
-        include: Optional[Sequence[str]] = ...,
-        exclude: Optional[Sequence[str]] = ...,
-        name: Optional[str] = ...,
+        include: Sequence[str] | None = ...,
+        exclude: Sequence[str] | None = ...,
+        name: str | None = ...,
         **kwargs: Any,
     ) -> None: ...
 
@@ -67,7 +71,7 @@ class RequestParamsDocumenter(BaseParamsDocumenter):
         section: Any,
         shape: Shape,
         history: Any,
-        include: Optional[Sequence[str]] = ...,
-        exclude: Optional[Sequence[str]] = ...,
+        include: Sequence[str] | None = ...,
+        exclude: Sequence[str] | None = ...,
         **kwargs: Any,
     ) -> None: ...

@@ -1,5 +1,9 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from logging import Logger
-from typing import Any, Dict, Iterator
+from typing import Any, Iterator
 
 from botocore.exceptions import PaginationError as PaginationError
 from botocore.utils import merge_dicts as merge_dicts
@@ -8,10 +12,10 @@ from botocore.utils import set_value_from_jmespath as set_value_from_jmespath
 log: Logger = ...
 
 class TokenEncoder:
-    def encode(self, token: Dict[str, Any]) -> str: ...
+    def encode(self, token: dict[str, Any]) -> str: ...
 
 class TokenDecoder:
-    def decode(self, token: str) -> Dict[str, Any]: ...
+    def decode(self, token: str) -> dict[str, Any]: ...
 
 class PaginatorModel:
     def __init__(self, paginator_config: Any) -> None: ...

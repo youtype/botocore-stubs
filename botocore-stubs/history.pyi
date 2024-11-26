@@ -1,9 +1,13 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from logging import Logger
-from typing import Any, Optional
+from typing import Any
 
 logger: Logger = ...
 
-HISTORY_RECORDER: Optional[HistoryRecorder]
+HISTORY_RECORDER: HistoryRecorder | None
 
 class BaseHistoryHandler:
     def emit(self, event_type: str, payload: Any, source: str) -> None: ...

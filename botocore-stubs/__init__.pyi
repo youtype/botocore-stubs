@@ -1,5 +1,9 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 import logging
-from typing import Any, Callable, Mapping, Tuple
+from typing import Any, Callable, Mapping
 
 from botocore.session import Session
 
@@ -7,7 +11,7 @@ class NullHandler(logging.Handler):
     def emit(self, record: Any) -> None: ...
 
 log: logging.Logger
-ScalarTypes: Tuple[str, ...]
+ScalarTypes: tuple[str, ...]
 BOTOCORE_ROOT: str
 
 UNSIGNED: Any

@@ -1,6 +1,10 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from http.client import HTTPMessage
 from logging import Logger
-from typing import Any, Dict, Iterable, List, Mapping, Optional, Tuple, Type, Union
+from typing import Any, Iterable, Mapping
 from urllib.parse import SplitResult
 
 from botocore.awsrequest import AWSRequest
@@ -12,41 +16,41 @@ from botocore.utils import IdentityCache
 
 logger: Logger = ...
 
-_CredentialsUnion = Union[Credentials, ReadOnlyCredentials]
-
 EMPTY_SHA256_HASH: str
 PAYLOAD_BUFFER: int
 ISO8601: str
 SIGV4_TIMESTAMP: str
-SIGNED_HEADERS_BLACKLIST: List[str]
+SIGNED_HEADERS_BLACKLIST: list[str]
 UNSIGNED_PAYLOAD: str
 STREAMING_UNSIGNED_PAYLOAD_TRAILER: str
 
 class BaseSigner:
     REQUIRES_REGION: bool = ...
     REQUIRES_TOKEN: bool = ...
-    def add_auth(self, request: AWSRequest) -> Optional[AWSRequest]: ...
+    def add_auth(self, request: AWSRequest) -> AWSRequest | None: ...
 
 class TokenSigner(BaseSigner):
     def __init__(self, auth_token: str) -> None: ...
 
 class SigV2Auth(BaseSigner):
-    def __init__(self, credentials: _CredentialsUnion) -> None:
-        self.credentials: _CredentialsUnion
+    def __init__(self, credentials: Credentials | ReadOnlyCredentials) -> None:
+        self.credentials: Credentials | ReadOnlyCredentials
 
-    def calc_signature(self, request: AWSRequest, params: Mapping[str, Any]) -> Tuple[str, str]: ...
+    def calc_signature(self, request: AWSRequest, params: Mapping[str, Any]) -> tuple[str, str]: ...
     def add_auth(self, request: AWSRequest) -> AWSRequest: ...
 
 class SigV3Auth(BaseSigner):
-    def __init__(self, credentials: _CredentialsUnion) -> None:
-        self.credentials: _CredentialsUnion
+    def __init__(self, credentials: Credentials | ReadOnlyCredentials) -> None:
+        self.credentials: Credentials | ReadOnlyCredentials
 
     def add_auth(self, request: AWSRequest) -> None: ...
 
 class SigV4Auth(BaseSigner):
     REQUIRES_REGION: bool = ...
-    def __init__(self, credentials: _CredentialsUnion, service_name: str, region_name: str) -> None:
-        self.credentials: _CredentialsUnion
+    def __init__(
+        self, credentials: Credentials | ReadOnlyCredentials, service_name: str, region_name: str
+    ) -> None:
+        self.credentials: Credentials | ReadOnlyCredentials
 
     def headers_to_sign(self, request: AWSRequest) -> HTTPMessage: ...
     def canonical_query_string(self, request: AWSRequest) -> str: ...
@@ -67,7 +71,7 @@ class S3ExpressAuth(S3SigV4Auth):
 
     def __init__(
         self,
-        credentials: _CredentialsUnion,
+        credentials: Credentials | ReadOnlyCredentials,
         service_name: str,
         region_name: str,
         *,
@@ -81,7 +85,7 @@ class S3ExpressQueryAuth(S3ExpressAuth):
 
     def __init__(
         self,
-        credentials: _CredentialsUnion,
+        credentials: Credentials | ReadOnlyCredentials,
         service_name: str,
         region_name: str,
         *,
@@ -93,7 +97,7 @@ class SigV4QueryAuth(SigV4Auth):
     DEFAULT_EXPIRES: int = ...
     def __init__(
         self,
-        credentials: _CredentialsUnion,
+        credentials: Credentials | ReadOnlyCredentials,
         service_name: str,
         region_name: str,
         expires: int = ...,
@@ -106,42 +110,42 @@ class S3SigV4PostAuth(SigV4Auth):
     def add_auth(self, request: AWSRequest) -> None: ...
 
 class HmacV1Auth(BaseSigner):
-    QSAOfInterest: List[str] = ...
+    QSAOfInterest: list[str] = ...
     def __init__(
         self,
-        credentials: _CredentialsUnion,
-        service_name: Optional[str] = ...,
-        region_name: Optional[str] = ...,
+        credentials: Credentials | ReadOnlyCredentials,
+        service_name: str | None = ...,
+        region_name: str | None = ...,
     ) -> None:
-        self.credentials: _CredentialsUnion
+        self.credentials: Credentials | ReadOnlyCredentials
 
     def sign_string(self, string_to_sign: str) -> str: ...
     def canonical_standard_headers(self, headers: Mapping[str, Any]) -> str: ...
     def canonical_custom_headers(self, headers: Mapping[str, Any]) -> str: ...
-    def unquote_v(self, nv: str) -> Union[Tuple[str, str], str]: ...
-    def canonical_resource(self, split: SplitResult, auth_path: Optional[str] = ...) -> str: ...
+    def unquote_v(self, nv: str) -> tuple[str, str] | str: ...
+    def canonical_resource(self, split: SplitResult, auth_path: str | None = ...) -> str: ...
     def canonical_string(
         self,
         method: str,
         split: SplitResult,
         headers: Mapping[str, Any],
-        expires: Optional[int] = ...,
-        auth_path: Optional[str] = ...,
+        expires: int | None = ...,
+        auth_path: str | None = ...,
     ) -> Any: ...
     def get_signature(
         self,
         method: str,
         split: SplitResult,
         headers: Mapping[str, Any],
-        expires: Optional[int] = ...,
-        auth_path: Optional[str] = ...,
+        expires: int | None = ...,
+        auth_path: str | None = ...,
     ) -> Any: ...
     def add_auth(self, request: AWSRequest) -> None: ...
 
 class HmacV1QueryAuth(HmacV1Auth):
     DEFAULT_EXPIRES: int = ...
-    def __init__(self, credentials: _CredentialsUnion, expires: int = ...) -> None:
-        self.credentials: _CredentialsUnion
+    def __init__(self, credentials: Credentials | ReadOnlyCredentials, expires: int = ...) -> None:
+        self.credentials: Credentials | ReadOnlyCredentials
 
 class HmacV1PostAuth(HmacV1Auth):
     def add_auth(self, request: AWSRequest) -> None: ...
@@ -151,5 +155,5 @@ class BearerAuth(TokenSigner):
 
 def resolve_auth_type(auth_trait: Iterable[str]) -> str: ...
 
-AUTH_TYPE_MAPS: Dict[str, Type[BaseSigner]]
-AUTH_TYPE_TO_SIGNATURE_VERSION: Dict[str, str]
+AUTH_TYPE_MAPS: dict[str, type[BaseSigner]]
+AUTH_TYPE_TO_SIGNATURE_VERSION: dict[str, str]

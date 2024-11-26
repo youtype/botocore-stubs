@@ -1,5 +1,9 @@
+"""
+Copyright 2024 Vlad Emelianov
+"""
+
 from logging import Logger
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 from botocore.args import ClientArgsCreator as ClientArgsCreator
 from botocore.auth import AUTH_TYPE_MAPS as AUTH_TYPE_MAPS
@@ -11,6 +15,7 @@ from botocore.discovery import EndpointDiscoveryManager as EndpointDiscoveryMana
 from botocore.discovery import (
     block_endpoint_discovery_required_operations as block_endpoint_discovery_required_operations,
 )
+from botocore.errorfactory import ClientExceptionsFactory
 from botocore.exceptions import ClientError as ClientError
 from botocore.exceptions import DataNotFoundError as DataNotFoundError
 from botocore.exceptions import (
@@ -40,7 +45,6 @@ from botocore.utils import S3RegionRedirector as S3RegionRedirector
 from botocore.utils import ensure_boolean as ensure_boolean
 from botocore.utils import get_service_module_name as get_service_module_name
 from botocore.waiter import Waiter
-from botocore.errorfactory import ClientExceptionsFactory
 
 logger: Logger = ...
 history_recorder: HistoryRecorder = ...
@@ -54,37 +58,37 @@ class ClientCreator:
         event_emitter: BaseEventHooks,
         retry_handler_factory: Any,
         retry_config_translator: Any,
-        response_parser_factory: Optional[Any] = ...,
-        exceptions_factory: Optional[ClientExceptionsFactory] = ...,
-        config_store: Optional[ConfigValueStore] = ...,
-        user_agent_creator: Optional[UserAgentString] = ...,
+        response_parser_factory: Any | None = ...,
+        exceptions_factory: ClientExceptionsFactory | None = ...,
+        config_store: ConfigValueStore | None = ...,
+        user_agent_creator: UserAgentString | None = ...,
     ) -> None: ...
     def create_client(
         self,
         service_name: str,
         region_name: str,
         is_secure: bool = ...,
-        endpoint_url: Optional[str] = ...,
-        verify: Optional[Union[str, bool]] = ...,
-        credentials: Optional[Any] = ...,
-        scoped_config: Optional[Any] = ...,
-        api_version: Optional[str] = ...,
-        client_config: Optional[Config] = ...,
-        auth_token: Optional[str] = ...,
+        endpoint_url: str | None = ...,
+        verify: str | bool | None = ...,
+        credentials: Any | None = ...,
+        scoped_config: Any | None = ...,
+        api_version: str | None = ...,
+        client_config: Config | None = ...,
+        auth_token: str | None = ...,
     ) -> BaseClient: ...
-    def create_client_class(self, service_name: str, api_version: Optional[Any] = ...) -> None: ...
+    def create_client_class(self, service_name: str, api_version: Any | None = ...) -> None: ...
 
 class ClientEndpointBridge:
     DEFAULT_ENDPOINT: str = ...
     def __init__(
         self,
         endpoint_resolver: BaseEndpointResolver,
-        scoped_config: Optional[Any] = ...,
-        client_config: Optional[Any] = ...,
-        default_endpoint: Optional[str] = ...,
-        service_signing_name: Optional[str] = ...,
-        config_store: Optional[ConfigValueStore] = ...,
-        service_signature_version: Optional[str] = ...,
+        scoped_config: Any | None = ...,
+        client_config: Any | None = ...,
+        default_endpoint: str | None = ...,
+        service_signing_name: str | None = ...,
+        config_store: ConfigValueStore | None = ...,
+        service_signature_version: str | None = ...,
     ) -> None:
         self.service_signing_name: str
         self.endpoint_resolver: BaseEndpointResolver
@@ -96,8 +100,8 @@ class ClientEndpointBridge:
     def resolve(
         self,
         service_name: str,
-        region_name: Optional[str] = ...,
-        endpoint_url: Optional[str] = ...,
+        region_name: str | None = ...,
+        endpoint_url: str | None = ...,
         is_secure: bool = ...,
     ) -> None: ...
     def resolver_uses_builtin_data(self) -> bool: ...
@@ -115,8 +119,8 @@ class BaseClient:
         client_config: Config,
         partition: str,
         exceptions_factory: ClientExceptionsFactory,
-        endpoint_ruleset_resolver: Optional[EndpointRulesetResolver] = ...,
-        user_agent_creator: Optional[UserAgentString] = ...,
+        endpoint_ruleset_resolver: EndpointRulesetResolver | None = ...,
+        user_agent_creator: UserAgentString | None = ...,
     ) -> None:
         self.meta: ClientMeta
     # FIXME: it hides `has no attribute` errors on Client type checking
@@ -126,7 +130,7 @@ class BaseClient:
     def can_paginate(self, operation_name: str) -> bool: ...
     def get_waiter(self, waiter_name: Any) -> Waiter: ...
     @CachedProperty
-    def waiter_names(self) -> List[str]: ...
+    def waiter_names(self) -> list[str]: ...
     @property
     def exceptions(self) -> Any: ...
 
@@ -137,7 +141,7 @@ class ClientMeta:
         client_config: Config,
         endpoint_url: str,
         service_model: ServiceModel,
-        method_to_api_mapping: Dict[str, str],
+        method_to_api_mapping: dict[str, str],
         partition: str,
     ) -> None:
         self.events: BaseEventHooks
@@ -151,6 +155,6 @@ class ClientMeta:
     @property
     def config(self) -> Any: ...
     @property
-    def method_to_api_mapping(self) -> Dict[str, str]: ...
+    def method_to_api_mapping(self) -> dict[str, str]: ...
     @property
     def partition(self) -> str: ...
