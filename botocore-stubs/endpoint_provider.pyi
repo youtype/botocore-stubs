@@ -1,4 +1,6 @@
 """
+Type annotations for botocore.endpoint_provider module.
+
 Copyright 2024 Vlad Emelianov
 """
 

@@ -1,4 +1,6 @@
 """
+Type annotations for botocore.configloader module.
+
 Copyright 2024 Vlad Emelianov
 """
 

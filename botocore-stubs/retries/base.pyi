@@ -1,3 +1,9 @@
+"""
+Type annotations for botocore.retries.base module.
+
+Copyright 2024 Vlad Emelianov
+"""
+
 from typing import Any
 
 class BaseRetryBackoff:
