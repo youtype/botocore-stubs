@@ -1,4 +1,6 @@
 """
+Type annotations for botocore.eventstream module.
+
 Copyright 2024 Vlad Emelianov
 """
 

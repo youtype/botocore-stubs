@@ -1,4 +1,6 @@
 """
+Type annotations for botocore.regions module.
+
 Copyright 2024 Vlad Emelianov
 """
 
