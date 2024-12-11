@@ -31,23 +31,23 @@ dependencies = ["types-awscrt"]
 [project.optional-dependencies]
 botocore = ["botocore"]
 
-[tool.uv]
-config-settings = { editable-mode = "strict" }
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "setuptools",
     "pre-commit",
     "awscrt",
     "botocore",
     "mypy",
-    "ruff",
     "pyright",
     "istub",
-    "types-requests",
-    "types-python-dateutil",
-    "types-dataclasses",
     "docutils",
     "sphinx",
 ]
+types = ["types-requests", "types-python-dateutil", "types-dataclasses"]
+
+[tool.uv]
+config-settings = { editable-mode = "strict" }
+default-groups = ["dev", "types"]
 
 [project.urls]
 Homepage = "https://github.com/youtype/botocore-stubs"
