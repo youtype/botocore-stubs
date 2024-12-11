@@ -122,6 +122,7 @@ class RuleCreator:
 class ParameterType(Enum):
     string: type[str]
     boolean: type[bool]
+    stringarray: type[tuple[Any]]
 
 class ParameterDefinition:
     def __init__(
