@@ -42,9 +42,10 @@ jobs:
           python-version: ${{ matrix.version }}
           allow-prereleases: true
       - name: Set up uv
-        uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@v4
         with:
           version: "latest"
+          enable-cache: true
       - name: Install the project
         run: |
           uv sync --all-extras --dev
