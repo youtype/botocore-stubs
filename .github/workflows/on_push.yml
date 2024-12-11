@@ -51,15 +51,6 @@ jobs:
           uv pip install mypy pre-commit
       - name: Run pre-commit
         run: uv run pre-commit run --all-files
-      - name: Check types in test.py
-        run: |
-          uv build --wheel
-          OUTPUT=`uvx --python=3.8 --with dist/*.whl mypy test.py || true`
-          echo $OUTPUT
-          if [[ ${OUTPUT} != *"Found 1 error"* ]];then
-            echo "Stubs test failed: $TEST"
-            exit 1
-          fi
       - name: Stubs consistency check
         if: ${{ matrix.check-consistency }}
         run: |

@@ -21,3 +21,8 @@ repos:
         language: system
         pass_filenames: false
         entry: uv run mypy botocore-stubs
+      - id: sanity
+        name: sanity
+        language: system
+        pass_filenames: false
+        entry: ./scripts/sanity_check.sh
