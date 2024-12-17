@@ -5,7 +5,7 @@ Copyright 2024 Vlad Emelianov
 """
 
 from logging import Logger
-from typing import Any
+from typing import Any, Mapping
 
 from botocore.args import ClientArgsCreator as ClientArgsCreator
 from botocore.auth import AUTH_TYPE_MAPS as AUTH_TYPE_MAPS
@@ -17,7 +17,7 @@ from botocore.discovery import EndpointDiscoveryManager as EndpointDiscoveryMana
 from botocore.discovery import (
     block_endpoint_discovery_required_operations as block_endpoint_discovery_required_operations,
 )
-from botocore.errorfactory import ClientExceptionsFactory
+from botocore.errorfactory import BaseClientExceptions, ClientExceptionsFactory
 from botocore.exceptions import ClientError as ClientError
 from botocore.exceptions import DataNotFoundError as DataNotFoundError
 from botocore.exceptions import (
@@ -32,6 +32,7 @@ from botocore.hooks import first_non_none_response as first_non_none_response
 from botocore.loaders import Loader
 from botocore.model import ServiceModel as ServiceModel
 from botocore.paginate import Paginator as Paginator
+from botocore.parsers import ResponseParser, ResponseParserFactory
 from botocore.regions import BaseEndpointResolver, EndpointRulesetResolver
 from botocore.retries import adaptive as adaptive
 from botocore.retries import standard as standard
@@ -60,7 +61,7 @@ class ClientCreator:
         event_emitter: BaseEventHooks,
         retry_handler_factory: Any,
         retry_config_translator: Any,
-        response_parser_factory: Any | None = ...,
+        response_parser_factory: ResponseParserFactory | None = ...,
         exceptions_factory: ClientExceptionsFactory | None = ...,
         config_store: ConfigValueStore | None = ...,
         user_agent_creator: UserAgentString | None = ...,
@@ -73,20 +74,20 @@ class ClientCreator:
         endpoint_url: str | None = ...,
         verify: str | bool | None = ...,
         credentials: Any | None = ...,
-        scoped_config: Any | None = ...,
+        scoped_config: Mapping[str, Any] | None = ...,
         api_version: str | None = ...,
         client_config: Config | None = ...,
         auth_token: str | None = ...,
     ) -> BaseClient: ...
-    def create_client_class(self, service_name: str, api_version: Any | None = ...) -> None: ...
+    def create_client_class(self, service_name: str, api_version: str | None = ...) -> None: ...
 
 class ClientEndpointBridge:
     DEFAULT_ENDPOINT: str = ...
     def __init__(
         self,
         endpoint_resolver: BaseEndpointResolver,
-        scoped_config: Any | None = ...,
-        client_config: Any | None = ...,
+        scoped_config: Mapping[str, Any] | None = ...,
+        client_config: Config | None = ...,
         default_endpoint: str | None = ...,
         service_signing_name: str | None = ...,
         config_store: ConfigValueStore | None = ...,
@@ -94,8 +95,8 @@ class ClientEndpointBridge:
     ) -> None:
         self.service_signing_name: str
         self.endpoint_resolver: BaseEndpointResolver
-        self.scoped_config: Any
-        self.client_config: Any
+        self.scoped_config: Mapping[str, Any]
+        self.client_config: Config
         self.default_endpoint: str
         self.config_store: ConfigValueStore
 
@@ -113,7 +114,7 @@ class BaseClient:
         self,
         serializer: Serializer,
         endpoint: str,
-        response_parser: Any,
+        response_parser: ResponseParser,
         event_emitter: BaseEventHooks,
         request_signer: RequestSigner,
         service_model: ServiceModel,
@@ -128,13 +129,13 @@ class BaseClient:
     # FIXME: it hides `has no attribute` errors on Client type checking
     # def __getattr__(self, item: str) -> Any: ...
     def close(self) -> None: ...
-    def get_paginator(self, operation_name: Any) -> Paginator: ...
+    def get_paginator(self, operation_name: str) -> Paginator: ...
     def can_paginate(self, operation_name: str) -> bool: ...
-    def get_waiter(self, waiter_name: Any) -> Waiter: ...
+    def get_waiter(self, waiter_name: str) -> Waiter: ...
     @CachedProperty
     def waiter_names(self) -> list[str]: ...
     @property
-    def exceptions(self) -> Any: ...
+    def exceptions(self) -> BaseClientExceptions: ...
 
 class ClientMeta:
     def __init__(
@@ -143,7 +144,7 @@ class ClientMeta:
         client_config: Config,
         endpoint_url: str,
         service_model: ServiceModel,
-        method_to_api_mapping: dict[str, str],
+        method_to_api_mapping: Mapping[str, str],
         partition: str,
     ) -> None:
         self.events: BaseEventHooks
@@ -155,7 +156,7 @@ class ClientMeta:
     @property
     def endpoint_url(self) -> str: ...
     @property
-    def config(self) -> Any: ...
+    def config(self) -> Config: ...
     @property
     def method_to_api_mapping(self) -> dict[str, str]: ...
     @property
