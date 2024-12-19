@@ -36,14 +36,20 @@ dev = [
     "setuptools",
     "pre-commit",
     "awscrt",
-    "botocore",
+    "botocore>=1.35.0",
     "mypy",
     "pyright",
     "istub",
     "docutils",
     "sphinx",
+    "jmespath",
 ]
-types = ["types-requests", "types-python-dateutil", "types-dataclasses"]
+types = [
+    "types-requests",
+    "types-python-dateutil",
+    "types-dataclasses",
+    "types-jmespath",
+]
 
 [tool.uv]
 config-settings = { editable-mode = "strict" }
