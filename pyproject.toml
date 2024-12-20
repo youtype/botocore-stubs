@@ -90,8 +90,8 @@ ignore_missing_imports = true
 ignore_errors = false
 
 [[tool.mypy.overrides]]
-module = ["sphinx.*"]
-ignore_errors = true
+module = ["sphinx.writers.html5"]
+follow_imports = 'skip'
 
 [tool.ruff]
 exclude = [
