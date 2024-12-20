@@ -120,9 +120,10 @@ class RuleCreator:
     def create(cls, **kwargs: Any) -> BaseRule: ...
 
 class ParameterType(Enum):
-    string: type[str]
-    boolean: type[bool]
-    stringarray: type[tuple[Any]]
+    _value_: type
+    string = ...
+    boolean = ...
+    stringarray = ...
 
 class ParameterDefinition:
     def __init__(
