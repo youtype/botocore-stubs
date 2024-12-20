@@ -51,7 +51,7 @@ jobs:
           uv sync --all-extras --dev
           uv pip install mypy pre-commit
       - name: Run pre-commit
-        run: uv run pre-commit run --all-files
+        run: uvx pre-commit run --all-files
       - name: Stubs consistency check
         if: ${{ matrix.check-consistency }}
         run: |

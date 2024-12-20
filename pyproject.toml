@@ -34,7 +34,6 @@ botocore = ["botocore"]
 [dependency-groups]
 dev = [
     "setuptools",
-    "pre-commit",
     "awscrt",
     "botocore>=1.35.0",
     "mypy",
