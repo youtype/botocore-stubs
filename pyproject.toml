@@ -90,6 +90,10 @@ disallow_untyped_defs = true
 ignore_missing_imports = true
 ignore_errors = false
 
+[[tool.mypy.overrides]]
+module = ["sphinx.*"]
+ignore_errors = true
+
 [tool.ruff]
 exclude = [
     ".eggs",
