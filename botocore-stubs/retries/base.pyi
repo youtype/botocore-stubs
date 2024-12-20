@@ -4,10 +4,10 @@ Type annotations for botocore.retries.base module.
 Copyright 2024 Vlad Emelianov
 """
 
-from typing import Any
+from botocore.retries.standard import RetryContext
 
 class BaseRetryBackoff:
-    def delay_amount(self, context: Any) -> float: ...
+    def delay_amount(self, context: RetryContext) -> float: ...
 
 class BaseRetryableChecker:
-    def is_retryable(self, context: Any) -> bool: ...
+    def is_retryable(self, context: RetryContext) -> bool: ...

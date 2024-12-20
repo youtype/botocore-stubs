@@ -35,8 +35,8 @@ from botocore.utils import switch_host_with_param as switch_host_with_param
 
 logger: Logger = ...
 
-REGISTER_FIRST: Any
-REGISTER_LAST: Any
+REGISTER_FIRST: object
+REGISTER_LAST: object
 VALID_BUCKET: Pattern[str]
 VALID_S3_ARN: Pattern[str]
 S3_SIGNING_NAMES: tuple[str, ...]
@@ -129,17 +129,17 @@ def remove_lex_v2_start_conversation(
 def remove_qbusiness_chat(class_attributes: Mapping[str, Any], **kwargs: Any) -> None: ...
 def add_retry_headers(request: Request, **kwargs: Any) -> None: ...
 def remove_bucket_from_url_paths_from_model(
-    params: Mapping[str, Any], model: OperationModel, context: Any, **kwargs: Any
+    params: Mapping[str, Any], model: OperationModel, context: Mapping[str, Any], **kwargs: Any
 ) -> None: ...
 def remove_accid_host_prefix_from_model(
-    params: Mapping[str, Any], model: OperationModel, context: Any, **kwargs: Any
+    params: Mapping[str, Any], model: OperationModel, context: Mapping[str, Any], **kwargs: Any
 ) -> None: ...
 def remove_arn_from_signing_path(request: Request, **kwargs: Any) -> None: ...
 def customize_endpoint_resolver_builtins(
     builtins: Mapping[str, Any],
     model: OperationModel,
     params: Mapping[str, Any],
-    context: Any,
+    context: Mapping[str, Any],
     **kwargs: Any,
 ) -> None: ...
 def remove_content_type_header_for_presigning(request: Request, **kwargs: Any) -> None: ...

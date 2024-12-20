@@ -26,14 +26,14 @@ class AWSHTTPResponse(HTTPResponse):
 
 class AWSConnection:
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        self.response_class: Any
+        self.response_class: type[AWSHTTPResponse]
 
     def close(self) -> None: ...
     def request(
         self,
         method: str,
         url: str,
-        body: Any = ...,
+        body: str | bytes | bytearray | IO[bytes] | IO[str] | None = ...,
         headers: Mapping[str, Any] | None = ...,
         *args: Any,
         **kwargs: Any,
@@ -53,7 +53,7 @@ class AWSHTTPSConnectionPool(HTTPSConnectionPool):
 def prepare_request_dict(
     request_dict: Mapping[str, Any],
     endpoint_url: str,
-    context: Any | None = ...,
+    context: Mapping[str, Any] | None = ...,
     user_agent: str | None = ...,
 ) -> None: ...
 def create_request_object(request_dict: Mapping[str, Any]) -> Any: ...

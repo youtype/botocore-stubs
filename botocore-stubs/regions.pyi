@@ -77,7 +77,7 @@ class EndpointRulesetResolver:
         partition_data: Mapping[str, Any],
         service_model: ServiceModel,
         builtins: EndpointResolverBuiltins,
-        client_context: Any,
+        client_context: Mapping[str, Any],
         event_emitter: BaseEventHooks,
         use_ssl: bool = ...,
         requested_auth_scheme: str | None = ...,
@@ -86,7 +86,7 @@ class EndpointRulesetResolver:
         self,
         operation_model: OperationModel,
         call_args: Mapping[str, Any] | None,
-        request_context: Any,
+        request_context: Mapping[str, Any],
     ) -> RuleSetEndpoint: ...
     def auth_schemes_to_signing_ctx(
         self, auth_schemes: list[Mapping[str, Any]]

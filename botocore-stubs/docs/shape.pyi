@@ -4,7 +4,7 @@ Type annotations for botocore.docs.shape module.
 Copyright 2024 Vlad Emelianov
 """
 
-from typing import Any
+from typing import Any, Mapping
 
 from botocore.hooks import BaseEventHooks
 from botocore.model import Shape
@@ -16,7 +16,7 @@ class ShapeDocumenter:
         service_name: str,
         operation_name: str,
         event_emitter: BaseEventHooks,
-        context: Any = ...,
+        context: Mapping[str, Any] | None = ...,
     ) -> None: ...
     def traverse_and_document_shape(
         self,
