@@ -6,6 +6,7 @@ Copyright 2024 Vlad Emelianov
 
 from typing import Any, Mapping
 
+from botocore.docs.bcdoc.restdoc import DocumentStructure
 from botocore.hooks import BaseEventHooks
 from botocore.model import Shape
 
@@ -20,7 +21,7 @@ class ShapeDocumenter:
     ) -> None: ...
     def traverse_and_document_shape(
         self,
-        section: Any,
+        section: DocumentStructure,
         shape: Shape,
         history: Any,
         include: Any = ...,

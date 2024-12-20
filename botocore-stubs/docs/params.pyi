@@ -6,21 +6,24 @@ Copyright 2024 Vlad Emelianov
 
 from typing import Any, Sequence
 
+from botocore.docs.bcdoc.restdoc import DocumentStructure
 from botocore.docs.shape import ShapeDocumenter
 from botocore.model import Shape
 
 class BaseParamsDocumenter(ShapeDocumenter):
     def document_params(
         self,
-        section: Any,
+        section: DocumentStructure,
         shape: Shape,
         include: Sequence[str] | None = ...,
         exclude: Sequence[str] | None = ...,
     ) -> None: ...
-    def document_recursive_shape(self, section: Any, shape: Shape, **kwargs: Any) -> None: ...
+    def document_recursive_shape(
+        self, section: DocumentStructure, shape: Shape, **kwargs: Any
+    ) -> None: ...
     def document_shape_default(
         self,
-        section: Any,
+        section: DocumentStructure,
         shape: Shape,
         history: Any,
         include: Sequence[str] | None = ...,
@@ -29,7 +32,7 @@ class BaseParamsDocumenter(ShapeDocumenter):
     ) -> None: ...
     def document_shape_type_list(
         self,
-        section: Any,
+        section: DocumentStructure,
         shape: Shape,
         history: Any,
         include: Sequence[str] | None = ...,
@@ -38,7 +41,7 @@ class BaseParamsDocumenter(ShapeDocumenter):
     ) -> None: ...
     def document_shape_type_map(
         self,
-        section: Any,
+        section: DocumentStructure,
         shape: Shape,
         history: Any,
         include: Sequence[str] | None = ...,
@@ -47,7 +50,7 @@ class BaseParamsDocumenter(ShapeDocumenter):
     ) -> None: ...
     def document_shape_type_structure(
         self,
-        section: Any,
+        section: DocumentStructure,
         shape: Shape,
         history: Any,
         include: Sequence[str] | None = ...,
@@ -60,7 +63,7 @@ class ResponseParamsDocumenter(BaseParamsDocumenter):
     EVENT_NAME: str = ...
     def document_shape_type_event_stream(
         self,
-        section: Any,
+        section: DocumentStructure,
         shape: Shape,
         history: Any,
         **kwargs: Any,
@@ -70,7 +73,7 @@ class RequestParamsDocumenter(BaseParamsDocumenter):
     EVENT_NAME: str = ...
     def document_shape_type_structure(  # type: ignore[override]
         self,
-        section: Any,
+        section: DocumentStructure,
         shape: Shape,
         history: Any,
         include: Sequence[str] | None = ...,
