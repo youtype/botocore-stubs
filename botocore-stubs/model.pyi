@@ -130,7 +130,7 @@ class OperationModel:
         self,
         operation_model: Mapping[str, Any],
         service_model: ServiceModel,
-        name: str | None = None,
+        name: str | None = ...,
     ) -> None:
         self.metadata: dict[str, Any]
         self.http: dict[str, Any]

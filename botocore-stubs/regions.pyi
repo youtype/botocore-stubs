@@ -4,6 +4,7 @@ Type annotations for botocore.regions module.
 Copyright 2024 Vlad Emelianov
 """
 
+from collections.abc import Iterable
 from enum import Enum
 from logging import Logger
 from typing import Any, Mapping
@@ -40,10 +41,10 @@ class EndpointResolver(BaseEndpointResolver):
         service_name: str,
         partition_name: str = ...,
         allow_non_regional: bool = ...,
-        endpoint_variant_tags: Any = ...,
+        endpoint_variant_tags: Iterable[str] | None = ...,
     ) -> list[str]: ...
     def get_partition_dns_suffix(
-        self, partition_name: str, endpoint_variant_tags: Any = ...
+        self, partition_name: str, endpoint_variant_tags: Iterable[str] | None = ...
     ) -> str: ...
     def construct_endpoint(  # type: ignore [override]
         self,
