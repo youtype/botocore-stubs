@@ -1,7 +1,7 @@
 """
 Type annotations for botocore.crt.auth module.
 
-Copyright 2024 Vlad Emelianov
+Copyright 2025 Vlad Emelianov
 """
 
 from awscrt.auth import AwsCredentials

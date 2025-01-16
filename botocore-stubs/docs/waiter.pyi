@@ -1,7 +1,7 @@
 """
 Type annotations for botocore.docs.waiter module.
 
-Copyright 2024 Vlad Emelianov
+Copyright 2025 Vlad Emelianov
 """
 
 from botocore.client import BaseClient

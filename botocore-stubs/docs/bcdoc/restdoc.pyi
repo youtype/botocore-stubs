@@ -1,7 +1,7 @@
 """
 Type annotations for botocore.docs.bcdoc.restdoc module.
 
-Copyright 2024 Vlad Emelianov
+Copyright 2025 Vlad Emelianov
 """
 
 import re

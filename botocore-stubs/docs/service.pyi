@@ -1,7 +1,7 @@
 """
 Type annotations for botocore.docs.service module.
 
-Copyright 2024 Vlad Emelianov
+Copyright 2025 Vlad Emelianov
 """
 
 from botocore.docs.bcdoc.restdoc import DocumentStructure

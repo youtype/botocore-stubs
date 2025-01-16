@@ -1,7 +1,7 @@
 """
 Type annotations for botocore.translate module.
 
-Copyright 2024 Vlad Emelianov
+Copyright 2025 Vlad Emelianov
 """
 
 from collections.abc import Mapping

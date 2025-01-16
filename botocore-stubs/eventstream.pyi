@@ -1,7 +1,7 @@
 """
 Type annotations for botocore.eventstream module.
 
-Copyright 2024 Vlad Emelianov
+Copyright 2025 Vlad Emelianov
 """
 
 from typing import Any, Generic, Iterator, TypeVar
