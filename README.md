@@ -31,7 +31,7 @@ Use [mypy](https://github.com/python/mypy) or [pyright](https://github.com/micro
 ## Versioning
 
 `botocore-stubs` version is the same as related `botocore` version and follows
-[PEP 440](https://www.python.org/dev/peps/pep-0440/) format.
+[Python Packaging version specifiers](https://packaging.python.org/en/latest/specifications/version-specifiers/).
 
 ## Support and contributing
 
