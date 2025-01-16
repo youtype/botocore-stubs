@@ -13,10 +13,10 @@ from botocore.exceptions import AwsChunkedWrapperError as AwsChunkedWrapperError
 from botocore.exceptions import FlexibleChecksumError as FlexibleChecksumError
 from botocore.model import OperationModel
 from botocore.response import StreamingBody as StreamingBody
-from botocore.utils import conditionally_calculate_md5 as conditionally_calculate_md5
 from botocore.utils import determine_content_length as determine_content_length
 
-logger: logging.Logger
+logger: logging.Logger = ...
+DEFAULT_CHECKSUM_ALGORITHM: str = ...
 
 class BaseChecksum:
     def update(self, chunk: bytes | bytearray) -> None: ...
@@ -31,6 +31,9 @@ class CrtCrc32Checksum(BaseChecksum):
     def __init__(self) -> None: ...
 
 class CrtCrc32cChecksum(BaseChecksum):
+    def __init__(self) -> None: ...
+
+class CrtCrc64NvmeChecksum(BaseChecksum):
     def __init__(self) -> None: ...
 
 class Sha1Checksum(BaseChecksum):

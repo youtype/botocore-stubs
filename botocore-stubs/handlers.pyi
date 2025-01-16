@@ -28,7 +28,6 @@ from botocore.signers import add_generate_db_auth_token as add_generate_db_auth_
 from botocore.signers import add_generate_presigned_post as add_generate_presigned_post
 from botocore.signers import add_generate_presigned_url as add_generate_presigned_url
 from botocore.utils import SAFE_CHARS as SAFE_CHARS
-from botocore.utils import conditionally_calculate_md5 as conditionally_calculate_md5
 from botocore.utils import hyphenize_service_id as hyphenize_service_id
 from botocore.utils import percent_encode as percent_encode
 from botocore.utils import switch_host_with_param as switch_host_with_param
