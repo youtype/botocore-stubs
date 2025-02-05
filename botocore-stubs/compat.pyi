@@ -70,6 +70,9 @@ def get_tzinfo_options() -> tuple[Any, ...]: ...
 
 HAS_CRT: bool
 disabled: str
+
+def has_minimum_crt_version(minimum_version: tuple[int, ...]) -> bool: ...
+
 IPV4_PAT: str
 IPV4_RE: Pattern[str]
 HEX_PAT: str
