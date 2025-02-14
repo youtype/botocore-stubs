@@ -1,4 +1,5 @@
 version = 1
+revision = 1
 requires-python = ">=3.8"
 resolution-markers = [
     "python_full_version >= '3.10'",
@@ -118,7 +119,7 @@ wheels = [
 
 [[package]]
 name = "botocore-stubs"
-version = "1.36.18"
+version = "1.36.20"
 source = { editable = "." }
 dependencies = [
     { name = "types-awscrt" },
@@ -159,6 +160,7 @@ requires-dist = [
     { name = "botocore", marker = "extra == 'botocore'" },
     { name = "types-awscrt" },
 ]
+provides-extras = ["botocore"]
 
 [package.metadata.requires-dev]
 dev = [
