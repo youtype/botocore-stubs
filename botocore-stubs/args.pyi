@@ -5,11 +5,12 @@ Copyright 2025 Vlad Emelianov
 """
 
 from logging import Logger
-from typing import Any, Mapping, TypedDict
+from typing import Any, Literal, Mapping, TypedDict
 
 from botocore.client import ClientEndpointBridge
 from botocore.config import Config as Config
 from botocore.configprovider import ConfigValueStore
+from botocore.credentials import Credentials
 from botocore.endpoint import Endpoint
 from botocore.endpoint import EndpointCreator as EndpointCreator
 from botocore.errorfactory import ClientExceptionsFactory
@@ -29,6 +30,7 @@ USERAGENT_APPID_MAXLEN: int = ...
 VALID_REQUEST_CHECKSUM_CALCULATION_CONFIG: tuple[str, ...] = ...
 VALID_RESPONSE_CHECKSUM_VALIDATION_CONFIG: tuple[str, ...] = ...
 PRIORITY_ORDERED_SUPPORTED_PROTOCOLS: tuple[str, ...] = ...
+VALID_ACCOUNT_ID_ENDPOINT_MODE_CONFIG: tuple[str, ...] = ...
 
 class _GetClientArgsTypeDef(TypedDict):
     serializer: BaseRestSerializer
@@ -87,4 +89,6 @@ class ClientArgsCreator:
         endpoint_bridge: ClientEndpointBridge,
         client_endpoint_url: str,
         legacy_endpoint_url: str,
+        credentials: Credentials | None,
+        account_id_endpoint_mode: Literal["preferred", "disabled", "required"] | None,
     ) -> dict[str, Any]: ...
