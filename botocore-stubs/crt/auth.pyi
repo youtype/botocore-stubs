@@ -18,24 +18,21 @@ from botocore.compat import urlunsplit as urlunsplit
 from botocore.exceptions import NoCredentialsError as NoCredentialsError
 from botocore.utils import percent_encode_sequence as percent_encode_sequence
 
-class AwsCredentials(Protocol):
-    @property
-    def access_key_id(self) -> str: ...
-    @property
-    def secret_access_key(self) -> str: ...
-    @property
-    def session_token(self) -> str: ...
+class _Credentials(Protocol):
+    access_key: str
+    secret_key: str
+    token: str | None
 
 class CrtSigV4Auth(BaseSigner):
     REQUIRES_REGION: bool = ...
 
     def __init__(
         self,
-        credentials: AwsCredentials,
+        credentials: _Credentials,
         service_name: str,
         region_name: str,
     ) -> None:
-        self.credentials: AwsCredentials = ...
+        self.credentials: _Credentials = ...
 
     def add_auth(self, request: AWSRequest) -> None: ...
 
@@ -46,11 +43,11 @@ class CrtSigV4AsymAuth(BaseSigner):
 
     def __init__(
         self,
-        credentials: AwsCredentials,
+        credentials: _Credentials,
         service_name: str,
         region_name: str,
     ) -> None:
-        self.credentials: AwsCredentials = ...
+        self.credentials: _Credentials = ...
 
     def add_auth(self, request: AWSRequest) -> None: ...
 
@@ -61,7 +58,7 @@ class CrtSigV4AsymQueryAuth(CrtSigV4AsymAuth):
 
     def __init__(
         self,
-        credentials: AwsCredentials,
+        credentials: _Credentials,
         service_name: str,
         region_name: str,
         expires: int = ...,
@@ -73,7 +70,7 @@ class CrtSigV4QueryAuth(CrtSigV4Auth):
     DEFAULT_EXPIRES: int = ...
     def __init__(
         self,
-        credentials: AwsCredentials,
+        credentials: _Credentials,
         service_name: str,
         region_name: str,
         expires: int = ...,
