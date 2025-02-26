@@ -4,7 +4,8 @@ Type annotations for botocore.crt.auth module.
 Copyright 2025 Vlad Emelianov
 """
 
-from awscrt.auth import AwsCredentials
+from typing import Protocol
+
 from botocore.auth import SIGNED_HEADERS_BLACKLIST as SIGNED_HEADERS_BLACKLIST
 from botocore.auth import STREAMING_UNSIGNED_PAYLOAD_TRAILER as STREAMING_UNSIGNED_PAYLOAD_TRAILER
 from botocore.auth import UNSIGNED_PAYLOAD as UNSIGNED_PAYLOAD
@@ -16,6 +17,14 @@ from botocore.compat import urlsplit as urlsplit
 from botocore.compat import urlunsplit as urlunsplit
 from botocore.exceptions import NoCredentialsError as NoCredentialsError
 from botocore.utils import percent_encode_sequence as percent_encode_sequence
+
+class AwsCredentials(Protocol):
+    @property
+    def access_key_id(self) -> str: ...
+    @property
+    def secret_access_key(self) -> str: ...
+    @property
+    def session_token(self) -> str: ...
 
 class CrtSigV4Auth(BaseSigner):
     REQUIRES_REGION: bool = ...
