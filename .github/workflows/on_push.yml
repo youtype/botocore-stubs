@@ -20,7 +20,7 @@ jobs:
           - "3.11"
           - "3.12"
           - "3.13"
-          # FIXME: fails with dataclass..__annotate__ is not present in stub
+          # FIXME: mypy fails with dataclass.__annotate__ is not present in stub
           # - "3.14"
     steps:
       - uses: actions/checkout@v4
