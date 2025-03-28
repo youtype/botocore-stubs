@@ -56,6 +56,13 @@ class Config:
         use_fips_endpoint: bool | None = None,
         defaults_mode: bool | None = None,
         tcp_keepalive: bool | None = False,
+        request_min_compression_size_bytes: int | None = None,
+        disable_request_compression: bool | None = None,
+        sigv4a_signing_region_set: str | None = None,
+        client_context_params: dict | None = None,
+        request_checksum_calculation: Literal["when_supported", "when_required"] | None = None,
+        response_checksum_validation: Literal["when_supported", "when_required"] | None = None,
+        account_id_endpoint_mode: Literal["preferred", "disabled", "required"] | None = None,
     ) -> None: ...
     def merge(self: _Config, other_config: _Config) -> _Config: ...
     @property
