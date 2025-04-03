@@ -4,7 +4,7 @@ Type annotations for botocore.config module.
 Copyright 2025 Vlad Emelianov
 """
 
-from typing import Literal, Mapping, TypedDict, TypeVar
+from typing import Any, Literal, Mapping, TypedDict, TypeVar
 
 from botocore.compat import OrderedDict as OrderedDict
 from botocore.endpoint import DEFAULT_TIMEOUT as DEFAULT_TIMEOUT
@@ -59,7 +59,7 @@ class Config:
         request_min_compression_size_bytes: int | None = None,
         disable_request_compression: bool | None = None,
         sigv4a_signing_region_set: str | None = None,
-        client_context_params: dict | None = None,
+        client_context_params: Mapping[str, Any] | None = None,
         request_checksum_calculation: Literal["when_supported", "when_required"] | None = None,
         response_checksum_validation: Literal["when_supported", "when_required"] | None = None,
         account_id_endpoint_mode: Literal["preferred", "disabled", "required"] | None = None,
