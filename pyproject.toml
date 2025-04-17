@@ -4,13 +4,12 @@ version = "1.37.36"
 requires-python = ">=3.8"
 description = "Type annotations and code completion for botocore"
 authors = [{ name = "Vlad Emelianov", email = "vlad.emelianov.nz@gmail.com" }]
-license = { file = "LICENSE" }
+license = "MIT"
 readme = "README.md"
 keywords = ["botocore", "type-annotations", "pyright", "mypy", "boto3"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
-    "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
