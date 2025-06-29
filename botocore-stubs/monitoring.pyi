@@ -5,8 +5,9 @@ Copyright 2025 Vlad Emelianov
 """
 
 import socket
+from collections.abc import Sequence
 from logging import Logger
-from typing import Any, Callable, Sequence
+from typing import Any, Callable
 
 from botocore.compat import ensure_bytes as ensure_bytes
 from botocore.compat import ensure_unicode as ensure_unicode

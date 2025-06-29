@@ -4,9 +4,9 @@ Type annotations for botocore.awsrequest module.
 Copyright 2025 Vlad Emelianov
 """
 
-from collections.abc import MutableMapping
+from collections.abc import Iterator, Mapping, MutableMapping
 from logging import Logger
-from typing import IO, Any, Iterator, Mapping, TypeVar
+from typing import IO, Any, TypeVar
 
 from botocore.compat import HTTPHeaders as HTTPHeaders
 from botocore.compat import HTTPResponse as HTTPResponse

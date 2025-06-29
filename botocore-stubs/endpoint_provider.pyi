@@ -5,15 +5,14 @@ Copyright 2025 Vlad Emelianov
 """
 
 import logging
+from collections.abc import Iterable, Mapping
 from enum import Enum
+from re import Pattern
 from string import Formatter
 from typing import (
     Any,
     Callable,
-    Iterable,
-    Mapping,
     NamedTuple,
-    Pattern,
 )
 
 from botocore.compat import quote as quote

@@ -5,8 +5,10 @@ Copyright 2025 Vlad Emelianov
 """
 
 import datetime
+from collections.abc import Iterable, Mapping
 from logging import Logger
-from typing import Any, Callable, Generic, Iterable, Mapping, Pattern, TypeVar
+from re import Pattern
+from typing import Any, Callable, Generic, TypeVar
 
 from botocore.client import BaseClient
 from botocore.compat import HAS_CRT as HAS_CRT

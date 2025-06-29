@@ -4,7 +4,9 @@ Type annotations for botocore.serialize module.
 Copyright 2025 Vlad Emelianov
 """
 
-from typing import Any, Mapping, Pattern
+from collections.abc import Mapping
+from re import Pattern
+from typing import Any
 
 from botocore.compat import formatdate as formatdate
 from botocore.model import OperationModel

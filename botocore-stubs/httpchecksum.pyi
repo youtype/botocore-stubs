@@ -5,7 +5,8 @@ Copyright 2025 Vlad Emelianov
 """
 
 import logging
-from typing import IO, Any, Iterator, Mapping, Sequence
+from collections.abc import Iterator, Mapping, Sequence
+from typing import IO, Any
 
 from botocore.awsrequest import AWSHTTPResponse
 from botocore.compat import HAS_CRT as HAS_CRT

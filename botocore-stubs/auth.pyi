@@ -4,9 +4,10 @@ Type annotations for botocore.auth module.
 Copyright 2025 Vlad Emelianov
 """
 
+from collections.abc import Iterable, Mapping
 from http.client import HTTPMessage
 from logging import Logger
-from typing import Any, Iterable, Mapping
+from typing import Any
 from urllib.parse import SplitResult
 
 from botocore.awsrequest import AWSRequest

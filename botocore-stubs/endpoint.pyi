@@ -4,8 +4,9 @@ Type annotations for botocore.endpoint module.
 Copyright 2025 Vlad Emelianov
 """
 
+from collections.abc import Mapping, Sequence
 from logging import Logger
-from typing import Any, Mapping, Sequence
+from typing import Any
 
 from botocore.awsrequest import AWSPreparedRequest
 from botocore.awsrequest import create_request_object as create_request_object

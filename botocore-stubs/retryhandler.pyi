@@ -4,8 +4,9 @@ Type annotations for botocore.retryhandler module.
 Copyright 2025 Vlad Emelianov
 """
 
+from collections.abc import Iterable, Mapping
 from logging import Logger
-from typing import Any, Callable, Iterable, Mapping
+from typing import Any, Callable
 
 from botocore.config import Config
 from botocore.exceptions import BotoCoreError

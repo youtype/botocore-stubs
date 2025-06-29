@@ -5,8 +5,9 @@ Copyright 2025 Vlad Emelianov
 """
 
 import datetime
+from collections.abc import Mapping
 from logging import Logger
-from typing import Any, Callable, Mapping, NamedTuple, TypeVar
+from typing import Any, Callable, NamedTuple, TypeVar
 
 from botocore.client import BaseClient
 from botocore.compat import compat_shell_split as compat_shell_split

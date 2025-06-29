@@ -4,7 +4,8 @@ Type annotations for botocore.docs.params module.
 Copyright 2025 Vlad Emelianov
 """
 
-from typing import Any, Sequence
+from collections.abc import Sequence
+from typing import Any
 
 from botocore.docs.bcdoc.restdoc import DocumentStructure
 from botocore.docs.shape import ShapeDocumenter

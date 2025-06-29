@@ -4,7 +4,8 @@ Type annotations for botocore.config module.
 Copyright 2025 Vlad Emelianov
 """
 
-from typing import Any, Literal, Mapping, TypedDict, TypeVar
+from collections.abc import Mapping
+from typing import Any, Literal, TypedDict, TypeVar
 
 from botocore.compat import OrderedDict as OrderedDict
 from botocore.endpoint import DEFAULT_TIMEOUT as DEFAULT_TIMEOUT

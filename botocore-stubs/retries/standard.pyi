@@ -4,8 +4,9 @@ Type annotations for botocore.retries.standard module.
 Copyright 2025 Vlad Emelianov
 """
 
+from collections.abc import Sequence
 from logging import Logger
-from typing import Any, Callable, Sequence
+from typing import Any, Callable
 
 from botocore.client import BaseClient
 from botocore.exceptions import BotoCoreError

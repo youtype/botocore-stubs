@@ -4,7 +4,8 @@ Type annotations for botocore.eventstream module.
 Copyright 2025 Vlad Emelianov
 """
 
-from typing import Any, Generic, Iterator, TypeVar
+from collections.abc import Iterator
+from typing import Any, Generic, TypeVar
 
 from botocore.exceptions import EventStreamError as EventStreamError
 from botocore.model import StructureShape

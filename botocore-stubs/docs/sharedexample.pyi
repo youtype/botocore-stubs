@@ -4,7 +4,8 @@ Type annotations for botocore.docs.sharedexample module.
 Copyright 2025 Vlad Emelianov
 """
 
-from typing import Any, Iterable, Mapping
+from collections.abc import Iterable, Mapping
+from typing import Any
 
 from botocore.docs.bcdoc.restdoc import DocumentStructure
 from botocore.model import OperationModel, Shape

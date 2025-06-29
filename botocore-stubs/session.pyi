@@ -4,9 +4,9 @@ Type annotations for botocore.session module.
 Copyright 2025 Vlad Emelianov
 """
 
-from collections.abc import Callable, MutableMapping
+from collections.abc import Callable, Iterator, Mapping, MutableMapping, Sequence
 from logging import Logger
-from typing import IO, Any, Iterator, Mapping, Protocol, Sequence
+from typing import IO, Any, Protocol
 
 from botocore.client import BaseClient, Config
 from botocore.compat import HAS_CRT as HAS_CRT

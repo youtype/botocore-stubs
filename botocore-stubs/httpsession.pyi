@@ -4,8 +4,9 @@ Type annotations for botocore.httpsession module.
 Copyright 2025 Vlad Emelianov
 """
 
+from collections.abc import Mapping
 from logging import Logger
-from typing import Any, Mapping
+from typing import Any
 
 from botocore.awsrequest import AWSPreparedRequest, AWSRequest, AWSResponse
 from botocore.compat import IPV6_ADDRZ_RE as IPV6_ADDRZ_RE

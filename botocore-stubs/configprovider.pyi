@@ -4,8 +4,9 @@ Type annotations for botocore.configprovider module.
 Copyright 2025 Vlad Emelianov
 """
 
+from collections.abc import Mapping, Sequence
 from logging import Logger
-from typing import Any, Callable, Mapping, Sequence, TypeVar
+from typing import Any, Callable, TypeVar
 
 from botocore.session import Session
 from botocore.utils import IMDSRegionProvider

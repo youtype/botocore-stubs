@@ -4,8 +4,9 @@ Type annotations for botocore.stub module.
 Copyright 2025 Vlad Emelianov
 """
 
+from collections.abc import Mapping
 from types import TracebackType
-from typing import Any, Literal, Mapping, TypeVar
+from typing import Any, Literal, TypeVar
 
 from botocore.awsrequest import AWSResponse as AWSResponse
 from botocore.client import BaseClient

@@ -4,8 +4,10 @@ Type annotations for botocore.handlers module.
 Copyright 2025 Vlad Emelianov
 """
 
+from collections.abc import Mapping
 from logging import Logger
-from typing import Any, Mapping, Pattern
+from re import Pattern
+from typing import Any
 from urllib.request import Request
 
 from botocore.client import BaseClient

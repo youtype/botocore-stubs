@@ -4,10 +4,10 @@ Type annotations for botocore.regions module.
 Copyright 2025 Vlad Emelianov
 """
 
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from enum import Enum
 from logging import Logger
-from typing import Any, Mapping
+from typing import Any
 
 from botocore.auth import AUTH_TYPE_MAPS as AUTH_TYPE_MAPS
 from botocore.compat import HAS_CRT as HAS_CRT

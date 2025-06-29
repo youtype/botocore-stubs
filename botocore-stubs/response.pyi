@@ -5,8 +5,9 @@ Copyright 2025 Vlad Emelianov
 """
 
 import logging
+from collections.abc import Iterator
 from io import IOBase
-from typing import IO, Any, Iterator
+from typing import IO, Any
 
 import requests
 from botocore.model import OperationModel

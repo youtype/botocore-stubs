@@ -5,8 +5,9 @@ Copyright 2025 Vlad Emelianov
 """
 
 import re
+from collections.abc import Iterable, Mapping
 from logging import Logger
-from typing import Any, Iterable, Mapping
+from typing import Any
 
 DEFAULT_AWS_DOCS_LINK: str = ...
 DOCUMENTATION_LINK_REGEX: re.Pattern[str] = ...

@@ -4,8 +4,9 @@ Type annotations for botocore.args module.
 Copyright 2025 Vlad Emelianov
 """
 
+from collections.abc import Mapping
 from logging import Logger
-from typing import Any, Literal, Mapping, TypedDict
+from typing import Any, Literal, TypedDict
 
 from botocore.client import ClientEndpointBridge
 from botocore.config import Config as Config

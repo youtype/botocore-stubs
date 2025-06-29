@@ -4,7 +4,8 @@ Type annotations for botocore.validate module.
 Copyright 2025 Vlad Emelianov
 """
 
-from typing import Any, Iterable, Mapping
+from collections.abc import Iterable, Mapping
+from typing import Any
 
 from botocore.exceptions import ParamValidationError as ParamValidationError
 from botocore.model import OperationModel, Shape

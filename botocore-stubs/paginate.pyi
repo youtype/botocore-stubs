@@ -4,8 +4,9 @@ Type annotations for botocore.paginate module.
 Copyright 2025 Vlad Emelianov
 """
 
+from collections.abc import Iterator
 from logging import Logger
-from typing import Any, Generic, Iterator, TypeVar
+from typing import Any, Generic, TypeVar
 
 from botocore.exceptions import PaginationError as PaginationError
 from botocore.model import OperationModel

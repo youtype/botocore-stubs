@@ -4,7 +4,8 @@ Type annotations for botocore.signers module.
 Copyright 2025 Vlad Emelianov
 """
 
-from typing import Any, Mapping
+from collections.abc import Mapping
+from typing import Any
 
 from botocore.awsrequest import create_request_object as create_request_object
 from botocore.awsrequest import prepare_request_dict as prepare_request_dict

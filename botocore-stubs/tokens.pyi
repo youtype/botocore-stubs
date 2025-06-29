@@ -6,7 +6,8 @@ Copyright 2025 Vlad Emelianov
 
 import datetime
 import logging
-from typing import Any, Callable, Iterable, NamedTuple
+from collections.abc import Iterable
+from typing import Any, Callable, NamedTuple
 
 from botocore.session import Session
 from botocore.utils import JSONFileCache

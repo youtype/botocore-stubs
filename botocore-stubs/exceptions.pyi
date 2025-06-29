@@ -4,7 +4,8 @@ Type annotations for botocore.exceptions module.
 Copyright 2025 Vlad Emelianov
 """
 
-from typing import IO, Any, Iterable, Mapping, TypedDict
+from collections.abc import Iterable, Mapping
+from typing import IO, Any, TypedDict
 
 import requests
 from urllib3.exceptions import ReadTimeoutError as _ReadTimeoutError

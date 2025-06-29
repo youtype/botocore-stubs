@@ -4,7 +4,8 @@ Type annotations for botocore.model module.
 Copyright 2025 Vlad Emelianov
 """
 
-from typing import Any, Mapping, NamedTuple, TypeVar
+from collections.abc import Mapping
+from typing import Any, NamedTuple, TypeVar
 
 from botocore.utils import CachedProperty
 

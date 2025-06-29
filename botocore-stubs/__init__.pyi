@@ -5,7 +5,8 @@ Copyright 2025 Vlad Emelianov
 """
 
 import logging
-from typing import Any, Callable, Mapping
+from collections.abc import Mapping
+from typing import Any, Callable
 
 from botocore.session import Session
 

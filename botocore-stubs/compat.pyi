@@ -7,6 +7,7 @@ Copyright 2025 Vlad Emelianov
 import datetime
 from base64 import encodebytes as encodebytes
 from collections import OrderedDict as OrderedDict
+from collections.abc import Iterable, Mapping
 from email.utils import formatdate as formatdate
 from hashlib import _Hash
 from http.client import HTTPMessage
@@ -14,7 +15,8 @@ from http.client import HTTPResponse as HTTPResponse
 from inspect import FullArgSpec
 from itertools import zip_longest as zip_longest
 from logging import Logger
-from typing import Any, Callable, Iterable, Mapping, Pattern, TypeVar
+from re import Pattern
+from typing import Any, Callable, TypeVar
 from urllib.parse import parse_qs as parse_qs
 from urllib.parse import parse_qsl as parse_qsl
 from urllib.parse import quote as quote

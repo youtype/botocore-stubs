@@ -4,7 +4,7 @@ Type annotations for botocore.errorfactory module.
 Copyright 2025 Vlad Emelianov
 """
 
-from typing import Mapping
+from collections.abc import Mapping
 
 from botocore.exceptions import ClientError as ClientError
 from botocore.exceptions import ClientError as _ClientError

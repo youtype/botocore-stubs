@@ -1,7 +1,7 @@
 [project]
 name = "botocore-stubs"
 version = "1.38.30"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 description = "Type annotations and code completion for botocore"
 authors = [{ name = "Vlad Emelianov", email = "vlad.emelianov.nz@gmail.com" }]
 license = { file = "LICENSE" }
@@ -14,7 +14,6 @@ classifiers = [
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -78,10 +77,10 @@ reportMissingTypeArgument = "error"
 reportIncompatibleMethodOverride = "error"
 reportIncompatibleVariableOverride = false
 reportUnknownParameterType = "error"
-pythonVersion = "3.8"
+pythonVersion = "3.9"
 
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.9"
 warn_return_any = false
 warn_unused_ignores = false
 warn_unused_configs = true
@@ -109,7 +108,7 @@ exclude = [
 
 line-length = 100
 indent-width = 4
-target-version = "py38"
+target-version = "py39"
 
 [tool.ruff.lint]
 preview = true
