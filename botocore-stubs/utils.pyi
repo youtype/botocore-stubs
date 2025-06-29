@@ -6,15 +6,7 @@ Copyright 2025 Vlad Emelianov
 
 import datetime
 from logging import Logger
-from typing import (
-    Any,
-    Callable,
-    Generic,
-    Iterable,
-    Mapping,
-    Pattern,
-    TypeVar,
-)
+from typing import Any, Callable, Generic, Iterable, Mapping, Pattern, TypeVar
 
 from botocore.client import BaseClient
 from botocore.compat import HAS_CRT as HAS_CRT
@@ -71,6 +63,7 @@ RETRYABLE_HTTP_ERRORS: tuple[Any, ...]
 S3_ACCELERATE_WHITELIST: list[str]
 EVENT_ALIASES: dict[str, str]
 CHECKSUM_HEADER_PATTERN: Pattern[str]
+PRIORITY_ORDERED_SUPPORTED_PROTOCOLS: tuple[str, ...]
 IPV4_PAT: str
 HEX_PAT: str
 LS32_PAT: str
