@@ -7,7 +7,7 @@ Copyright 2025 Vlad Emelianov
 from collections.abc import Mapping
 from io import BufferedReader
 from logging import Logger
-from typing import IO, Any, Callable
+from typing import IO, Any, Callable, Literal
 
 from botocore.compat import XMLParseError as XMLParseError
 from botocore.eventstream import EventStream as EventStream
@@ -34,6 +34,7 @@ class ResponseParserError(Exception): ...
 class ResponseParser:
     DEFAULT_ENCODING: str = ...
     EVENT_STREAM_PARSER_CLS: type[ResponseParser] | None = ...
+    KNOWN_LOCATIONS: tuple[Literal["header"], Literal["headers"], Literal["statusCode"]] = ...
     def __init__(
         self,
         timestamp_parser: Callable[[str], Any] | None = ...,
