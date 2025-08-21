@@ -337,6 +337,7 @@ class SSOCredentialFetcher(CachedCredentialFetcher):
         expiry_window_seconds: float | None = ...,
         token_provider: SSOTokenProvider | None = ...,
         sso_session_name: str | None = ...,
+        time_fetcher: Callable[[], datetime.datetime] = ...,
     ) -> None: ...
 
 class SSOProvider(CredentialProvider):

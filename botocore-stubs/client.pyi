@@ -6,7 +6,7 @@ Copyright 2025 Vlad Emelianov
 
 from collections.abc import Mapping
 from logging import Logger
-from typing import Any
+from typing import Any, Protocol
 
 from botocore.args import ClientArgsCreator as ClientArgsCreator
 from botocore.auth import AUTH_TYPE_MAPS as AUTH_TYPE_MAPS
@@ -53,6 +53,9 @@ from botocore.waiter import Waiter
 logger: Logger = ...
 history_recorder: HistoryRecorder = ...
 
+class _AuthTokenResolver(Protocol):
+    def __call__(self, *, signing_name: str) -> str: ...
+
 class ClientCreator:
     def __init__(
         self,
@@ -66,6 +69,7 @@ class ClientCreator:
         exceptions_factory: ClientExceptionsFactory | None = ...,
         config_store: ConfigValueStore | None = ...,
         user_agent_creator: UserAgentString | None = ...,
+        auth_token_resolver: _AuthTokenResolver | None = None,
     ) -> None: ...
     def create_client(
         self,
