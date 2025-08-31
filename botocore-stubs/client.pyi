@@ -4,7 +4,7 @@ Type annotations for botocore.client module.
 Copyright 2025 Vlad Emelianov
 """
 
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from logging import Logger
 from typing import Any
 
@@ -66,6 +66,7 @@ class ClientCreator:
         exceptions_factory: ClientExceptionsFactory | None = ...,
         config_store: ConfigValueStore | None = ...,
         user_agent_creator: UserAgentString | None = ...,
+        auth_token_resolver: Callable[[str], str] | None = ...,
     ) -> None: ...
     def create_client(
         self,

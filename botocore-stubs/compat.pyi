@@ -74,6 +74,7 @@ HAS_CRT: bool
 disabled: str
 
 def has_minimum_crt_version(minimum_version: tuple[int, ...]) -> bool: ...
+def get_current_datetime(remove_tzinfo: bool = ...) -> datetime.datetime: ...
 
 IPV4_PAT: str
 IPV4_RE: Pattern[str]

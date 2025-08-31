@@ -6,7 +6,7 @@ Copyright 2025 Vlad Emelianov
 
 import datetime
 import logging
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from typing import Any, Callable, NamedTuple
 
 from botocore.session import Session
@@ -45,3 +45,8 @@ class SSOTokenProvider:
         profile_name: str | None = ...,
     ) -> None: ...
     def load_token(self) -> DeferredRefreshableToken: ...
+
+class ScopedEnvTokenProvider:
+    METHOD: str = ...
+    def __init__(self, session: Session, environ: Mapping[str, Any] | None = ...) -> None: ...
+    def load_token(self, **kwargs: Any) -> FrozenAuthToken | None: ...

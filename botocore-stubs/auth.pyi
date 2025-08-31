@@ -157,6 +157,10 @@ class BearerAuth(TokenSigner):
     def add_auth(self, request: AWSRequest) -> None: ...
 
 def resolve_auth_type(auth_trait: Iterable[str]) -> str: ...
+def resolve_auth_scheme_preference(
+    preference_list: Iterable[str], auth_options: Iterable[str]
+) -> str: ...
 
 AUTH_TYPE_MAPS: dict[str, type[BaseSigner]]
 AUTH_TYPE_TO_SIGNATURE_VERSION: dict[str, str]
+AUTH_PREF_TO_SIGNATURE_VERSION: dict[str, str]
