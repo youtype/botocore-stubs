@@ -5,7 +5,9 @@ packages:
       flake8: false
       pyright: false
       mypy: false
-      stubtest: true
+      stubtest:
+        enabled: true
+        command: python -m mypy.stubtest --ignore-disjoint-bases
     snapshots:
       stubtest: |-
         error: botocore.vendored failed to find stubs
