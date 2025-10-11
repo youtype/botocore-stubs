@@ -6,12 +6,16 @@ Copyright 2025 Vlad Emelianov
 
 from collections.abc import Mapping
 from contextvars import Token
+from dataclasses import dataclass
 from logging import Logger
 
 from botocore.client import BaseClient
-from botocore.plugin import PluginContext  # type: ignore[attr-defined]
 
 log: Logger = ...
+
+@dataclass
+class PluginContext:
+    plugins: str | None = ...
 
 def get_plugin_context() -> PluginContext | None: ...
 def set_plugin_context(ctx: PluginContext) -> Token[PluginContext]: ...

@@ -7,7 +7,7 @@ Copyright 2025 Vlad Emelianov
 from collections.abc import Mapping
 from io import BufferedReader
 from logging import Logger
-from typing import IO, Any, Callable, Literal
+from typing import IO, Any, Callable
 
 from botocore.compat import XMLParseError as XMLParseError
 from botocore.eventstream import EventStream as EventStream
