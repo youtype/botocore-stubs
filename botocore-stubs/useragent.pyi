@@ -5,6 +5,7 @@ Copyright 2025 Vlad Emelianov
 """
 
 import logging
+from collections.abc import Iterable
 from typing import Any, NamedTuple, TypeVar
 
 from botocore.awsrequest import AWSRequest
@@ -15,6 +16,7 @@ _R = TypeVar("_R")
 logger: logging.Logger = ...
 
 def register_feature_id(feature_id: str) -> None: ...
+def register_feature_ids(feature_ids: Iterable[str]) -> None: ...
 def sanitize_user_agent_string_component(raw_str: str, allow_hash: bool) -> str: ...
 
 class UserAgentComponentSizeConfig:
