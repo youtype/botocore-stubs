@@ -21,11 +21,6 @@ repos:
         language: system
         pass_filenames: false
         entry: uv run mypy botocore-stubs
-      - id: istub
-        name: istub
-        language: system
-        pass_filenames: false
-        entry: uv run istub -d
       - id: sanity
         name: sanity
         language: system

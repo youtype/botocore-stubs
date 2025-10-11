@@ -135,6 +135,9 @@ def remove_qbusiness_chat(class_attributes: Mapping[str, Any], **kwargs: Any) ->
 def remove_bedrock_runtime_invoke_model_with_bidirectional_stream(
     class_attributes: Mapping[str, Any], **kwargs: Any
 ) -> None: ...
+def enable_millisecond_timestamp_precision(
+    serializer_kwargs: Mapping[str, Any], **kwargs: Any
+) -> None: ...
 def add_retry_headers(request: Request, **kwargs: Any) -> None: ...
 def remove_bucket_from_url_paths_from_model(
     params: Mapping[str, Any], model: OperationModel, context: Mapping[str, Any], **kwargs: Any

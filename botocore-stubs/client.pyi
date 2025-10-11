@@ -4,7 +4,7 @@ Type annotations for botocore.client module.
 Copyright 2025 Vlad Emelianov
 """
 
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from logging import Logger
 from typing import Any, Protocol
 

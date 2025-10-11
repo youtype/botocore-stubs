@@ -6,7 +6,7 @@ Copyright 2025 Vlad Emelianov
 
 from collections.abc import Mapping
 from logging import Logger
-from typing import Any, Literal, TypedDict
+from typing import Any, Literal, TypedDict, TypeVar
 
 from botocore.client import ClientEndpointBridge
 from botocore.config import Config as Config
@@ -22,6 +22,8 @@ from botocore.parsers import ResponseParser, ResponseParserFactory
 from botocore.serialize import BaseRestSerializer
 from botocore.signers import RequestSigner as RequestSigner
 from botocore.useragent import UserAgentString
+
+_R = TypeVar("_R")
 
 logger: Logger = ...
 
@@ -97,4 +99,4 @@ class ClientArgsCreator:
 class ConfigObjectWrapper: ...
 
 class ClientConfigString(str, ConfigObjectWrapper):
-    def __new__(cls, value: str | None = None) -> ClientConfigString: ...
+    def __new__(cls: type[_R], value: Any = ...) -> _R: ...
