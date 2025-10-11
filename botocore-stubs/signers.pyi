@@ -19,6 +19,7 @@ from botocore.model import ServiceId
 from botocore.utils import datetime2timestamp as datetime2timestamp
 
 class RequestSigner:
+    METHOD_FEATURE_MAP: Mapping[str, str] = ...
     def __init__(
         self,
         service_id: ServiceId,
@@ -56,6 +57,7 @@ class RequestSigner:
         **kwargs: Any,
     ) -> Any: ...
     get_auth: Any = ...
+    def check_and_register_feature_id(self, method_name: str) -> None: ...
     def generate_presigned_url(
         self,
         request_dict: Mapping[str, Any],

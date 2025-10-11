@@ -21,6 +21,7 @@ from botocore.compat import urlparse as urlparse
 from botocore.compat import urlsplit as urlsplit
 from botocore.compat import urlunsplit as urlunsplit
 from botocore.compat import zip_longest as zip_longest
+from botocore.config import Config
 from botocore.credentials import Credentials
 from botocore.exceptions import ClientError as ClientError
 from botocore.exceptions import ConfigNotFound as ConfigNotFound
@@ -89,7 +90,21 @@ def set_value_from_jmespath(
     source: dict[str, Any], expression: str, value: Any, is_first: bool = ...
 ) -> None: ...
 def is_global_accesspoint(context: Any) -> bool: ...
-def create_nested_client(session: Session, service_name: str, **kwargs: Any) -> BaseClient: ...
+def create_nested_client(
+    session: Session,
+    service_name: str,
+    *,
+    region_name: str | None = ...,
+    api_version: str | None = ...,
+    use_ssl: bool | None = ...,
+    verify: bool | str | None = ...,
+    endpoint_url: str | None = ...,
+    aws_access_key_id: str | None = ...,
+    aws_secret_access_key: str | None = ...,
+    aws_session_token: str | None = ...,
+    config: Config | None = ...,
+    aws_account_id: str | None = ...,
+) -> BaseClient: ...
 
 class _RetriesExceededError(Exception): ...
 
