@@ -96,7 +96,7 @@ wheels = [
 
 [[package]]
 name = "botocore-stubs"
-version = "1.40.51"
+version = "1.40.52"
 source = { editable = "." }
 dependencies = [
     { name = "types-awscrt" },
