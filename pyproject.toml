@@ -32,7 +32,7 @@ botocore = ["botocore"]
 
 [dependency-groups]
 dev = [
-    "setuptools",
+    "setuptools>77.0.0",
     "awscrt",
     "botocore>=1.35.0",
     "mypy",

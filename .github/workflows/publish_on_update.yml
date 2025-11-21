@@ -55,7 +55,7 @@ jobs:
         with:
           python-version: "3.13"
       - name: Set up uv
-        uses: astral-sh/setup-uv@v4
+        uses: astral-sh/setup-uv@v6
         with:
           version: "latest"
       - name: Install the project
@@ -71,6 +71,12 @@ jobs:
           echo "Bumping version to ${STUBS_VERSION}"
           uvx newversion -i ${STUBS_VERSION} --save
           uv pip install .
+      - name: Build package
+        run: |
+          rm -rf dist/* || true
+          uv build --sdist --wheel --no-sources
+      - name: Publish package to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
       - name: Commit changes
         if: "${{ github.event.inputs.version == '' }}"
         run: |
@@ -80,16 +86,6 @@ jobs:
           git add pyproject.toml
           git commit -m "Release ${STUBS_VERSION}"
           git push
-      - name: Publish to PyPI
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
-        run: |
-          rm -rf dist/* || true
-          uv build --sdist --wheel --no-sources
-          # uv publish
-          uvx twine upload --non-interactive dist/*
       - name: Report status
         uses: actions/github-script@v7
         with:
