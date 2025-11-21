@@ -5,7 +5,7 @@ Copyright 2025 Vlad Emelianov
 """
 
 import datetime
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping
 from logging import Logger
 from typing import Any, Callable, NamedTuple, TypeVar
 
@@ -27,6 +27,7 @@ from botocore.tokens import SSOTokenProvider
 from botocore.utils import ContainerMetadataFetcher as ContainerMetadataFetcher
 from botocore.utils import FileWebIdentityTokenLoader as FileWebIdentityTokenLoader
 from botocore.utils import InstanceMetadataFetcher as InstanceMetadataFetcher
+from botocore.utils import JSONFileCache
 from botocore.utils import SSOTokenLoader as SSOTokenLoader
 from botocore.utils import parse_key_val_file as parse_key_val_file
 
@@ -53,6 +54,7 @@ class ProfileProviderBuilder:
         cache: dict[str, Any] | None = ...,
         region_name: str | None = ...,
         sso_token_cache: dict[str, Any] | None = ...,
+        login_token_cache: JSONFileCache | None = ...,
     ) -> None: ...
     def providers(
         self, profile_name: str, disable_env_vars: bool = ...
@@ -354,3 +356,25 @@ class SSOProvider(CredentialProvider):
     ) -> None:
         self.cache: dict[str, Any] = ...
     def load(self) -> DeferredRefreshableCredentials: ...
+
+class LoginCredentialFetcher:
+    def __init__(
+        self,
+        session_name: str,
+        token_loader: Callable[..., Any],
+        client_creator: Callable[..., Any],
+        time_fetcher: Callable[[], datetime.datetime] = ...,
+        feature_ids: Iterable[str] | None = ...,
+    ) -> None: ...
+    def load_cached_credentials(self) -> dict[str, Any]: ...
+    def refresh_credentials(self) -> dict[str, Any]: ...
+
+class LoginProvider(CredentialProvider):
+    def __init__(
+        self,
+        load_config: Callable[[], Any],
+        client_creator: Callable[..., Any],
+        profile_name: str,
+        token_cache: JSONFileCache | None = ...,
+    ) -> None: ...
+    def load(self) -> RefreshableCredentials | None: ...
