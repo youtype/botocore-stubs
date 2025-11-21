@@ -46,6 +46,7 @@ jobs:
     needs: check-version
     permissions:
       id-token: write
+      contents: write
     if: needs.check-version.outputs.stubs-version
     env:
       VERSION: ${{ needs.check-version.outputs.version }}
