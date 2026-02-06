@@ -58,7 +58,7 @@ wheels = [
 
 [[package]]
 name = "botocore-stubs"
-version = "1.42.29"
+version = "1.42.40"
 source = { editable = "." }
 
 [package.optional-dependencies]
