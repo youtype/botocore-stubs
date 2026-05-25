@@ -20,10 +20,8 @@ jobs:
           - "3.12"
           - "3.13"
           - "3.14"
+          - "3.15"
         include:
-          - version: "3.8"
-            lint: "true"
-            # check-consistency: "true"
           - version: "3.9"
             lint: "true"
             check-consistency: "true"
@@ -40,17 +38,20 @@ jobs:
             lint: "true"
             check-consistency: "true"
           - version: "3.14"
-            # lint: "true"
+            lint: "true"
+            check-consistency: "true"
+          - version: "3.15"
+            lint: "true"
             check-consistency: "true"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.version }}
           allow-prereleases: true
       - name: Set up uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v8
         with:
           version: "latest"
           enable-cache: true
