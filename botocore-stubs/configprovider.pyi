@@ -11,6 +11,7 @@ from typing import Any, Callable, TypeVar
 from botocore.session import Session
 from botocore.utils import IMDSRegionProvider
 
+NEW_RETRIES_ENABLED: bool = ...
 BOTOCORE_DEFAUT_SESSION_VARIABLES: dict[str, tuple[Any, ...]]
 DEFAULT_S3_CONFIG_VARS: dict[str, tuple[Any, ...]]
 DEFAULT_PROXIES_CONFIG_VARS: dict[str, tuple[Any, ...]]

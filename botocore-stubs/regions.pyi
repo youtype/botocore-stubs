@@ -65,6 +65,7 @@ class EndpointResolverBuiltins(Enum):
     AWS_S3_ACCELERATE = "AWS::S3::Accelerate"
     AWS_S3_FORCE_PATH_STYLE = "AWS::S3::ForcePathStyle"
     AWS_S3_USE_ARN_REGION = "AWS::S3::UseArnRegion"
+    AWS_S3_DISABLE_EXPRESS_SESSION_AUTH = "AWS::S3::DisableS3ExpressSessionAuth"
     AWS_S3CONTROL_USE_ARN_REGION = "AWS::S3Control::UseArnRegion"
     AWS_S3_DISABLE_MRAP = "AWS::S3::DisableMultiRegionAccessPoints"
     SDK_ENDPOINT = "SDK::Endpoint"
@@ -82,6 +83,7 @@ class EndpointRulesetResolver:
         event_emitter: BaseEventHooks,
         use_ssl: bool = ...,
         requested_auth_scheme: str | None = ...,
+        auth_scheme_preference: str | None = ...,
     ) -> None: ...
     def construct_endpoint(
         self,
