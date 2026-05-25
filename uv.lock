@@ -176,9 +176,6 @@ wheels = [
 name = "botocore-stubs"
 version = "1.43.14"
 source = { editable = "." }
-dependencies = [
-    { name = "types-awscrt" },
-]
 
 [package.optional-dependencies]
 botocore = [
@@ -215,15 +212,11 @@ types = [
 ]
 
 [package.metadata]
-requires-dist = [
-    { name = "botocore", marker = "extra == 'botocore'" },
-    { name = "types-awscrt" },
-]
+requires-dist = [{ name = "botocore", marker = "extra == 'botocore'" }]
 provides-extras = ["botocore"]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "awscrt" },
     { name = "botocore", specifier = ">=1.35.0" },
     { name = "docutils" },
     { name = "istub" },

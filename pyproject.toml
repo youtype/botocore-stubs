@@ -26,7 +26,6 @@ classifiers = [
     "Typing :: Stubs Only",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-dependencies = ["types-awscrt"]
 
 [project.optional-dependencies]
 botocore = ["botocore"]
@@ -34,7 +33,6 @@ botocore = ["botocore"]
 [dependency-groups]
 dev = [
     "setuptools>77.0.0",
-    "awscrt",
     "botocore>=1.35.0",
     "mypy",
     "pyright",
