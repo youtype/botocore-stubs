@@ -94,6 +94,7 @@ class ClientArgsCreator:
         legacy_endpoint_url: str,
         credentials: Credentials | None,
         account_id_endpoint_mode: Literal["preferred", "disabled", "required"] | None,
+        s3_disable_express_session_auth: bool,
     ) -> dict[str, Any]: ...
 
 class ConfigObjectWrapper: ...
