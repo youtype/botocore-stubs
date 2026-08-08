@@ -145,7 +145,7 @@ class CachedCredentialFetcher:
 class BaseAssumeRoleCredentialFetcher(CachedCredentialFetcher):
     def __init__(
         self,
-        client_creator: Callable[[], BaseClient],
+        client_creator: Callable[..., BaseClient],
         role_arn: str,
         extra_args: Any | None = ...,
         cache: Any | None = ...,
@@ -155,7 +155,7 @@ class BaseAssumeRoleCredentialFetcher(CachedCredentialFetcher):
 class AssumeRoleCredentialFetcher(BaseAssumeRoleCredentialFetcher):
     def __init__(
         self,
-        client_creator: Callable[[], BaseClient],
+        client_creator: Callable[..., BaseClient],
         source_credentials: Any,
         role_arn: str,
         extra_args: dict[str, Any] | None = ...,
@@ -167,7 +167,7 @@ class AssumeRoleCredentialFetcher(BaseAssumeRoleCredentialFetcher):
 class AssumeRoleWithWebIdentityCredentialFetcher(BaseAssumeRoleCredentialFetcher):
     def __init__(
         self,
-        client_creator: Callable[[], BaseClient],
+        client_creator: Callable[..., BaseClient],
         web_identity_token_loader: Callable[[], str],
         role_arn: str,
         extra_args: Any | None = ...,
@@ -274,7 +274,7 @@ class AssumeRoleProvider(CredentialProvider):
     def __init__(
         self,
         load_config: Callable[[], Mapping[str, Any]],
-        client_creator: Callable[..., Any],
+        client_creator: Callable[..., BaseClient],
         cache: dict[str, Any],
         profile_name: str,
         prompter: Callable[..., Any] = ...,
@@ -290,7 +290,7 @@ class AssumeRoleWithWebIdentityProvider(CredentialProvider):
     def __init__(
         self,
         load_config: Callable[[], Mapping[str, Any]],
-        client_creator: Callable[..., Any],
+        client_creator: Callable[..., BaseClient],
         profile_name: str,
         cache: dict[str, Any] | None = ...,
         disable_env_vars: bool = ...,
@@ -334,8 +334,8 @@ class SSOCredentialFetcher(CachedCredentialFetcher):
         sso_region: str,
         role_name: str,
         account_id: str,
-        client_creator: Callable[..., Any],
-        token_loader: Callable[[], str] | None = ...,
+        client_creator: Callable[..., BaseClient],
+        token_loader: Callable[..., Any] | None = ...,
         cache: dict[str, Any] | None = ...,
         expiry_window_seconds: float | None = ...,
         token_provider: SSOTokenProvider | None = ...,
@@ -348,7 +348,7 @@ class SSOProvider(CredentialProvider):
     def __init__(
         self,
         load_config: Callable[[], Any],
-        client_creator: Callable[..., Any],
+        client_creator: Callable[..., BaseClient],
         profile_name: str,
         cache: dict[str, Any] | None = ...,
         token_cache: dict[str, Any] | None = ...,
@@ -362,7 +362,7 @@ class LoginCredentialFetcher:
         self,
         session_name: str,
         token_loader: Callable[..., Any],
-        client_creator: Callable[..., Any],
+        client_creator: Callable[..., BaseClient],
         time_fetcher: Callable[[], datetime.datetime] = ...,
         feature_ids: Iterable[str] | None = ...,
     ) -> None: ...
@@ -373,7 +373,7 @@ class LoginProvider(CredentialProvider):
     def __init__(
         self,
         load_config: Callable[[], Any],
-        client_creator: Callable[..., Any],
+        client_creator: Callable[..., BaseClient],
         profile_name: str,
         token_cache: JSONFileCache | None = ...,
     ) -> None: ...
