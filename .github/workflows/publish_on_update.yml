@@ -29,7 +29,7 @@ jobs:
       version: ${{ steps.vars.outputs.version }}
       stubs-version: ${{ steps.vars.outputs.stubs-version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Extract versions
         id: vars
         uses: actions/github-script@v9
