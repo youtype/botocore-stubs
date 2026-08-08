@@ -4,9 +4,9 @@ Type annotations for botocore.loaders module.
 Copyright 2025 Vlad Emelianov
 """
 
-from collections.abc import Iterable, Mapping
+from collections.abc import Callable, Iterable, Mapping
 from logging import Logger
-from typing import Any, Callable
+from typing import Any
 
 from botocore.compat import OrderedDict as OrderedDict
 from botocore.exceptions import DataNotFoundError as DataNotFoundError

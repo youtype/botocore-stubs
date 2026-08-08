@@ -4,9 +4,9 @@ Type annotations for botocore.waiter module.
 Copyright 2025 Vlad Emelianov
 """
 
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from logging import Logger
-from typing import Any, Callable
+from typing import Any
 
 from botocore.client import BaseClient
 

@@ -4,7 +4,8 @@ Type annotations for botocore.docs.client module.
 Copyright 2025 Vlad Emelianov
 """
 
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 from botocore.client import BaseClient
 from botocore.docs.bcdoc.restdoc import DocumentStructure

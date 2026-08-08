@@ -4,9 +4,9 @@ Type annotations for botocore.hooks module.
 Copyright 2025 Vlad Emelianov
 """
 
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from logging import Logger
-from typing import Any, Callable, NamedTuple, TypeVar
+from typing import Any, NamedTuple, TypeVar
 
 from botocore.compat import accepts_kwargs as accepts_kwargs
 from botocore.utils import EVENT_ALIASES as EVENT_ALIASES

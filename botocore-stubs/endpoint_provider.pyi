@@ -5,13 +5,12 @@ Copyright 2025 Vlad Emelianov
 """
 
 import logging
-from collections.abc import Iterable, Mapping
+from collections.abc import Callable, Iterable, Mapping
 from enum import Enum
 from re import Pattern
 from string import Formatter
 from typing import (
     Any,
-    Callable,
     NamedTuple,
 )
 

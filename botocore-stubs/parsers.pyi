@@ -4,10 +4,10 @@ Type annotations for botocore.parsers module.
 Copyright 2025 Vlad Emelianov
 """
 
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from io import BufferedReader
 from logging import Logger
-from typing import IO, Any, Callable
+from typing import IO, Any
 
 from botocore.compat import XMLParseError as XMLParseError
 from botocore.eventstream import EventStream as EventStream

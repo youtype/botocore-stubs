@@ -5,10 +5,10 @@ Copyright 2025 Vlad Emelianov
 """
 
 import io
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from gzip import GzipFile as GzipFile
 from logging import Logger
-from typing import Any, Callable
+from typing import Any
 
 from botocore.compat import urlencode as urlencode
 from botocore.config import Config
