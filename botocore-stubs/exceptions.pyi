@@ -164,6 +164,13 @@ class TokenRetrievalError(BotoCoreError):
     def __init__(self, *, provider: str = ..., error_msg: str = ..., **kwargs: Any) -> None:
         self.kwargs: _TokenRetrievalErrorKwargs
 
+class _UnknownTokenProviderErrorKwargs(TypedDict):
+    name: str
+
+class UnknownTokenProviderError(BotoCoreError):
+    def __init__(self, *, name: str = ..., **kwargs: Any) -> None:
+        self.kwargs: _UnknownTokenProviderErrorKwargs
+
 class _PartialCredentialsErrorKwargs(TypedDict):
     provider: str
     cred_var: str

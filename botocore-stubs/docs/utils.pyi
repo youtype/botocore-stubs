@@ -44,4 +44,16 @@ class AppendParamDocumentation:
         self, event_name: str, section: DocumentStructure, **kwargs: Any
     ) -> None: ...
 
+class DocumentModifiedShape:
+    def __init__(
+        self,
+        shape_name: str,
+        new_type: str,
+        new_description: str,
+        new_example_value: str,
+    ) -> None: ...
+    def replace_documentation_for_matching_shape(
+        self, event_name: str, section: DocumentStructure, **kwargs: Any
+    ) -> None: ...
+
 def escape_controls(value: str) -> str: ...

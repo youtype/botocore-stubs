@@ -23,48 +23,6 @@ packages:
         Runtime:
         MISSING
 
-        error: botocore.docs.utils.DocumentModifiedShape is not present in stub
-        Stub: in file ./botocore-stubs/docs/utils.pyi
-        MISSING
-        Runtime: in file ./botocore/docs/utils.py:208
-        def (shape_name, new_type, new_description, new_example_value)
-
-        error: botocore.exceptions.UnknownTokenProviderError is not present in stub
-        Stub: in file ./botocore-stubs/exceptions.pyi
-        MISSING
-        Runtime: in file ./botocore/exceptions.py:188
-        def (**kwargs)
-
-        error: botocore.retries.standard.MaxAttemptsSeeder is not present in stub
-        Stub: in file ./botocore-stubs/retries/standard.pyi
-        MISSING
-        Runtime: in file ./botocore/retries/standard.py:120
-        def (max_attempts)
-
-        error: botocore.tokens.TokenProviderChain.get_provider is not present in stub
-        Stub: in file ./botocore-stubs/tokens.pyi
-        MISSING
-        Runtime: in file ./botocore/tokens.py:220
-        def (self, name)
-
-        error: botocore.tokens.TokenProviderChain.insert_after is not present in stub
-        Stub: in file ./botocore-stubs/tokens.pyi
-        MISSING
-        Runtime: in file ./botocore/tokens.py:189
-        def (self, name, token_provider)
-
-        error: botocore.tokens.TokenProviderChain.insert_before is not present in stub
-        Stub: in file ./botocore-stubs/tokens.pyi
-        MISSING
-        Runtime: in file ./botocore/tokens.py:173
-        def (self, name, token_provider)
-
-        error: botocore.tokens.TokenProviderChain.remove is not present in stub
-        Stub: in file ./botocore-stubs/tokens.pyi
-        MISSING
-        Runtime: in file ./botocore/tokens.py:205
-        def (self, name)
-
         error: botocore.vendored failed to find stubs
         Stub:
         MISSING
