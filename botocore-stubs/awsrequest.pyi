@@ -66,12 +66,14 @@ class AWSPreparedRequest:
         headers: HTTPHeaders,
         body: str | bytes | bytearray | IO[bytes] | IO[str] | None,
         stream_output: bool,
+        context: dict[str, Any] | None = ...,
     ) -> None:
         self.method: str
         self.url: str
         self.headers: HTTPHeaders
         self.body: str | bytes | bytearray | IO[bytes] | IO[str] | None
         self.stream_output: bool
+        self.context: dict[str, Any] | None
 
     def reset_stream(self) -> None: ...
 
