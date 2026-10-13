@@ -66,6 +66,7 @@ class AWSPreparedRequest:
         headers: HTTPHeaders,
         body: str | bytes | bytearray | IO[bytes] | IO[str] | None,
         stream_output: bool,
+        context: Mapping[str, Any] | None = ...,
     ) -> None:
         self.method: str
         self.url: str

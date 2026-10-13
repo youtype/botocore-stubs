@@ -141,9 +141,6 @@ def remove_connecthealth_start_medical_scribe_listening_session(
 def remove_polly_start_speech_synthesis_stream(
     class_attributes: Mapping[str, Any], **kwargs: Any
 ) -> None: ...
-def enable_millisecond_timestamp_precision(
-    serializer_kwargs: Mapping[str, Any], **kwargs: Any
-) -> None: ...
 def add_retry_headers(request: Request, **kwargs: Any) -> None: ...
 def remove_bucket_from_url_paths_from_model(
     params: Mapping[str, Any], model: OperationModel, context: Mapping[str, Any], **kwargs: Any
