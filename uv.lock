@@ -106,7 +106,7 @@ wheels = [
 
 [[package]]
 name = "botocore-stubs"
-version = "1.43.115"
+version = "1.43.116"
 source = { editable = "." }
 default-groups = ["dev", "types"]
 
